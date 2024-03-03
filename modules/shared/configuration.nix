@@ -1,18 +1,22 @@
 {
   pkgs,
   hostPlatform,
-  lib,
   ...
-}: {
+}: let
+  inherit (pkgs.stdenv) isDarwin;
+in {
   # packages installed in system profile. to search by name, run:
   # $ nix-env -qaP | grep wget
-  environment.systemPackages = [
+  environment.systemPackages = with pkgs; [
   ];
 
   fonts = let
     packages = with pkgs; [
+      open-sans
       noto-fonts
       noto-fonts-emoji
+      source-han-sans
+      source-han-serif
 
       fira-code
       fira-code-symbols
@@ -31,7 +35,7 @@
       fontDir.enable = true;
     }
     // (
-      if (lib.strings.hasSuffix "-darwin" hostPlatform)
+      if isDarwin
       then {
         fonts = packages;
       }

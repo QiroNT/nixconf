@@ -13,23 +13,35 @@ in {
       fd # better find, why debian uses `fd-find` still bothers me
       jq # i should learn this
       aria # no 2 needed
-      btop
-      dua # most convenient disk stuff I've ever used
       gnupg
-      htop
       lrzsz
       parallel
+      rsync
       rclone
       smartmontools
-      postgresql_16_jit # til: postgres has jit
-      sqlite
-      awscli
       tldr
       tokei
-      turso-cli
       xz
       zstd
       yt-dlp
+      iperf
+      nmap
+
+      # tui
+      btop
+      htop
+      glances
+      inxi # yep i have 4 monitoring tools for some reason
+      dua # most convenient disk stuff I've ever used
+
+      # databases
+      postgresql_16_jit # til: postgres has jit
+      sqlite
+
+      # cloud
+      gh # github cli
+      turso-cli
+      awscli
 
       # visual stuff
       brotli
