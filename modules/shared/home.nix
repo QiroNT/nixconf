@@ -108,6 +108,7 @@ in {
       shellAliases = {
         cat = "bat";
         diff = "difft";
+        ls = "eza";
       };
     };
 
