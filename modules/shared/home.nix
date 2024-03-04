@@ -12,6 +12,8 @@ in {
       # cli utils
       fd # better find, why debian uses `fd-find` still bothers me
       jq # i should learn this
+      eza
+      ripgrep
       aria # no 2 needed
       gnupg
       lrzsz
@@ -33,6 +35,7 @@ in {
       glances
       inxi # yep i have 4 monitoring tools for some reason
       dua # most convenient disk stuff I've ever used
+      gitui
 
       # databases
       postgresql_16_jit # til: postgres has jit
