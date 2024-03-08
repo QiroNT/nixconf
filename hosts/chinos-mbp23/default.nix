@@ -7,7 +7,7 @@ inputs @ {
 
   configuration = {...}: {
     imports = [
-      ../modules/darwin/configuration.nix
+      ../../modules/darwin/configuration.nix
     ];
     home-manager = {
       extraSpecialArgs = {
@@ -16,7 +16,7 @@ inputs @ {
       useUserPackages = true;
       useGlobalPkgs = true;
       users.qiront.imports = [
-        ../modules/darwin/home.nix
+        ../../modules/darwin/home.nix
       ];
     };
     users.users.qiront.home = "/Users/qiront";

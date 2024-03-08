@@ -59,7 +59,7 @@
     # build darwin flake using:
     darwinConfigurations = {
       # $ darwin-rebuild switch --flake ~/.config/nix-darwin#chinos-mbp23
-      "chinos-mbp23" = import ./hosts/chinos-mbp23.nix inputs;
+      "chinos-mbp23" = import ./hosts/chinos-mbp23 inputs;
     };
   };
 }
