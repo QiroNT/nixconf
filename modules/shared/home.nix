@@ -117,6 +117,7 @@ in {
     # the software people used to convince everyone else to use
     git = {
       enable = true;
+      package = pkgs.gitFull;
       lfs.enable = true;
 
       # idk what im missing out before
