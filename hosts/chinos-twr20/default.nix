@@ -45,7 +45,7 @@ inputs @ {
       useUserPackages = true;
       useGlobalPkgs = true;
       users.qiront.imports = [
-        ../../modules/linux/home.nix
+        ./home.nix
       ];
     };
   };
