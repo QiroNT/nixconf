@@ -44,7 +44,6 @@ in {
       sqlite
 
       # cloud
-      gh # github cli
       turso-cli
       awscli
 
@@ -139,6 +138,9 @@ in {
         # I still left wondering how on earth would I configure repo maintenance
       };
     };
+
+    # the thing i use to auth the thing just above
+    gh.enable = true; # ok it's github cli
 
     # the cat replacement that actually does something
     bat.enable = true;
