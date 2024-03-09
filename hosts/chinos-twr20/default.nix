@@ -31,6 +31,13 @@ inputs @ {
     time.timeZone = "Asia/Shanghai";
     i18n.defaultLocale = "en_US.UTF-8";
 
+    users.users.qiront = {
+      isNormalUser = true;
+      extraGroups = [
+        "wheel" # for sudo
+      ];
+    };
+
     home-manager = {
       extraSpecialArgs = {
         inherit inputs;
