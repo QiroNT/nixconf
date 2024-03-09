@@ -6,7 +6,7 @@ inputs @ {
   configuration = {...}: {
     imports = [
       ../../modules/linux/configuration.nix
-      # ./hardware-configuration.nix
+      ./hardware-configuration.nix
     ];
 
     # this doesn't need to be touched,
