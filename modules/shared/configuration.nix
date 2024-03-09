@@ -1,8 +1,4 @@
-{
-  pkgs,
-  hostPlatform,
-  ...
-}: let
+{pkgs, ...}: let
   inherit (pkgs.stdenv) isDarwin;
 in {
   # packages installed in system profile. to search by name, run:
@@ -56,12 +52,7 @@ in {
     };
   };
 
-  nixpkgs = {
-    inherit hostPlatform;
-    config = {
-      allowUnfree = true;
-    };
-  };
+  nixpkgs.config.allowUnfree = true;
 
   # create /etc/zshrc that loads the environment
   programs.zsh.enable = true;

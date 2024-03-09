@@ -45,7 +45,7 @@
         };
       };
     });
-  in {
+  in rec {
     inherit inputs;
 
     inherit (flake-schemas) schemas;
@@ -56,10 +56,21 @@
     });
     formatter = forEachSystem (system: nix-formatter-pack.lib.mkFormatter formatterPackArgs.${system});
 
-    # build darwin flake using:
     darwinConfigurations = {
       # $ darwin-rebuild switch --flake ~/.config/nix-darwin#chinos-mbp23
       "chinos-mbp23" = import ./hosts/chinos-mbp23 inputs;
+    };
+
+    nixosConfigurations = {
+      # $ sudo nixos-rebuild switch --flake ~/.config/nix-config#chinos-twr20
+      "chinos-twr20" = import ./hosts/chinos-twr20 inputs;
+      # $ sudo nixos-rebuild switch --flake ~/.config/nix-config#chinos-r4s21
+      "chinos-r4s21" = import ./hosts/chinos-r4s21 inputs;
+    };
+
+    images = {
+      # $ nix build .#images.chinos-r4s21
+      "chinos-r4s21" = nixosConfigurations."chinos-r4s21".config.system.build.sdImage;
     };
   };
 }

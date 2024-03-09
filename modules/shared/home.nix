@@ -10,6 +10,8 @@ in {
       nil # nix language server
 
       # cli utils
+      wget # fetch thing i don't use
+      curl # fetch thing i do use
       fd # better find, why debian uses `fd-find` still bothers me
       jq # i should learn this
       eza
@@ -160,7 +162,7 @@ in {
     atuin = {
       enable = true;
       settings = {
-        auto_sync = true;
+        auto_sync = true; # remember to login with `atuin login -u <USERNAME>`
         enter_accept = true;
         style = "compact";
       };
