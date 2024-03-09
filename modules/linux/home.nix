@@ -21,12 +21,19 @@
     extraConfig = builtins.readFile ./settings/hyprland.conf;
   };
 
-  programs.waybar = {
-    enable = true;
-    settings = builtins.fromJSON (builtins.readFile ./settings/waybar.jsonc);
-  };
+  programs = {
+    waybar = {
+      enable = true;
+      settings = builtins.fromJSON (builtins.readFile ./settings/waybar.jsonc);
+    };
 
-  programs.git.extraConfig = {
-    credential.helper = "/etc/profiles/per-user/$(whoami)/bin/git-credential-libsecret";
+    firefox = {
+      enable = true;
+      package = pkgs.firefox-devedition-bin;
+    };
+
+    git.extraConfig = {
+      credential.helper = "/etc/profiles/per-user/$(whoami)/bin/git-credential-libsecret";
+    };
   };
 }
