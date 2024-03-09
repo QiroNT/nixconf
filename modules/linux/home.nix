@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   imports = [
     ../shared/home.nix
+    ./programs/waybar.nix
   ];
 
   home = {
@@ -22,11 +23,6 @@
   };
 
   programs = {
-    waybar = {
-      enable = true;
-      settings = builtins.fromJSON (builtins.readFile ./settings/waybar.jsonc);
-    };
-
     firefox = {
       enable = true;
       package = pkgs.firefox-devedition-bin;
