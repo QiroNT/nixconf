@@ -20,6 +20,7 @@
   users.defaultUserShell = pkgs.zsh;
 
   # sddm for login
+  services.xserver.enable = true; # still needs to install an xserver dispite i'll never use it
   services.xserver.displayManager.sddm = {
     enable = true;
     wayland.enable = true;
