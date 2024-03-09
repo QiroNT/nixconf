@@ -3,6 +3,12 @@
     ../shared/configuration.nix
   ];
 
+  # packages installed in system profile. to search by name, run:
+  # $ nix-env -qaP | grep wget
+  environment.systemPackages = with pkgs; [
+    swaynotificationcenter # notifications
+  ];
+
   networking.networkmanager.enable = true; # used to use that too
 
   security.sudo.wheelNeedsPassword = false; # disable sudo password
@@ -35,7 +41,10 @@
   };
 
   # fancy stuff
-  programs.hyprland.enable = true;
+  programs.hyprland = {
+    enable = true;
+    extraConfig = builtins.readFile ./settings/hyprland.conf;
+  };
 
   # use CUPS for printing
   services.printing.enable = true;
