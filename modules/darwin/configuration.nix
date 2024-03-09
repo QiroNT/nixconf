@@ -47,6 +47,9 @@
     };
   };
 
+  # auto upgrade nix package and the daemon service
+  services.nix-daemon.enable = true;
+
   homebrew = {
     enable = true;
     # software that can't update itself.
