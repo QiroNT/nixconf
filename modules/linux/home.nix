@@ -21,6 +21,6 @@
   };
 
   programs.git.extraConfig = {
-    credential.helper = "/run/current-system/sw/bin/git-credential-libsecret";
+    credential.helper = "/etc/profiles/per-user/$(whoami)/bin/git-credential-libsecret";
   };
 }
