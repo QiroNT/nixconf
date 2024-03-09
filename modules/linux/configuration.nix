@@ -6,7 +6,6 @@
   # packages installed in system profile. to search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
-    swaynotificationcenter # notifications
   ];
 
   networking.networkmanager.enable = true; # used to use that too
@@ -41,10 +40,7 @@
   };
 
   # fancy stuff
-  programs.hyprland = {
-    enable = true;
-    extraConfig = builtins.readFile ./settings/hyprland.conf;
-  };
+  programs.hyprland.enable = true;
 
   # use CUPS for printing
   services.printing.enable = true;
