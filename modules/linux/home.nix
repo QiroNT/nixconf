@@ -13,9 +13,9 @@
     packages = with pkgs; [
       # hyprland stuff
       kdePackages.qtwayland # qt compat
+      libsForQt5.qt5.qtwayland
       kdePackages.dolphin # file manager, yes kde stuff doesn't need plasma
       kdePackages.polkit-kde-agent-1 # polkit agent
-      kdePackages.kwalletmanager # kwallet gui
       swaynotificationcenter # notifications
       kitty # terminal for hyprland
       wofi # launcher
@@ -35,6 +35,9 @@
     ];
     extraConfig = builtins.readFile ./config/hypr/hyprland.conf;
   };
+
+  # keyring
+  services.gnome-keyring.enable = true;
 
   programs.git.extraConfig = {
     credential.helper = "/etc/profiles/per-user/$(whoami)/bin/git-credential-libsecret";

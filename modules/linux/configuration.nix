@@ -1,24 +1,25 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
+    inputs.sddm-sugar-candy-nix.nixosModules.default
     ../shared/configuration.nix
+  ];
+
+  nixpkgs.overlays = [
+    inputs.sddm-sugar-candy-nix.overlays.default
   ];
 
   # packages installed in system profile. to search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
-    kdePackages.kwallet # keyring
-    kdePackages.kwallet-pam
   ];
 
   networking.networkmanager.enable = true; # used to use that too
 
   security.sudo.wheelNeedsPassword = false; # disable sudo password
-
-  # unlock kwallet on login
-  security.pam.services.kwallet.kwallet = {
-    enable = true;
-    package = pkgs.kdePackages.kwallet-pam;
-  };
 
   security.polkit = {
     enable = true;
@@ -80,6 +81,13 @@
         Numlock = "on";
       };
     };
+    sugarCandyNix = {
+      enable = true;
+      settings = {
+        HaveFormBackground = true;
+        PartialBlur = true;
+      };
+    };
   };
 
   # fancy stuff
@@ -91,6 +99,7 @@
   # enable sound
   sound.enable = true;
   hardware.pulseaudio.enable = true;
+  services.pipewire.enable = true;
 
   # SUID wrapper, not sure if i need this, but just to not bother my future self
   programs.mtr.enable = true;
@@ -101,4 +110,7 @@
 
   # the way to mount disks
   services.udisks2.enable = true;
+
+  # keyring
+  services.gnome.gnome-keyring.enable = true;
 }
