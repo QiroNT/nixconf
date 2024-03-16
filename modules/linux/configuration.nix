@@ -6,11 +6,19 @@
   # packages installed in system profile. to search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
+    kdePackages.kwallet # keyring
+    kdePackages.kwallet-pam
   ];
 
   networking.networkmanager.enable = true; # used to use that too
 
   security.sudo.wheelNeedsPassword = false; # disable sudo password
+
+  # unlock kwallet on login
+  security.pam.services.kwallet.kwallet = {
+    enable = true;
+    package = pkgs.kdePackages.kwallet-pam;
+  };
 
   security.polkit = {
     enable = true;
