@@ -7,7 +7,7 @@
     inputs.nix-index-database.hmModules.nix-index
     ../shared/home.nix
     ./programs/theme.nix
-    ./programs/waybar.nix
+    ./programs/waybar
   ];
 
   home = {
