@@ -19,17 +19,21 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-    extraConfig = builtins.readFile ./settings/hyprland.conf;
+    extraConfig = builtins.readFile ./config/hypr/hyprland.conf;
   };
 
   programs = {
+    git.extraConfig = {
+      credential.helper = "/etc/profiles/per-user/$(whoami)/bin/git-credential-libsecret";
+    };
+
     firefox = {
       enable = true;
       package = pkgs.firefox-devedition-bin;
     };
 
-    git.extraConfig = {
-      credential.helper = "/etc/profiles/per-user/$(whoami)/bin/git-credential-libsecret";
-    };
+    # i'd rather like to configure in vscode and use config sync,
+    # since changes are mostly gui based
+    vscode.enable = true;
   };
 }
