@@ -113,4 +113,7 @@
 
   # keyring
   services.gnome.gnome-keyring.enable = true;
+
+  # the app that maximizes my retention
+  programs.steam.enable = true;
 }

@@ -38,6 +38,7 @@ in {
       inxi # yep i have 4 monitoring tools for some reason
       dua # most convenient disk stuff I've ever used
       gitui
+      dive
 
       # databases
       postgresql_16_jit # til: postgres has jit
@@ -103,7 +104,7 @@ in {
       oh-my-zsh.enable = true;
 
       # make it more fish
-      enableAutosuggestions = true;
+      autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
 
       shellAliases = {
