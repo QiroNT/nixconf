@@ -6,6 +6,7 @@
   imports = [
     inputs.nix-index-database.hmModules.nix-index
     ../shared/home.nix
+    ./programs/theme.nix
     ./programs/waybar.nix
   ];
 
@@ -19,7 +20,15 @@
       swaynotificationcenter # notifications
       kitty # terminal for hyprland
       wofi # launcher
-      hyprpaper # wallpaper
+      swww # wallpaper
+
+      # theme
+      nwg-look # gtk
+      kdePackages.qt6ct
+      libsForQt5.qt5ct
+      adw-gtk3
+      qogir-icon-theme
+      morewaita-icon-theme
 
       libsecret # for git credentials
 
