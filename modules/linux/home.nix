@@ -22,18 +22,17 @@
     extraConfig = builtins.readFile ./config/hypr/hyprland.conf;
   };
 
-  programs = {
-    git.extraConfig = {
-      credential.helper = "/etc/profiles/per-user/$(whoami)/bin/git-credential-libsecret";
-    };
-
-    firefox = {
-      enable = true;
-      package = pkgs.firefox-devedition-bin;
-    };
-
-    # i'd rather like to configure in vscode and use config sync,
-    # since changes are mostly gui based
-    vscode.enable = true;
+  programs.git.extraConfig = {
+    credential.helper = "/etc/profiles/per-user/$(whoami)/bin/git-credential-libsecret";
   };
+
+  # the linux browser (TM)
+  programs.firefox = {
+    enable = true;
+    package = pkgs.firefox-devedition-bin;
+  };
+
+  # i'd rather like to configure in vscode and use config sync,
+  # since changes are mostly gui based
+  programs.vscode.enable = true;
 }
