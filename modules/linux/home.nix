@@ -34,6 +34,7 @@
       ollama # llm
       p7zip
       rime-cli
+      gcc
 
       # disk stuff
       ifuse # for ios

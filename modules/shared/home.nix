@@ -61,7 +61,6 @@ in {
       autoconf
       automake
       cmake
-      gcc
 
       # wasm
       binaryen
@@ -71,6 +70,7 @@ in {
       nodejs
       nodejs.pkgs.yarn
       nodejs.pkgs.pnpm
+      bun
       dprint
 
       # go
