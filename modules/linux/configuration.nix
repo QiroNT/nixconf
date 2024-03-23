@@ -116,4 +116,10 @@
 
   # the app that maximizes my retention
   programs.steam.enable = true;
+
+  # the program that i have to use to do any work
+  virtualisation.docker = {
+    enable = true;
+    storageDriver = "btrfs";
+  };
 }

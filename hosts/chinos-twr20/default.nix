@@ -41,6 +41,7 @@ inputs @ {
       isNormalUser = true;
       extraGroups = [
         "wheel" # for sudo
+        "docker"
       ];
     };
 

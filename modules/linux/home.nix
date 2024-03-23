@@ -27,6 +27,7 @@
       kdePackages.qt6ct
       libsForQt5.qt5ct
 
+      # common lib
       libsecret # for git credentials
 
       # cli stuff
