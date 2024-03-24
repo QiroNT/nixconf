@@ -30,6 +30,7 @@ in {
       yt-dlp
       iperf
       nmap
+      rmlint # file dedupe
 
       # tui
       btop
