@@ -1,6 +1,14 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  inputs,
+  ...
+}: let
   nodejs = pkgs.nodejs_21;
 in {
+  imports = [
+    inputs.nix-index-database.hmModules.nix-index
+  ];
+
   home = {
     stateVersion = "24.05";
 
