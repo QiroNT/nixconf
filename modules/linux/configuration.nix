@@ -8,6 +8,13 @@
     ../shared/configuration.nix
   ];
 
+  nix.settings = {
+    substituters = ["https://hyprland.cachix.org"];
+    trusted-public-keys = [
+      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+    ];
+  };
+
   nixpkgs.overlays = [
     inputs.sddm-sugar-candy-nix.overlays.default
   ];
@@ -116,6 +123,8 @@
 
   # the app that maximizes my retention
   programs.steam.enable = true;
+  hardware.opengl.driSupport32Bit = true;
+  hardware.pulseaudio.support32Bit = true;
 
   # the program that i have to use to do any work
   virtualisation.docker = {

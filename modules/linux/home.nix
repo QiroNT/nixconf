@@ -36,6 +36,7 @@
       p7zip
       rime-cli
       gcc
+      psmisc # killall
 
       # disk stuff
       ifuse # for ios

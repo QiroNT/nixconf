@@ -14,7 +14,7 @@ in {
       curl # fetch thing i do use
       fd # better find, why debian uses `fd-find` still bothers me
       jq # i should learn this
-      eza
+      eza # ls
       ripgrep
       aria # no 2 needed
       gnupg
@@ -31,6 +31,9 @@ in {
       iperf
       nmap
       rmlint # file dedupe
+      wrk
+      oha
+      pciutils # lspci
 
       # tui
       btop
