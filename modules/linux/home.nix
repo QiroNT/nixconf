@@ -97,9 +97,6 @@
   # since changes are mostly gui based
   programs.vscode.enable = true;
 
-  # command not found in nix
-  programs.nix-index.enable = true;
-
   # player for things that vlc can't
   programs.mpv.enable = true;
 

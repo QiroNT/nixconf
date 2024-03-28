@@ -191,5 +191,8 @@ in {
       enable = true;
       nix-direnv.enable = true;
     };
+
+    # command not found in nix
+    nix-index.enable = true;
   };
 }
