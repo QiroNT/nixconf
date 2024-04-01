@@ -58,7 +58,7 @@ in {
 
       # cloud
       turso-cli
-      awscli
+      awscli2
 
       # visual stuff
       brotli
