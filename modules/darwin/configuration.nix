@@ -52,6 +52,9 @@
 
   homebrew = {
     enable = true;
+    brews = [
+      "ext4fuse"
+    ];
     # software that can't update itself.
     # giving the ablitity to self update is usually more efficient,
     # tho some software is not able to do so.
@@ -60,6 +63,7 @@
       "eloston-chromium"
       "iina" # video player, tho i usually use vlc
       "powershell"
+      "macfuse"
     ];
   };
 }

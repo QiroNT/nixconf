@@ -42,6 +42,7 @@ in {
       wrk
       oha
       pciutils # lspci
+      coreutils-full
 
       # tui
       btop
