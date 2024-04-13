@@ -13,9 +13,15 @@ inputs @ {
     # touching it will definitely break things, so beware
     system.stateVersion = "24.05";
 
-    # use systemd-boot as the bootloader
-    boot.loader.systemd-boot.enable = true;
-    boot.loader.efi.canTouchEfiVariables = true;
+    boot.loader = {
+      efi.canTouchEfiVariables = true;
+      grub = {
+        enable = true;
+        devices = ["nodev"];
+        efiSupport = true;
+        useOSProber = true;
+      };
+    };
 
     # fix file system options
     fileSystems = {
