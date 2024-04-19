@@ -15,6 +15,8 @@ in {
     packages = with pkgs; [
       # nix stuff
       alejandra
+      deadnix
+      statix
       nil # nix language server
 
       # cli utils

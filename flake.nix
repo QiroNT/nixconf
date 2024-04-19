@@ -60,7 +60,10 @@
         tools = {
           alejandra.enable = true;
           deadnix.enable = true;
-          statix.enable = true;
+          statix = {
+            enable = true;
+            disabledLints = (fromTOML (builtins.readFile ./statix.toml)).disabled;
+          };
         };
       };
     });
