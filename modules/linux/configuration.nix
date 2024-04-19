@@ -88,12 +88,12 @@
         Numlock = "on";
       };
     };
-  };
-  services.xserver.displayManager.sddm.sugarCandyNix = {
-    enable = true;
-    settings = {
-      HaveFormBackground = true;
-      PartialBlur = true;
+    sugarCandyNix = {
+      enable = true;
+      settings = {
+        HaveFormBackground = true;
+        PartialBlur = true;
+      };
     };
   };
 
