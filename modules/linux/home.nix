@@ -60,6 +60,7 @@
       r2modman
       syncplay
       ventoy-full
+      vesktop
       vlc
     ];
   };

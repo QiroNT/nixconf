@@ -9,15 +9,17 @@
   ];
 
   nix.settings = {
-    substituters = ["https://hyprland.cachix.org"];
+    substituters = [
+      "https://hyprland.cachix.org"
+      "https://numtide.cachix.org"
+      "https://cache.garnix.io"
+    ];
     trusted-public-keys = [
       "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+      "numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE="
+      "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
     ];
   };
-
-  nixpkgs.overlays = [
-    inputs.sddm-sugar-candy-nix.overlays.default
-  ];
 
   # packages installed in system profile. to search by name, run:
   # $ nix-env -qaP | grep wget

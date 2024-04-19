@@ -4,7 +4,13 @@
   inputs = {
     flake-schemas.url = "github:DeterminateSystems/flake-schemas";
 
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+
+    # cache for unfree pkgs
+    nixpkgs = {
+      url = "github:numtide/nixpkgs-unfree";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
 
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
@@ -24,7 +30,9 @@
     # https://gitlab.com/Zhaith-Izaliel/sddm-sugar-candy-nix
     sddm-sugar-candy-nix = {
       url = "gitlab:Zhaith-Izaliel/sddm-sugar-candy-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # TODO remove usage of `import nixpkgs` in the flake
+      # https://gitlab.com/Zhaith-Izaliel/sddm-sugar-candy-nix/-/blob/master/flake.nix?ref_type=heads#L22
+      inputs.nixpkgs.follows = "nixpkgs-unstable"; # nixpkgs
     };
 
     nix-formatter-pack = {
