@@ -2,9 +2,7 @@
   pkgs,
   inputs,
   ...
-}: let
-  nodejs = pkgs.nodejs_21;
-in {
+}: {
   imports = [
     inputs.nix-index-database.hmModules.nix-index
   ];
@@ -82,9 +80,8 @@ in {
       emscripten
 
       # js
-      nodejs
-      nodejs.pkgs.yarn
-      nodejs.pkgs.pnpm
+      nodejs_21
+      corepack_21
       bun
       dprint
 
