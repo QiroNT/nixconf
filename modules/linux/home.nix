@@ -54,9 +54,10 @@
       gparted
       heroic
       jetbrains.idea-community-bin
-      qq
       obsidian
+      protonup-qt
       qbittorrent
+      qq
       r2modman
       syncplay
       ventoy-full
