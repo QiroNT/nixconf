@@ -49,14 +49,6 @@
     ];
   };
 
-  i18n.inputMethod = {
-    enabled = "fcitx5";
-    fcitx5.addons = with pkgs; [
-      fcitx5-rime
-      kdePackages.fcitx5-configtool
-    ];
-  };
-
   programs.git.extraConfig = {
     credential.helper = "/etc/profiles/per-user/$(whoami)/bin/git-credential-libsecret";
   };

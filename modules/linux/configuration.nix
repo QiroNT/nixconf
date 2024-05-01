@@ -42,6 +42,17 @@
   };
   services.desktopManager.plasma6.enable = true;
 
+  i18n.inputMethod = {
+    enabled = "fcitx5";
+    fcitx5 = {
+      waylandFrontend = true;
+      addons = with pkgs; [
+        fcitx5-rime
+        kdePackages.fcitx5-configtool
+      ];
+    };
+  };
+
   # printing
   services.printing.enable = true;
 
