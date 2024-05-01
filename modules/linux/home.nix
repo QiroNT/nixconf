@@ -1,27 +1,10 @@
 {pkgs, ...}: {
   imports = [
     ../shared/home.nix
-    ./programs/theme.nix
-    ./programs/waybar
   ];
 
   home = {
     packages = with pkgs; [
-      # hyprland stuff
-      kdePackages.qtwayland # qt compat
-      libsForQt5.qt5.qtwayland
-      kdePackages.dolphin # file manager, yes kde stuff doesn't need plasma
-      kdePackages.polkit-kde-agent-1 # polkit agent
-      swaynotificationcenter # notifications
-      kitty # terminal for hyprland
-      wofi # launcher
-      swww # wallpaper
-
-      # theme
-      nwg-look # gtk
-      kdePackages.qt6ct
-      libsForQt5.qt5ct
-
       # common lib
       libsecret # for git credentials
 
@@ -66,26 +49,14 @@
     ];
   };
 
-  wayland.windowManager.hyprland = {
-    enable = true;
-    settings.exec-once = [
-      "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1"
-    ];
-    extraConfig = builtins.readFile ./config/hypr/hyprland.conf;
-  };
-
-  # keyring
-  services.gnome-keyring.enable = true;
-
   programs.git.extraConfig = {
     credential.helper = "/etc/profiles/per-user/$(whoami)/bin/git-credential-libsecret";
   };
 
   i18n.inputMethod = {
-    enabled = "fcitx5";
-    fcitx5.addons = with pkgs; [
-      fcitx5-rime
-      kdePackages.fcitx5-configtool
+    enabled = "ibus";
+    ibus.engines = with pkgs.ibus-engines; [
+      rime
     ];
   };
 

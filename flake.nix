@@ -27,14 +27,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # https://gitlab.com/Zhaith-Izaliel/sddm-sugar-candy-nix
-    sddm-sugar-candy-nix = {
-      url = "gitlab:Zhaith-Izaliel/sddm-sugar-candy-nix";
-      # TODO remove usage of `import nixpkgs` in the flake
-      # https://gitlab.com/Zhaith-Izaliel/sddm-sugar-candy-nix/-/blob/master/flake.nix?ref_type=heads#L22
-      inputs.nixpkgs.follows = "nixpkgs-unstable"; # nixpkgs
-    };
-
     nix-formatter-pack = {
       url = "github:Gerschtli/nix-formatter-pack";
       inputs.nixpkgs.follows = "nixpkgs";

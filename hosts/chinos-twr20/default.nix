@@ -37,12 +37,6 @@ inputs @ {
     time.timeZone = "Asia/Shanghai";
     i18n.defaultLocale = "en_US.UTF-8";
 
-    # set display resolution to help SDDM speed up on calculations
-    services.displayManager.sddm.sugarCandyNix.settings = {
-      ScreenWidth = 2560;
-      ScreenHeight = 1440;
-    };
-
     users.users.qiront = {
       isNormalUser = true;
       extraGroups = [

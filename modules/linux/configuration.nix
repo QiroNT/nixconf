@@ -1,21 +1,14 @@
-{
-  pkgs,
-  inputs,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
-    inputs.sddm-sugar-candy-nix.nixosModules.default
     ../shared/configuration.nix
   ];
 
   nix.settings = {
     substituters = [
-      "https://hyprland.cachix.org"
       "https://numtide.cachix.org"
       "https://cache.garnix.io"
     ];
     trusted-public-keys = [
-      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       "numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE="
       "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
     ];
@@ -77,38 +70,15 @@
 
   users.defaultUserShell = pkgs.zsh;
 
-  # sddm for login
-  services.xserver.enable = true; # still needs to install an xserver dispite i'll never use it
+  # dekstop environment
   services.displayManager.sddm = {
     enable = true;
     wayland.enable = true;
-    settings = {
-      General = {
-        DisplayServer = "wayland";
-        HaltCommand = "/usr/bin/systemctl poweroff";
-        RebootCommand = "/usr/bin/systemctl reboot";
-        Numlock = "on";
-      };
-    };
-    sugarCandyNix = {
-      enable = true;
-      settings = {
-        HaveFormBackground = true;
-        PartialBlur = true;
-      };
-    };
   };
+  services.desktopManager.plasma6.enable = true;
 
-  # fancy stuff
-  programs.hyprland.enable = true;
-
-  # use CUPS for printing
+  # printing
   services.printing.enable = true;
-
-  # enable sound
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
-  services.pipewire.enable = true;
 
   # SUID wrapper, not sure if i need this, but just to not bother my future self
   programs.mtr.enable = true;
@@ -116,12 +86,6 @@
     enable = true;
     enableSSHSupport = true;
   };
-
-  # the way to mount disks
-  services.udisks2.enable = true;
-
-  # keyring
-  services.gnome.gnome-keyring.enable = true;
 
   # the app that maximizes my retention
   programs.steam.enable = true;
