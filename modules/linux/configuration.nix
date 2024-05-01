@@ -17,9 +17,6 @@
   # packages installed in system profile. to search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
-    (ibus-with-plugins.override {
-      plugins = [ibus-engines.rime];
-    })
   ];
 
   networking.networkmanager.enable = true; # used to use that too
