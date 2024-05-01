@@ -4,7 +4,7 @@
   inputs = {
     flake-schemas.url = "github:DeterminateSystems/flake-schemas";
 
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     # cache for unfree pkgs
     nixpkgs = {
