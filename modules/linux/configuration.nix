@@ -80,6 +80,13 @@
   # printing
   services.printing.enable = true;
 
+  i18n.inputMethod = {
+    enabled = "ibus";
+    ibus.engines = with pkgs.ibus-engines; [
+      rime
+    ];
+  };
+
   # SUID wrapper, not sure if i need this, but just to not bother my future self
   programs.mtr.enable = true;
   programs.gnupg.agent = {

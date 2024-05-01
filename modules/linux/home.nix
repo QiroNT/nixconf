@@ -53,13 +53,6 @@
     credential.helper = "/etc/profiles/per-user/$(whoami)/bin/git-credential-libsecret";
   };
 
-  i18n.inputMethod = {
-    enabled = "ibus";
-    ibus.engines = with pkgs.ibus-engines; [
-      rime
-    ];
-  };
-
   # the linux browser (TM)
   programs.firefox = {
     enable = true;
