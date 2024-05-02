@@ -53,6 +53,15 @@
     };
   };
 
+  # sound
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
+
   # printing
   services.printing.enable = true;
 
@@ -66,7 +75,6 @@
   # the app that maximizes my retention
   programs.steam.enable = true;
   hardware.opengl.driSupport32Bit = true;
-  hardware.pulseaudio.support32Bit = true;
 
   # the program that i have to use to do any work
   virtualisation.docker = {
