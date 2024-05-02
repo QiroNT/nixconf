@@ -19,6 +19,8 @@
   environment.systemPackages = with pkgs; [
   ];
 
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
   networking.networkmanager.enable = true; # used to use that too
 
   security.sudo.wheelNeedsPassword = false; # disable sudo password
