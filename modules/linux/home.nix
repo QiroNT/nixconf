@@ -49,23 +49,35 @@
     ];
   };
 
-  programs.git.extraConfig = {
-    credential.helper = "/etc/profiles/per-user/$(whoami)/bin/git-credential-libsecret";
+  programs = {
+    zsh.initExtra = ''
+      # pnpm
+      export PNPM_HOME="/home/qiront/.local/share/pnpm"
+      case ":$PATH:" in
+        *":$PNPM_HOME:"*) ;;
+        *) export PATH="$PNPM_HOME:$PATH" ;;
+      esac
+      # pnpm end
+    '';
+
+    git.extraConfig = {
+      credential.helper = "/etc/profiles/per-user/$(whoami)/bin/git-credential-libsecret";
+    };
+
+    # the linux browser (TM)
+    firefox = {
+      enable = true;
+      package = pkgs.firefox-devedition-bin;
+    };
+
+    # i'd rather like to configure in vscode and use config sync,
+    # since changes are mostly gui based
+    vscode.enable = true;
+
+    # player for things that vlc can't
+    mpv.enable = true;
+
+    # recording tool (lol)
+    obs-studio.enable = true;
   };
-
-  # the linux browser (TM)
-  programs.firefox = {
-    enable = true;
-    package = pkgs.firefox-devedition-bin;
-  };
-
-  # i'd rather like to configure in vscode and use config sync,
-  # since changes are mostly gui based
-  programs.vscode.enable = true;
-
-  # player for things that vlc can't
-  programs.mpv.enable = true;
-
-  # recording tool (lol)
-  programs.obs-studio.enable = true;
 }
