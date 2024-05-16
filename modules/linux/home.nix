@@ -28,6 +28,7 @@
       inetutils # telnet / ping
 
       # apps
+      audacity
       bitwarden-desktop
       telegram-desktop
       filezilla
