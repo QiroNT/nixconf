@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ../shared/configuration.nix
   ];
@@ -77,6 +81,10 @@
   # the app that maximizes my retention
   programs.steam.enable = true;
   hardware.opengl.driSupport32Bit = true;
+
+  # controller
+  hardware.xone.enable = true;
+  hardware.xpadneo.enable = true;
 
   # the program that i have to use to do any work
   virtualisation.docker = {
