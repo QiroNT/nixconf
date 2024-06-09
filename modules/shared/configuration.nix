@@ -15,6 +15,7 @@ in {
       noto-fonts-emoji
       source-han-sans
       source-han-serif
+      geist-font
 
       fira-code
       fira-code-symbols
