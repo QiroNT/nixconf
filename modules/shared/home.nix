@@ -44,7 +44,8 @@
       pciutils # lspci
       coreutils-full
 
-      # tui
+      # terminal
+      wezterm
       btop
       htop
       glances
