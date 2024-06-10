@@ -196,4 +196,11 @@
     # command not found in nix
     nix-index.enable = true;
   };
+
+  xdg.configFile = {
+    wezterm = {
+      source = ./config/wezterm;
+      recursive = true;
+    };
+  };
 }

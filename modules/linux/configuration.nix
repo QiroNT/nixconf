@@ -78,6 +78,15 @@
     enableSSHSupport = true;
   };
 
+  # compatibility
+  programs.nix-ld = {
+    enable = true;
+    # Add any missing dynamic libraries for unpackaged programs
+    # here, NOT in environment.systemPackages
+    libraries = with pkgs; [
+    ];
+  };
+
   # the app that maximizes my retention
   programs.steam.enable = true;
   hardware.opengl.driSupport32Bit = true;
