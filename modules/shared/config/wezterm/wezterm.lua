@@ -4,6 +4,8 @@ local config = {}
 config.initial_cols = 105
 config.initial_rows = 32
 
+config.color_scheme = 'Tokyo Night'
+
 config.font = wezterm.font_with_fallback {
   {
     family = 'MonaspiceNe Nerd Font',
@@ -21,5 +23,8 @@ config.font = wezterm.font_with_fallback {
   },
   'NotoSansMono Nerd Font',
 }
+config.font_size = 11.0
+
+config.enable_scroll_bar = true
 
 return config

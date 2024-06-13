@@ -72,14 +72,14 @@
 
     darwinConfigurations = {
       # $ darwin-rebuild switch --flake ~/.config/nix-darwin#chinos-mbp23
-      "chinos-mbp23" = import ./hosts/chinos-mbp23 inputs;
+      "chinos-mbp23" = import ./hosts/chinos-mbp23/configuration.nix inputs;
     };
 
     nixosConfigurations = {
       # $ sudo nixos-rebuild switch --flake ~/.config/nix-config#chinos-twr20
-      "chinos-twr20" = import ./hosts/chinos-twr20 inputs;
+      "chinos-twr20" = import ./hosts/chinos-twr20/configuration.nix inputs;
       # $ sudo nixos-rebuild switch --flake ~/.config/nix-config#chinos-r4s21
-      "chinos-r4s21" = import ./hosts/chinos-r4s21 inputs;
+      "chinos-r4s21" = import ./hosts/chinos-r4s21/configuration.nix inputs;
     };
 
     images = {
