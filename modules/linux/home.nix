@@ -33,20 +33,21 @@
       # apps
       audacity
       bitwarden-desktop
-      telegram-desktop
       filezilla
       geogebra6
       gimp
-      inkscape-with-extensions
       gparted
       heroic
+      inkscape-with-extensions
       jetbrains.idea-community-bin
       obsidian
       protonup-qt
       qbittorrent
       qq
       r2modman
+      signal-desktop
       syncplay
+      telegram-desktop
       ventoy-full
       vesktop
       vlc
