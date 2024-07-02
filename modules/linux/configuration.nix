@@ -1,22 +1,10 @@
 {
-  config,
   pkgs,
   ...
 }: {
   imports = [
     ../shared/configuration.nix
   ];
-
-  nix.settings = {
-    substituters = [
-      "https://numtide.cachix.org"
-      "https://cache.garnix.io"
-    ];
-    trusted-public-keys = [
-      "numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE="
-      "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
-    ];
-  };
 
   # packages installed in system profile. to search by name, run:
   # $ nix-env -qaP | grep wget
@@ -26,6 +14,7 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   networking.networkmanager.enable = true; # used to use that too
+  # networking.firewall.enable = false;
 
   security.sudo.wheelNeedsPassword = false; # disable sudo password
 
@@ -87,7 +76,7 @@
 
   # the app that maximizes my retention
   programs.steam.enable = true;
-  hardware.opengl.driSupport32Bit = true;
+  hardware.graphics.enable32Bit = true;
 
   # controller
   hardware.xone.enable = true;

@@ -1,6 +1,26 @@
 {pkgs, ...}: let
   inherit (pkgs.stdenv) isDarwin;
 in {
+  nixpkgs.config.allowUnfree = true;
+
+  nix = {
+    package = pkgs.nix;
+
+    settings = {
+      # enable flakes support
+      experimental-features = "nix-command flakes";
+
+      substituters = [
+        "https://numtide.cachix.org"
+        "https://cache.garnix.io"
+      ];
+      trusted-public-keys = [
+        "numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE="
+        "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+      ];
+    };
+  };
+
   # packages installed in system profile. to search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
@@ -42,17 +62,6 @@ in {
         inherit packages;
       }
     );
-
-  nix = {
-    package = pkgs.nix;
-
-    settings = {
-      # enable flakes support
-      experimental-features = "nix-command flakes";
-    };
-  };
-
-  nixpkgs.config.allowUnfree = true;
 
   # create /etc/zshrc that loads the environment
   programs.zsh.enable = true;

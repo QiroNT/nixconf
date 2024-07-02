@@ -16,6 +16,9 @@
       gcc
       psmisc # killall
 
+      # java
+      jdk
+
       # disk stuff
       ifuse # for ios
       mtools # NTFS
