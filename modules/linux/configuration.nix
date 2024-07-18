@@ -21,7 +21,7 @@
   nix.gc = {
     automatic = true;
     persistent = true;
-    dates = "0/2:0"; # expands to "*-*-* 00/02:00:00"
+    dates = "monthly";
     randomizedDelaySec = "45min";
     options = "--delete-older-than 30d";
   };
@@ -36,7 +36,8 @@
   services.desktopManager.plasma6.enable = true;
 
   i18n.inputMethod = {
-    enabled = "fcitx5";
+    enable = true;
+    type = "fcitx5";
     fcitx5 = {
       waylandFrontend = true;
       addons = with pkgs; [

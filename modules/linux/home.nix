@@ -51,6 +51,7 @@
       ventoy-full
       vesktop
       vlc
+      zed-editor
     ];
   };
 

@@ -1,8 +1,8 @@
 local wezterm = require 'wezterm'
 local config = {}
 
-config.initial_cols = 105
-config.initial_rows = 32
+config.initial_cols = 140
+config.initial_rows = 45
 
 config.color_scheme = 'Tokyo Night'
 
