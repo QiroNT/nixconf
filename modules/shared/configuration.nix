@@ -1,6 +1,4 @@
-{pkgs, ...}: let
-  inherit (pkgs.stdenv) isDarwin;
-in {
+{pkgs, ...}: {
   nixpkgs.config.allowUnfree = true;
 
   nix = {
@@ -26,42 +24,28 @@ in {
   environment.systemPackages = with pkgs; [
   ];
 
-  fonts = let
-    packages = with pkgs; [
-      open-sans
-      noto-fonts
-      noto-fonts-cjk-sans
-      noto-fonts-cjk-serif
-      noto-fonts-emoji
-      source-han-sans
-      source-han-serif
-      geist-font
+  fonts.packages = with pkgs; [
+    open-sans
+    noto-fonts
+    noto-fonts-cjk-sans
+    noto-fonts-cjk-serif
+    noto-fonts-emoji
+    source-han-sans
+    source-han-serif
+    geist-font
 
-      fira-code
-      fira-code-symbols
-      monaspace
-      (nerdfonts.override {
-        fonts = [
-          "FiraCode"
-          "Monaspace"
-        ];
-      })
+    fira-code
+    fira-code-symbols
+    monaspace
+    (nerdfonts.override {
+      fonts = [
+        "FiraCode"
+        "Monaspace"
+      ];
+    })
 
-      # TODO port ttf-ms-win11-auto
-    ];
-  in
-    {
-      fontDir.enable = true;
-    }
-    // (
-      if isDarwin
-      then {
-        fonts = packages;
-      }
-      else {
-        inherit packages;
-      }
-    );
+    # TODO port ttf-ms-win11-auto
+  ];
 
   # create /etc/zshrc that loads the environment
   programs.zsh.enable = true;

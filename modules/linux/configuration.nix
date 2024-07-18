@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     ../shared/configuration.nix
   ];
@@ -34,6 +31,8 @@
     wayland.enable = true;
   };
   services.desktopManager.plasma6.enable = true;
+
+  font.fontDir.enable = true;
 
   i18n.inputMethod = {
     enable = true;

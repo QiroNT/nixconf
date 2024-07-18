@@ -6,7 +6,6 @@
   };
 
   outputs = {
-    self,
     nixpkgs-rust,
     nixpkgs-zed,
     utils,
@@ -18,7 +17,7 @@
 
         zed-fhs = pkgs.buildFHSUserEnv {
           name = "zed";
-          targetPkgs = pkgs: [
+          targetPkgs = _pkgs: [
             zed-editor
           ];
           runScript = "zed";
