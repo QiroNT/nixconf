@@ -13,13 +13,16 @@ inputs @ {
     # touching it will definitely break things, so beware
     system.stateVersion = "24.05";
 
-    boot.loader = {
-      efi.canTouchEfiVariables = true;
-      grub = {
-        enable = true;
-        devices = ["nodev"];
-        efiSupport = true;
-        useOSProber = true;
+    boot = {
+      initrd.kernelModules = ["amdgpu"];
+      loader = {
+        efi.canTouchEfiVariables = true;
+        grub = {
+          enable = true;
+          devices = ["nodev"];
+          efiSupport = true;
+          useOSProber = true;
+        };
       };
     };
 

@@ -13,13 +13,16 @@ inputs @ {
     # touching it will definitely break things, so beware
     system.stateVersion = "24.05";
 
-    boot.loader = {
-      efi.canTouchEfiVariables = true;
-      grub = {
-        enable = true;
-        devices = ["nodev"];
-        efiSupport = true;
-        useOSProber = true;
+    boot = {
+      initrd.kernelModules = ["amdgpu"];
+      loader = {
+        efi.canTouchEfiVariables = true;
+        grub = {
+          enable = true;
+          devices = ["nodev"];
+          efiSupport = true;
+          useOSProber = true;
+        };
       };
     };
 
@@ -31,7 +34,8 @@ inputs @ {
       "/boot".options = ["noatime" "errors=remount-ro"];
     };
 
-    networking.hostName = "chinos-twr24"; # TODO
+    # technically given, but half built myself
+    networking.hostName = "chinos-twr24";
 
     time.timeZone = "Asia/Shanghai";
     i18n.defaultLocale = "en_US.UTF-8";
