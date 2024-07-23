@@ -78,6 +78,8 @@
     nixosConfigurations = {
       # $ sudo nixos-rebuild switch --flake ~/.config/nix-config#chinos-twr20
       "chinos-twr20" = import ./hosts/chinos-twr20/configuration.nix inputs;
+      # $ sudo nixos-rebuild switch --flake ~/.config/nix-config#chinos-twr24
+      "chinos-twr24" = import ./hosts/chinos-twr24/configuration.nix inputs;
       # $ sudo nixos-rebuild switch --flake ~/.config/nix-config#chinos-r4s21
       "chinos-r4s21" = import ./hosts/chinos-r4s21/configuration.nix inputs;
     };
