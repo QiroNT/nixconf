@@ -17,22 +17,11 @@ inputs @ {
     nixpkgs.hostPlatform.system = "aarch64-linux";
     nixpkgs.buildPlatform.system = "x86_64-linux";
 
-    home-manager = {
-      extraSpecialArgs = {
-        inherit inputs;
-      };
-      useUserPackages = true;
-      useGlobalPkgs = true;
-      users.qiront.imports = [
-        ../../modules/linux/home.nix
-      ];
-    };
+    home-manager.users.qiront.imports = [../../modules/linux/home.nix];
   };
 in
   nixpkgs.lib.nixosSystem {
-    specialArgs = {
-      inherit inputs;
-    };
+    specialArgs = {inherit inputs;};
     modules = [
       "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
       home-manager.darwinModules.home-manager

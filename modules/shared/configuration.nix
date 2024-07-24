@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   nixpkgs.config.allowUnfree = true;
 
   nix = {
@@ -23,6 +27,12 @@
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
   ];
+
+  home-manager = {
+    extraSpecialArgs = {inherit inputs;};
+    useUserPackages = true;
+    useGlobalPkgs = true;
+  };
 
   fonts.packages = with pkgs; [
     open-sans

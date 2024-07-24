@@ -15,24 +15,13 @@ inputs @ {
     # nix-darwin doesn't have a hardware config so..
     nixpkgs.hostPlatform = "aarch64-darwin";
 
-    home-manager = {
-      extraSpecialArgs = {
-        inherit inputs;
-      };
-      useUserPackages = true;
-      useGlobalPkgs = true;
-      users.qiront.imports = [
-        ../../modules/darwin/home.nix
-      ];
-    };
+    home-manager.users.qiront.imports = [../../modules/darwin/home.nix];
 
     users.users.qiront.home = "/Users/qiront";
   };
 in
   nix-darwin.lib.darwinSystem {
-    specialArgs = {
-      inherit inputs;
-    };
+    specialArgs = {inherit inputs;};
     modules = [
       home-manager.darwinModules.home-manager
       configuration
