@@ -6,6 +6,7 @@
   };
 
   outputs = {
+    self,
     nixpkgs-rust,
     nixpkgs-zed,
     utils,
