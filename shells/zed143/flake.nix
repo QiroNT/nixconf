@@ -6,10 +6,10 @@
   };
 
   outputs = {
-    self,
     nixpkgs-rust,
     nixpkgs-zed,
     utils,
+    ...
   }:
     utils.lib.eachDefaultSystem (
       system: let
