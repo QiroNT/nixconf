@@ -29,6 +29,11 @@ inputs @ {
     time.timeZone = "Asia/Shanghai";
     i18n.defaultLocale = "en_US.UTF-8";
 
+    networking = {
+      wireless.iwd.enable = true;
+      networkmanager.wifi.backend = "iwd";
+    };
+
     home-manager.users.qiront.imports = [./home.nix];
   };
 in

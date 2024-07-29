@@ -56,6 +56,9 @@
   };
   services.desktopManager.plasma6.enable = true;
 
+  # i actually only use this for clipboard sync
+  programs.kdeconnect.enable = true;
+
   fonts.fontDir.enable = true;
 
   i18n.inputMethod = {
