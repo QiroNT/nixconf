@@ -1,20 +1,10 @@
 {
-  description = "Chinos' Nix Flakes";
-
   inputs = {
-    flake-schemas.url = "github:DeterminateSystems/flake-schemas";
-
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-
-    # cache for unfree pkgs
-    nixpkgs = {
-      url = "github:numtide/nixpkgs-unfree";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
-      inputs.nixpkgs.follows = "nixpkgs-unstable"; # TODO idk
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     home-manager = {
@@ -31,62 +21,78 @@
       url = "github:Gerschtli/nix-formatter-pack";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    snowfall-lib = {
+      url = "github:snowfallorg/lib";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs @ {
-    flake-schemas,
-    nixpkgs,
-    nix-formatter-pack,
-    ...
-  }: let
-    linuxSystems = ["x86_64-linux" "aarch64-linux"];
-    darwinSystems = ["aarch64-darwin" "x86_64-darwin"];
-    forEachSystem = f: nixpkgs.lib.genAttrs (linuxSystems ++ darwinSystems) f;
+  outputs = inputs: let
+    lib = inputs.snowfall-lib.mkLib {
+      inherit inputs;
+      src = ./.; # root dir
 
-    formatterPackArgs = forEachSystem (system: {
-      inherit nixpkgs system;
-
-      checkFiles = [./.];
-
-      config = {
-        tools = {
-          alejandra.enable = true;
-          deadnix.enable = true;
-          statix = {
-            enable = true;
-            disabledLints = (fromTOML (builtins.readFile ./statix.toml)).disabled;
-          };
+      snowfall = {
+        namespace = "chinos";
+        meta = {
+          name = "chinos-flake";
+          title = "Chinos' Nix Flakes";
         };
       };
-    });
-  in rec {
-    inherit inputs;
-
-    inherit (flake-schemas) schemas;
-
-    # nix-formatter-pack
-    checks = forEachSystem (system: {
-      nix-formatter-pack-check = nix-formatter-pack.lib.mkCheck formatterPackArgs.${system};
-    });
-    formatter = forEachSystem (system: nix-formatter-pack.lib.mkFormatter formatterPackArgs.${system});
-
-    darwinConfigurations = {
-      # $ darwin-rebuild switch --flake ~/.config/nix-darwin#chinos-mbp23
-      "chinos-mbp23" = import ./hosts/chinos-mbp23/configuration.nix inputs;
     };
 
-    nixosConfigurations = {
-      # $ sudo nixos-rebuild switch --flake ~/.config/nix-config#chinos-twr20
-      "chinos-twr20" = import ./hosts/chinos-twr20/configuration.nix inputs;
-      # $ sudo nixos-rebuild switch --flake ~/.config/nix-config#chinos-twr24
-      "chinos-twr24" = import ./hosts/chinos-twr24/configuration.nix inputs;
-      # $ sudo nixos-rebuild switch --flake ~/.config/nix-config#chinos-r4s21
-      "chinos-r4s21" = import ./hosts/chinos-r4s21/configuration.nix inputs;
-    };
+    shared-modules = builtins.attrValues (lib.snowfall.module.create-modules {src = ./modules/shared;});
+  in
+    lib.mkFlake {
+      channels-config = {
+        allowUnfree = true;
+        permittedInsecurePackages = [
+        ];
+      };
 
-    images = {
-      # $ nix build .#images.chinos-r4s21
-      "chinos-r4s21" = nixosConfigurations."chinos-r4s21".config.system.build.sdImage;
+      systems.modules.nixos = with inputs;
+        [
+        ]
+        ++ shared-modules;
+
+      systems.modules.darwin = with inputs;
+        [
+        ]
+        ++ shared-modules;
+
+      homes.modules = with inputs; [
+        nix-index-database.hmModules.nix-index
+      ];
+
+      systems.hosts = {
+        "chinos-r4s21".modules = with inputs; [
+          "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
+        ];
+      };
+
+      # nix-formatter-pack
+      outputs-builder = channels: let
+        formatterPackArgs = {
+          inherit (channels) nixpkgs;
+          inherit (channels.nixpkgs) system;
+
+          checkFiles = [./.];
+
+          config = {
+            tools = {
+              alejandra.enable = true;
+              deadnix.enable = true;
+              statix = {
+                enable = true;
+                disabledLints = (fromTOML (builtins.readFile ./statix.toml)).disabled;
+              };
+            };
+          };
+        };
+      in {
+        checks.nix-formatter-pack-check = lib.nix-formatter-pack.mkCheck formatterPackArgs;
+        formatter = lib.nix-formatter-pack.mkFormatter formatterPackArgs;
+      };
     };
-  };
 }
