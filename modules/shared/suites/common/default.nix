@@ -42,6 +42,7 @@ in {
       source-han-sans
       source-han-serif
       geist-font
+      chinos.windows-fonts
 
       fira-code
       fira-code-symbols
@@ -52,8 +53,6 @@ in {
           "Monaspace"
         ];
       })
-
-      # TODO port ttf-ms-win11-auto
     ];
 
     # create /etc/zshrc that loads the environment
