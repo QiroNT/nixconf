@@ -51,15 +51,9 @@
         ];
       };
 
-      systems.modules.nixos = with inputs;
-        [
-        ]
-        ++ shared-modules;
+      systems.modules.nixos = shared-modules;
 
-      systems.modules.darwin = with inputs;
-        [
-        ]
-        ++ shared-modules;
+      systems.modules.darwin = shared-modules;
 
       homes.modules = with inputs; [
         nix-index-database.hmModules.nix-index
@@ -73,9 +67,9 @@
 
       # nix-formatter-pack
       outputs-builder = channels: let
-        formatterPackArgs = {
-          inherit (channels) nixpkgs;
-          inherit (channels.nixpkgs) system;
+        formatterPackArgs = rec {
+          pkgs = channels.nixpkgs;
+          inherit (pkgs) system;
 
           checkFiles = [./.];
 
