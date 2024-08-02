@@ -3,14 +3,14 @@
   namespace,
   config,
   ...
-}: let
+}:
+let
   cfg = config.${namespace}.suites.desktop;
-in {
+in
+{
   options.${namespace}.suites.desktop = with lib.types; {
     enable = lib.mkEnableOption "the desktop suite";
   };
 
-  config =
-    lib.mkIf cfg.enable {
-    };
+  config = lib.mkIf cfg.enable { };
 }

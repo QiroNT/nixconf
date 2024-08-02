@@ -3,22 +3,25 @@
   stdenvNoCC,
   fetchurl,
   p7zip,
-}: let
-  windows-fonts = {
-    pname,
-    version,
-    url,
-    hash,
-    desc,
-  }: let
-    languageFonts = import ./${pname}-languages.nix;
-    source = with lib.attrsets;
-      mapAttrs' (
-        name: fonts:
+}:
+let
+  windows-fonts =
+    {
+      pname,
+      version,
+      url,
+      hash,
+      desc,
+    }:
+    let
+      languageFonts = import ./${pname}-languages.nix;
+      source =
+        with lib.attrsets;
+        mapAttrs' (
+          name: fonts:
           nameValuePair name (builtins.concatStringsSep " " (map (font: "Windows/Fonts/" + font) fonts))
-      )
-      languageFonts;
-  in
+        ) languageFonts;
+    in
     stdenvNoCC.mkDerivation {
       inherit pname version desc;
 
@@ -27,9 +30,9 @@
         meta.license = lib.licenses.unfree;
       };
 
-      outputs = ["out"] ++ builtins.attrNames source;
+      outputs = [ "out" ] ++ builtins.attrNames source;
 
-      nativeBuildInputs = [p7zip];
+      nativeBuildInputs = [ p7zip ];
 
       unpackPhase = ''
         runHook preUnpack
@@ -46,9 +49,11 @@
         ''
         + lib.strings.concatLines (
           lib.lists.forEach (builtins.attrNames source) (
-            name: let
+            name:
+            let
               outHome = "$" + name;
-            in ''
+            in
+            ''
               install -Dm644 ${source.${name}} -t ${outHome}/share/fonts/truetype
               ln -s ${outHome}/share/fonts/truetype/*.{ttf,ttc} $out/share/fonts/truetype
               install -Dm644 Windows/System32/Licenses/neutral/*/*/license.rtf -t ${outHome}/share/licenses
@@ -66,7 +71,7 @@
         homepage = "https://learn.microsoft.com/typography/";
         license = licenses.unfree;
         platforms = platforms.all;
-        maintainers = with maintainers; [sobte];
+        maintainers = with maintainers; [ sobte ];
 
         # Set a non-zero priority to allow easy overriding of the
         # fontconfig configuration files.
@@ -74,10 +79,10 @@
       };
     };
 in
-  windows-fonts {
-    pname = "windows11-fonts";
-    version = "10.0.22631.2428-2";
-    url = "https://software-static.download.prss.microsoft.com/dbazure/888969d5-f34g-4e03-ac9d-1f9786c66749/22631.2428.231001-0608.23H2_NI_RELEASE_SVC_REFRESH_CLIENTENTERPRISEEVAL_OEMRET_x64FRE_en-us.iso";
-    hash = "sha256-yNvJa2HQTIsB+vbOB5T98zllx7NQ6qPrHmaXAZkClFw=";
-    desc = "Microsoft Windows 11 fonts";
-  }
+windows-fonts {
+  pname = "windows11-fonts";
+  version = "10.0.22631.2428-2";
+  url = "https://software-static.download.prss.microsoft.com/dbazure/888969d5-f34g-4e03-ac9d-1f9786c66749/22631.2428.231001-0608.23H2_NI_RELEASE_SVC_REFRESH_CLIENTENTERPRISEEVAL_OEMRET_x64FRE_en-us.iso";
+  hash = "sha256-yNvJa2HQTIsB+vbOB5T98zllx7NQ6qPrHmaXAZkClFw=";
+  desc = "Microsoft Windows 11 fonts";
+}

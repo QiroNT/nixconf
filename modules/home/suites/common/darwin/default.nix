@@ -4,9 +4,11 @@
   config,
   system,
   ...
-}: let
+}:
+let
   cfg = config.${namespace}.suites.common;
-in {
+in
+{
   config = lib.mkIf (cfg.enable && lib.snowfall.system.is-darwin system) {
     programs = {
       # conda and pnpm paths

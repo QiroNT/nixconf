@@ -5,9 +5,11 @@
   config,
   system,
   ...
-}: let
+}:
+let
   cfg = config.${namespace}.suites.desktop;
-in {
+in
+{
   config = lib.mkIf (cfg.enable && lib.snowfall.system.is-linux system) {
     programs = {
       # the linux browser (TM)

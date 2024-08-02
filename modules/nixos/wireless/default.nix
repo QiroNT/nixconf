@@ -3,9 +3,11 @@
   namespace,
   config,
   ...
-}: let
+}:
+let
   cfg = config.${namespace}.wireless;
-in {
+in
+{
   options.${namespace}.wireless = with lib.types; {
     enable = lib.mkEnableOption "wireless support";
   };

@@ -4,9 +4,11 @@
   namespace,
   config,
   ...
-}: let
+}:
+let
   cfg = config.${namespace}.suites.common;
-in {
+in
+{
   options.${namespace}.suites.common = with lib.types; {
     enable = lib.mkEnableOption "the common suite";
   };
@@ -14,8 +16,7 @@ in {
   config = lib.mkIf cfg.enable {
     # packages installed in system profile. to search by name, run:
     # $ nix-env -qaP | grep wget
-    environment.systemPackages = with pkgs; [
-    ];
+    environment.systemPackages = with pkgs; [ ];
 
     boot = {
       kernelPackages = pkgs.linuxPackages_latest;
@@ -23,7 +24,7 @@ in {
         efi.canTouchEfiVariables = true;
         grub = {
           enable = true;
-          devices = ["nodev"];
+          devices = [ "nodev" ];
           efiSupport = true;
           useOSProber = true;
         };
@@ -33,8 +34,8 @@ in {
     networking.networkmanager.enable = true; # used to use that too
 
     # networking.firewall.enable = false;
-    networking.firewall.allowedTCPPorts = [];
-    networking.firewall.allowedUDPPorts = [];
+    networking.firewall.allowedTCPPorts = [ ];
+    networking.firewall.allowedUDPPorts = [ ];
 
     nix.gc = {
       automatic = true;
@@ -70,8 +71,7 @@ in {
       enable = true;
       # Add any missing dynamic libraries for unpackaged programs
       # here, NOT in environment.systemPackages
-      libraries = with pkgs; [
-      ];
+      libraries = with pkgs; [ ];
     };
 
     # ssh

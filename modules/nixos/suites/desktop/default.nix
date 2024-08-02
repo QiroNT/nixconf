@@ -4,9 +4,11 @@
   namespace,
   config,
   ...
-}: let
+}:
+let
   cfg = config.${namespace}.suites.desktop;
-in {
+in
+{
   options.${namespace}.suites.desktop = with lib.types; {
     enable = lib.mkEnableOption "the desktop suite";
   };
@@ -14,8 +16,7 @@ in {
   config = lib.mkIf cfg.enable {
     # packages installed in system profile. to search by name, run:
     # $ nix-env -qaP | grep wget
-    environment.systemPackages = with pkgs; [
-    ];
+    environment.systemPackages = with pkgs; [ ];
 
     # desktop environment
     services.displayManager.sddm = {
@@ -34,9 +35,7 @@ in {
       type = "fcitx5";
       fcitx5 = {
         waylandFrontend = true;
-        addons = with pkgs; [
-          fcitx5-rime
-        ];
+        addons = with pkgs; [ fcitx5-rime ];
       };
     };
 

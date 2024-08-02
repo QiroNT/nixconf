@@ -3,9 +3,11 @@
   namespace,
   config,
   ...
-}: let
+}:
+let
   cfg = config.${namespace}.suites.common;
-in {
+in
+{
   options.${namespace}.suites.common = with lib.types; {
     enable = lib.mkEnableOption "the common suite";
   };
@@ -54,9 +56,7 @@ in {
 
     homebrew = {
       enable = true;
-      brews = [
-        "ext4fuse"
-      ];
+      brews = [ "ext4fuse" ];
       # software that can't update itself.
       # giving the ablitity to self update is usually more efficient,
       # tho some software is not able to do so.

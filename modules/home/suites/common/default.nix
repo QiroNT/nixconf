@@ -3,9 +3,11 @@
   namespace,
   config,
   ...
-}: let
+}:
+let
   cfg = config.${namespace}.suites.common;
-in {
+in
+{
   options.${namespace}.suites.common = with lib.types; {
     enable = lib.mkEnableOption "the common suite";
   };

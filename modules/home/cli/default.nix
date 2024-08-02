@@ -4,9 +4,11 @@
   namespace,
   config,
   ...
-}: let
+}:
+let
   cfg = config.${namespace}.cli;
-in {
+in
+{
   options.${namespace}.cli = with lib.types; {
     enable = lib.mkEnableOption "cli customizations";
   };
@@ -16,10 +18,10 @@ in {
     # these are just for quick access
     home.packages = with pkgs; [
       # nix stuff
-      alejandra
+      nixd # nix language server
+      nixfmt-rfc-style
       deadnix
       statix
-      nil # nix language server
 
       # coreutils and alternative
       coreutils-full
@@ -72,59 +74,61 @@ in {
       oha
     ];
 
-    # zsh is still supported more widely than fish,
-    # tho I probably should try fish, maybe later.
-    zsh = {
-      enable = true;
+    programs = {
+      # zsh is still supported more widely than fish,
+      # tho I probably should try fish, maybe later.
+      zsh = {
+        enable = true;
 
-      # for convenience, like aliases.
-      # many plugins have home-manager support, so no need for omz plugin stuff
-      oh-my-zsh.enable = true;
+        # for convenience, like aliases.
+        # many plugins have home-manager support, so no need for omz plugin stuff
+        oh-my-zsh.enable = true;
 
-      # make it more fish
-      autosuggestion.enable = true;
-      syntaxHighlighting.enable = true;
+        # make it more fish
+        autosuggestion.enable = true;
+        syntaxHighlighting.enable = true;
 
-      shellAliases = {
-        cat = "bat";
-        diff = "difft";
-        ls = "eza";
+        shellAliases = {
+          cat = "bat";
+          diff = "difft";
+          ls = "eza";
+        };
       };
-    };
 
-    # use zoxide to replace cd
-    zoxide = {
-      enable = true;
-      options = ["--cmd cd"];
-    };
-
-    # the cat replacement that actually does something
-    bat.enable = true;
-
-    # great file fuzzy finder
-    fzf.enable = true;
-
-    # used to use headline, tho kinda slow, so switched to starship
-    starship = {
-      enable = true;
-      # using toml here to benefit from schema & lsp
-      settings = builtins.fromTOML (builtins.readFile ./config/starship.toml);
-    };
-
-    # zsh history is just too smol
-    atuin = {
-      enable = true;
-      settings = {
-        auto_sync = true; # remember to login with `atuin login -u <USERNAME>`
-        enter_accept = true;
-        filter_mode_shell_up_key_binding = "session";
-        style = "compact";
+      # use zoxide to replace cd
+      zoxide = {
+        enable = true;
+        options = [ "--cmd cd" ];
       };
-    };
 
-    direnv = {
-      enable = true;
-      nix-direnv.enable = true;
+      # the cat replacement that actually does something
+      bat.enable = true;
+
+      # great file fuzzy finder
+      fzf.enable = true;
+
+      # used to use headline, tho kinda slow, so switched to starship
+      starship = {
+        enable = true;
+        # using toml here to benefit from schema & lsp
+        settings = builtins.fromTOML (builtins.readFile ./config/starship.toml);
+      };
+
+      # zsh history is just too smol
+      atuin = {
+        enable = true;
+        settings = {
+          auto_sync = true; # remember to login with `atuin login -u <USERNAME>`
+          enter_accept = true;
+          filter_mode_shell_up_key_binding = "session";
+          style = "compact";
+        };
+      };
+
+      direnv = {
+        enable = true;
+        nix-direnv.enable = true;
+      };
     };
   };
 }

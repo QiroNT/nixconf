@@ -4,9 +4,11 @@
   namespace,
   config,
   ...
-}: let
+}:
+let
   cfg = config.${namespace}.suites.desktop;
-in {
+in
+{
   config = lib.mkIf cfg.enable {
     # fonts
     fonts.packages = with pkgs; [

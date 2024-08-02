@@ -3,9 +3,11 @@
   namespace,
   config,
   ...
-}: let
+}:
+let
   cfg = config.${namespace}.cli.nix-index;
-in {
+in
+{
   options.${namespace}.cli.nix-index = with lib.types; {
     enable = lib.mkEnableOption "nix-index and command-not-found";
   };

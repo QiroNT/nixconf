@@ -5,9 +5,11 @@
   config,
   system,
   ...
-}: let
+}:
+let
   cfg = config.${namespace}.suites.common;
-in {
+in
+{
   config = lib.mkIf (cfg.enable && lib.snowfall.system.is-linux system) {
     home = {
       packages = with pkgs; [

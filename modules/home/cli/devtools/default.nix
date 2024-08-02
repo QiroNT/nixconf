@@ -4,9 +4,11 @@
   namespace,
   config,
   ...
-}: let
+}:
+let
   cfg = config.${namespace}.cli.devtools;
-in {
+in
+{
   options.${namespace}.cli.devtools = with lib.types; {
     enable = lib.mkEnableOption "cli devtools";
   };
