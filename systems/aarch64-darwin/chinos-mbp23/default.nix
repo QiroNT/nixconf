@@ -9,6 +9,7 @@ _: {
   chinos = {
     suites = {
       common.enable = true;
+      desktop.enable = true;
     };
   };
 }
