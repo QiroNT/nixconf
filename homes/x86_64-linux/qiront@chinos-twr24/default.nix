@@ -1,10 +1,4 @@
-{
-  lib,
-  namespace,
-  ...
-}:
-with lib;
-with lib.${namespace}; {
+_: {
   home.stateVersion = "24.05";
 
   chinos = {

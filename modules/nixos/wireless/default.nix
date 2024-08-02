@@ -3,16 +3,14 @@
   namespace,
   config,
   ...
-}:
-with lib;
-with lib.${namespace}; let
+}: let
   cfg = config.${namespace}.wireless;
 in {
-  options.${namespace}.wireless = with types; {
-    enable = mkEnableOption "Enable wireless support";
+  options.${namespace}.wireless = with lib.types; {
+    enable = lib.mkEnableOption "Enable wireless support";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     networking = {
       wireless.iwd.enable = true;
       networkmanager.wifi.backend = "iwd";

@@ -1,10 +1,4 @@
-{
-  lib,
-  namespace,
-  ...
-}:
-with lib;
-with lib.${namespace}; {
+{...}: {
   imports = [./hardware-configuration.nix];
 
   # this doesn't need to be touched,

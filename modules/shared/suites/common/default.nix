@@ -4,12 +4,10 @@
   namespace,
   config,
   ...
-}:
-with lib;
-with lib.${namespace}; let
+}: let
   cfg = config.${namespace}.suites.common;
 in {
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     nix = {
       package = pkgs.nix;
 

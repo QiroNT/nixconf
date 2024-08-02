@@ -4,12 +4,10 @@
   config,
   system,
   ...
-}:
-with lib;
-with lib.${namespace}; let
+}: let
   cfg = config.${namespace}.suites.common;
 in {
-  config = mkIf (cfg.enable && snowfall.system.is-darwin system) {
+  config = lib.mkIf (cfg.enable && lib.snowfall.system.is-darwin system) {
     programs = {
       # conda and pnpm paths
       # conda is manually installed, i know nix community hates conda,

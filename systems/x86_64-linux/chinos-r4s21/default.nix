@@ -1,10 +1,4 @@
-{
-  lib,
-  namespace,
-  ...
-}:
-with lib;
-with lib.${namespace}; {
+_: {
   # this doesn't need to be touched,
   # touching it will definitely break things, so beware
   system.stateVersion = "24.05";

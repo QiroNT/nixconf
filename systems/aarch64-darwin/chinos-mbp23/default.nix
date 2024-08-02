@@ -1,10 +1,4 @@
-{
-  lib,
-  namespace,
-  ...
-}:
-with lib;
-with lib.${namespace}; {
+_: {
   # used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
   system.stateVersion = 4;
