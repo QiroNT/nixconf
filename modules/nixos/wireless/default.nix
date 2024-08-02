@@ -7,7 +7,7 @@
   cfg = config.${namespace}.wireless;
 in {
   options.${namespace}.wireless = with lib.types; {
-    enable = lib.mkEnableOption "Enable wireless support";
+    enable = lib.mkEnableOption "wireless support";
   };
 
   config = lib.mkIf cfg.enable {

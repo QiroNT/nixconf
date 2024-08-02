@@ -7,10 +7,12 @@
   cfg = config.${namespace}.suites.desktop;
 in {
   options.${namespace}.suites.desktop = with lib.types; {
-    enable = lib.mkEnableOption "Enable the desktop suite";
+    enable = lib.mkEnableOption "the desktop suite";
   };
 
-  config =
-    lib.mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
+    chinos = {
+      cli.desktop.enable = true;
     };
+  };
 }

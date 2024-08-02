@@ -8,7 +8,7 @@
   cfg = config.${namespace}.suites.common;
 in {
   options.${namespace}.suites.common = with lib.types; {
-    enable = lib.mkEnableOption "Enable the common suite";
+    enable = lib.mkEnableOption "the common suite";
   };
 
   config = lib.mkIf cfg.enable {
