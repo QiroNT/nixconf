@@ -1,6 +1,6 @@
 { ... }:
 {
-  imports = [ ./hardware-configuration.nix ];
+  imports = [ ./hardware.nix ];
 
   # this doesn't need to be touched,
   # touching it will definitely break things, so beware
@@ -29,6 +29,7 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   chinos = {
+    binfmt.enable = true;
     wireless.enable = true;
     suites = {
       common.enable = true;

@@ -1,6 +1,6 @@
 { ... }:
 {
-  imports = [ ./hardware-configuration.nix ];
+  imports = [ ./hardware.nix ];
 
   # this doesn't need to be touched,
   # touching it will definitely break things, so beware
