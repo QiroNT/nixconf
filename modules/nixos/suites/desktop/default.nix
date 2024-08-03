@@ -58,5 +58,8 @@ in
     # controller
     hardware.xone.enable = true;
     hardware.xpadneo.enable = true;
+
+    # mouse config (piper)
+    services.ratbagd.enable = true;
   };
 }

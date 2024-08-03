@@ -14,28 +14,24 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    chinos = {
+      grub.enable = lib.mkDefault true;
+      kernel-latest.enable = lib.mkDefault true;
+    };
+
     # packages installed in system profile. to search by name, run:
     # $ nix-env -qaP | grep wget
     environment.systemPackages = with pkgs; [ ];
 
-    boot = {
-      kernelPackages = pkgs.linuxPackages_latest;
-      loader = {
-        efi.canTouchEfiVariables = true;
-        grub = {
-          enable = true;
-          devices = [ "nodev" ];
-          efiSupport = true;
-          useOSProber = true;
-        };
-      };
-    };
+    boot.loader.efi.canTouchEfiVariables = true;
 
     networking.networkmanager.enable = true; # used to use that too
 
-    # networking.firewall.enable = false;
-    networking.firewall.allowedTCPPorts = [ ];
-    networking.firewall.allowedUDPPorts = [ ];
+    networking.firewall = {
+      # enable = false;
+      allowedTCPPorts = [ ];
+      allowedUDPPorts = [ ];
+    };
 
     nix.gc = {
       automatic = true;

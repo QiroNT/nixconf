@@ -14,6 +14,11 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    home.packages = with pkgs; [
+      # great for glancing git while in terminal, not on par with gitlens tho
+      gitui
+    ];
+
     programs = {
       # the software people used to convince everyone else to use
       git = {

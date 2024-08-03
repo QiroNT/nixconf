@@ -40,9 +40,6 @@ in
       glances
       inxi
 
-      # great for glancing git while in terminal, not on par with gitlens tho
-      gitui
-
       # fetch
       wget
       curl

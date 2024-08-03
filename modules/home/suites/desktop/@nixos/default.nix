@@ -11,6 +11,34 @@ let
 in
 {
   config = lib.mkIf (cfg.enable && lib.snowfall.system.is-linux system) {
+    home.packages = with pkgs; [
+      # apps
+      audacity
+      bitwarden-desktop
+      bottles
+      filezilla
+      geogebra6
+      gimp
+      gparted
+      heroic
+      inkscape-with-extensions
+      jetbrains.idea-community-bin
+      libreoffice-qt6-fresh
+      obsidian
+      piper
+      protonup-qt
+      qbittorrent
+      qq
+      r2modman
+      signal-desktop
+      syncplay
+      telegram-desktop
+      ventoy-full
+      vesktop
+      vlc
+      zed-editor
+    ];
+
     programs = {
       # the linux browser (TM)
       firefox = {
