@@ -15,15 +15,19 @@ in
 
   config = lib.mkIf cfg.enable {
     chinos = {
-      grub.enable = lib.mkDefault true;
       kernel-latest.enable = lib.mkDefault true;
     };
 
     # packages installed in system profile. to search by name, run:
     # $ nix-env -qaP | grep wget
-    environment.systemPackages = with pkgs; [ ];
+    environment.systemPackages = with pkgs; [
+      sbctl # debug secure boot
+    ];
 
-    boot.loader.efi.canTouchEfiVariables = true;
+    boot.loader = {
+      efi.canTouchEfiVariables = true;
+      systemd-boot.enable = true;
+    };
 
     networking.networkmanager.enable = true; # used to use that too
 

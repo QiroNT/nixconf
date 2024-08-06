@@ -12,6 +12,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -56,8 +61,10 @@
 
       systems = {
         modules = {
-          nixos = shared-modules;
+          nixos = shared-modules ++ (with inputs; [ lanzaboote.nixosModules.lanzaboote ]);
           darwin = shared-modules;
+          install-iso = shared-modules;
+          sd-aarch64 = shared-modules;
         };
         hosts = {
           "chinos-r4s21".modules = with inputs; [

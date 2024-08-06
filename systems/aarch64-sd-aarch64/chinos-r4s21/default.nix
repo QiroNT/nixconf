@@ -15,7 +15,6 @@
   services.getty.autologinUser = lib.mkDefault "root";
 
   chinos = {
-    grub.enable = false;
     kernel-latest.enable = false;
     suites = {
       common.enable = true;

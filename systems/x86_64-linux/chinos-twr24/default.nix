@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 {
   imports = [ ./hardware.nix ];
 
@@ -6,7 +6,16 @@
   # touching it will definitely break things, so beware
   system.stateVersion = "24.05";
 
-  boot.initrd.kernelModules = [ "amdgpu" ];
+  boot = {
+    # secure boot
+    loader.systemd-boot.enable = lib.mkForce false;
+    lanzaboote = {
+      enable = true;
+      pkiBundle = "/etc/secureboot";
+    };
+
+    initrd.kernelModules = [ "amdgpu" ];
+  };
 
   # fix file system options
   fileSystems = {

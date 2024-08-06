@@ -7,6 +7,7 @@
   modulesPath,
   ...
 }:
+
 {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
@@ -23,9 +24,23 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/c7f8349b-a217-4197-9fb0-ef61030094a6";
+    device = "/dev/mapper/nixos";
     fsType = "btrfs";
     options = [ "subvol=@root" ];
+  };
+
+  boot.initrd.luks.devices."nixos".device = "/dev/disk/by-uuid/9d86cbc3-34b6-4c5b-b1f6-95d1f6e0cd82";
+
+  fileSystems."/nix" = {
+    device = "/dev/mapper/nixos";
+    fsType = "btrfs";
+    options = [ "subvol=@nix" ];
+  };
+
+  fileSystems."/home" = {
+    device = "/dev/mapper/nixos";
+    fsType = "btrfs";
+    options = [ "subvol=@home" ];
   };
 
   fileSystems."/boot" = {
@@ -37,19 +52,7 @@
     ];
   };
 
-  fileSystems."/nix" = {
-    device = "/dev/disk/by-uuid/c7f8349b-a217-4197-9fb0-ef61030094a6";
-    fsType = "btrfs";
-    options = [ "subvol=@nix" ];
-  };
-
-  fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/c7f8349b-a217-4197-9fb0-ef61030094a6";
-    fsType = "btrfs";
-    options = [ "subvol=@home" ];
-  };
-
-  swapDevices = [ { device = "/dev/disk/by-uuid/f2bc2fe3-3904-4ea0-b769-ed2df61372ab"; } ];
+  swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
@@ -57,7 +60,7 @@
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlp11s0.useDHCP = lib.mkDefault true;
+  # networking.interfaces.wlan0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

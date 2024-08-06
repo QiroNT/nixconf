@@ -17,8 +17,5 @@ in
       nix-index.enable = true; # command-not-found
       nix-index-database.comma.enable = true; # , -> nix run nixpkgs#
     };
-    home.sessionVariables = {
-      NIX_AUTO_RUN = "1";
-    };
   };
 }

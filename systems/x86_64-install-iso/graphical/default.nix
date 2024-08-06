@@ -8,8 +8,9 @@
   # is incompatible with networkmanager.
   networking.wireless.enable = lib.mkForce false;
 
+  users.users.qiront.password = "";
+
   chinos = {
-    grub.enable = false;
     kernel-latest.enable = false;
     wireless.enable = true;
     suites = {
