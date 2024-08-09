@@ -6,16 +6,7 @@
   # touching it will definitely break things, so beware
   system.stateVersion = "24.05";
 
-  boot = {
-    # secure boot
-    loader.systemd-boot.enable = lib.mkForce false;
-    lanzaboote = {
-      enable = true;
-      pkiBundle = "/etc/secureboot";
-    };
-
-    initrd.kernelModules = [ "amdgpu" ];
-  };
+  boot.initrd.kernelModules = [ "amdgpu" ];
 
   # fix file system options
   fileSystems = {
@@ -40,6 +31,7 @@
   chinos = {
     binfmt.enable = true;
     wireless.enable = true;
+    secure-boot.enable = true;
     suites = {
       common.enable = true;
       desktop.enable = true;
