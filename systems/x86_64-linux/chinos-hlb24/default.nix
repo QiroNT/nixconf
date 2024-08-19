@@ -28,6 +28,7 @@
 
   chinos = {
     wireless.enable = true;
+    cloudflared.enable = true;
     suites = {
       common.enable = true;
     };
