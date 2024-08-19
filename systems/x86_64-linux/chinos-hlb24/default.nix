@@ -14,6 +14,12 @@
       "errors=remount-ro"
     ];
   };
+  swapDevices = [
+    {
+      device = "/swapfile";
+      size = builtins.floor (4.5 * 1024);
+    }
+  ];
 
   networking.hostName = "chinos-hlb24"; # first homelab
 
