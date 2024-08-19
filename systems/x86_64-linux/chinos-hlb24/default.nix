@@ -28,7 +28,6 @@
 
   chinos = {
     wireless.enable = true;
-    secure-boot.enable = true;
     suites = {
       common.enable = true;
     };

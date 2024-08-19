@@ -4,6 +4,7 @@
 {
   config,
   lib,
+  pkgs,
   modulesPath,
   ...
 }:
@@ -14,28 +15,28 @@
   boot.initrd.availableKernelModules = [
     "nvme"
     "xhci_pci"
+    "uas"
     "usbhid"
+    "sd_mod"
   ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
-    device = "/dev/mapper/nixos";
+    device = "/dev/disk/by-uuid/ecbac9c5-0d8c-4d6b-9b79-98ffda38a6d1";
     fsType = "btrfs";
     options = [ "subvol=@root" ];
   };
 
-  boot.initrd.luks.devices."nixos".device = "/dev/disk/by-uuid/9856aaf9-d7be-4752-944f-727ef0187ac2";
-
   fileSystems."/nix" = {
-    device = "/dev/mapper/nixos";
+    device = "/dev/disk/by-uuid/ecbac9c5-0d8c-4d6b-9b79-98ffda38a6d1";
     fsType = "btrfs";
     options = [ "subvol=@nix" ];
   };
 
   fileSystems."/home" = {
-    device = "/dev/mapper/nixos";
+    device = "/dev/disk/by-uuid/ecbac9c5-0d8c-4d6b-9b79-98ffda38a6d1";
     fsType = "btrfs";
     options = [ "subvol=@home" ];
   };
