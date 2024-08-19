@@ -89,5 +89,8 @@ in
       enable = true;
       storageDriver = "btrfs";
     };
+
+    # i dont have a server for wg so...
+    services.tailscale.enable = true;
   };
 }
