@@ -38,6 +38,14 @@ in
           *) export PATH="$PNPM_HOME:$PATH" ;;
         esac
         # pnpm end
+
+        # editor
+        if [[ -n $SSH_CONNECTION ]]; then
+          export EDITOR='nano'
+        else
+          export EDITOR='code --new-window --wait'
+        fi
+        export VISUAL="$EDITOR"
       '';
     };
   };
