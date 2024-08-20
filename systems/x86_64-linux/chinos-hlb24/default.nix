@@ -1,6 +1,9 @@
 { lib, ... }:
 {
-  imports = [ ./hardware.nix ];
+  imports = [
+    ./hardware.nix
+    ./cloudflared
+  ];
 
   # this doesn't need to be touched,
   # touching it will definitely break things, so beware
@@ -28,7 +31,6 @@
 
   chinos = {
     wireless.enable = true;
-    cloudflared.enable = true;
     suites = {
       common.enable = true;
     };

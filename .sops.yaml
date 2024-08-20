@@ -1,0 +1,19 @@
+# to make a new key:
+# mkdir -p ~/.config/sops/age
+# age-keygen -o ~/.config/sops/age/keys.txt
+keys:
+  # personal
+  - &chinos-mbp23 age1unq0da7h3tc59hme2cyqja9je0v3kg8vtmr3d66y9x95xru7spcsvkhtf0
+  # servers
+  - &chinos-hlb24 age1k5753p7g392d2vkh578pzwrwuhkmg6yphvfrrr94p9u2t287s9dqym6ya2
+creation_rules:
+  - path_regex: secrets/common.yaml$
+    key_groups:
+    - age:
+      - *chinos-mbp23
+      - *chinos-hlb24
+  - path_regex: secrets/chinos-hlb24.yaml$
+    key_groups:
+    - age:
+      - *chinos-mbp23
+      - *chinos-hlb24

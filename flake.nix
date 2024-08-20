@@ -27,6 +27,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     snowfall-lib = {
       url = "github:snowfallorg/lib";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -61,7 +66,12 @@
 
       systems = {
         modules = {
-          nixos = shared-modules ++ (with inputs; [ lanzaboote.nixosModules.lanzaboote ]);
+          nixos =
+            shared-modules
+            ++ (with inputs; [
+              lanzaboote.nixosModules.lanzaboote
+              sops-nix.nixosModules.sops
+            ]);
           darwin = shared-modules;
           install-iso = shared-modules;
           sd-aarch64 = shared-modules;
