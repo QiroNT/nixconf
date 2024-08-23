@@ -35,6 +35,9 @@ in
         }
       ];
     };
+    networking.firewall.interfaces."ve-forgejo".allowedTCPPorts = [
+      config.services.postgresql.settings.port
+    ];
 
     containers.forgejo = {
       autoStart = true;
