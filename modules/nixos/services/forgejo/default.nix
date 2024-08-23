@@ -55,23 +55,34 @@ in
         {
           services.forgejo = {
             enable = true;
+
             database = {
               type = "postgres";
               createDatabase = false;
               host = "192.168.100.1";
             };
+
             lfs.enable = true;
             settings = {
               server = {
                 DOMAIN = "git.chino.dev";
                 ROOT_URL = "https://git.chino.dev/";
                 HTTP_PORT = 3000;
+                LANDING_PAGE = "explore";
               };
+
+              security.INSTALL_LOCK = true;
               service.DISABLE_REGISTRATION = true;
+
+              # note: cloudflare has a limit of 100
+              "repository.upload".FILE_MAX_SIZE = 50;
+              attachment.MAX_SIZE = 50;
+
               actions = {
                 ENABLED = true;
                 DEFAULT_ACTIONS_URL = "github";
               };
+
               mailer = {
                 ENABLED = true;
                 PROTOCOL = "smtps";
