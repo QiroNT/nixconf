@@ -29,8 +29,17 @@
   time.timeZone = "Australia/Sydney";
   i18n.defaultLocale = "en_US.UTF-8";
 
+  networking.nat = {
+    enable = true;
+    internalInterfaces = [ "ve-+" ];
+    externalInterface = "enp1s0";
+  };
+
   chinos = {
     wireless.enable = true;
+    services = {
+      forgejo.enable = true;
+    };
     suites = {
       common.enable = true;
     };

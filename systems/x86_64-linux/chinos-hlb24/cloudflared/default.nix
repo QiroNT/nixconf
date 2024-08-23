@@ -2,12 +2,15 @@
 {
   chinos = {
     sops.enable = true;
-    cloudflared.enable = true;
+    services.cloudflared.enable = true;
   };
 
-  services.cloudflared.tunnels."f30b6232-eeb8-40e5-b224-0c5e5d1f4012" = {
+  services.cloudflared.tunnels."c8e37f0d-6903-4298-988a-e9fbbf79481f" = {
     credentialsFile = config.sops.secrets."chinos-hlb24/cloudflared/creds-file".path;
     default = "http_status:404";
+    ingress = {
+      "git.chino.dev" = config.containers.forgejo.localAddress;
+    };
   };
 
   sops.secrets."chinos-hlb24/cloudflared/creds-file" = {

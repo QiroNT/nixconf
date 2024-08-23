@@ -1,15 +1,14 @@
 {
   lib,
-  pkgs,
   namespace,
   config,
   ...
 }:
 let
-  cfg = config.${namespace}.cloudflared;
+  cfg = config.${namespace}.services.cloudflared;
 in
 {
-  options.${namespace}.cloudflared = with lib.types; {
+  options.${namespace}.services.cloudflared = with lib.types; {
     enable = lib.mkEnableOption "cloudflared";
   };
 

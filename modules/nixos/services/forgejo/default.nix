@@ -1,0 +1,108 @@
+{
+  lib,
+  namespace,
+  config,
+  ...
+}:
+let
+  cfg = config.${namespace}.services.forgejo;
+in
+{
+  options.${namespace}.services.forgejo = with lib.types; {
+    enable = lib.mkEnableOption "forgejo";
+    domain = lib.mkOption {
+      type = str;
+      description = "The domain name for the Forgejo instance.";
+    };
+  };
+
+  config = lib.mkIf cfg.enable {
+    chinos = {
+      sops.enable = true;
+      services.postgresql.enable = true;
+    };
+
+    services.postgresql = {
+      authentication = ''
+        host forgejo forgejo 192.168.100.2/32 trust
+        host forgejo forgejo fc00::2/128 trust
+      '';
+      ensureDatabases = [ "forgejo" ];
+      ensureUsers = [
+        {
+          name = "forgejo";
+          ensureDBOwnership = true;
+        }
+      ];
+    };
+
+    containers.forgejo = {
+      autoStart = true;
+
+      privateNetwork = true;
+      hostAddress = "192.168.100.1";
+      localAddress = "192.168.100.2";
+      hostAddress6 = "fc00::1";
+      localAddress6 = "fc00::2";
+
+      bindMounts."${config.sops.secrets."chinos-hlb24/forgejo/mailer-password".path}".isReadOnly = true;
+
+      config =
+        { ... }:
+        {
+          services.forgejo = {
+            enable = true;
+            database = {
+              type = "postgres";
+              createDatabase = false;
+              host = "192.168.100.1";
+            };
+            lfs.enable = true;
+            settings = {
+              server = {
+                DOMAIN = "git.chino.dev";
+                ROOT_URL = "https://git.chino.dev/";
+                HTTP_PORT = 3000;
+              };
+              service.DISABLE_REGISTRATION = true;
+              actions = {
+                ENABLED = true;
+                DEFAULT_ACTIONS_URL = "github";
+              };
+              mailer = {
+                ENABLED = true;
+                PROTOCOL = "smtps";
+                SMTP_ADDR = "shadow.mxrouting.net";
+                SMTP_PORT = 465;
+                FROM = "noreply@git.chino.dev";
+                USER = "noreply@git.chino.dev";
+              };
+            };
+            secrets.mailer.PASSWD = config.sops.secrets."chinos-hlb24/forgejo/mailer-password".path;
+          };
+
+          systemd.tmpfiles.rules = [
+            "z ${
+              config.sops.secrets."chinos-hlb24/forgejo/mailer-password".path
+            } 0440 ${config.services.forgejo.user} ${config.services.forgejo.group} - -"
+          ];
+
+          networking = {
+            firewall = {
+              enable = true;
+              allowedTCPPorts = [ 3000 ];
+            };
+            # https://github.com/NixOS/nixpkgs/issues/162686
+            useHostResolvConf = lib.mkForce false;
+          };
+          services.resolved.enable = true;
+
+          system.stateVersion = "24.05";
+        };
+    };
+
+    sops.secrets."chinos-hlb24/forgejo/mailer-password" = {
+      sopsFile = ../../../../secrets/chinos-hlb24.yaml;
+    };
+  };
+}
