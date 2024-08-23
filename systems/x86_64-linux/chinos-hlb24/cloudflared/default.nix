@@ -9,7 +9,7 @@
     credentialsFile = config.sops.secrets."chinos-hlb24/cloudflared/creds-file".path;
     default = "http_status:404";
     ingress = {
-      "git.chino.dev" = config.containers.forgejo.localAddress;
+      "git.chino.dev" = "http://${config.containers.forgejo.localAddress}:3000";
     };
   };
 
