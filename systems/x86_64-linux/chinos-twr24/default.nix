@@ -43,6 +43,7 @@
   chinos = {
     binfmt.enable = true;
     wireless.enable = true;
+    bluetooth.enable = true;
     secure-boot.enable = true;
     suites = {
       common.enable = true;
