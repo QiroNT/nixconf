@@ -15,7 +15,9 @@ in
   config = lib.mkIf cfg.enable {
     sops = {
       defaultSopsFile = ../../../secrets/common.yaml;
-      age.keyFile = "/home/qiront/.config/sops/age/keys.txt";
+      # $ sudo mkdir -p /var/lib/sops-nix
+      # $ sudo age-keygen -o /var/lib/sops-nix/key.txt
+      age.keyFile = "/var/lib/sops-nix/key.txt";
     };
   };
 }
