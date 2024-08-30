@@ -1,9 +1,6 @@
 local wezterm = require 'wezterm'
 local config = {}
 
--- https://github.com/NixOS/nixpkgs/issues/336069
-config.front_end = 'WebGpu'
-
 config.initial_cols = 140
 config.initial_rows = 45
 
