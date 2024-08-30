@@ -38,6 +38,7 @@
   chinos = {
     wireless.enable = true;
     services = {
+      cloudflare-warp.enable = true;
       forgejo.enable = true;
     };
     suites = {

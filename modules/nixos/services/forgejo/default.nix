@@ -10,10 +10,6 @@ in
 {
   options.${namespace}.services.forgejo = with lib.types; {
     enable = lib.mkEnableOption "forgejo";
-    domain = lib.mkOption {
-      type = str;
-      description = "The domain name for the Forgejo instance.";
-    };
   };
 
   config = lib.mkIf cfg.enable {
