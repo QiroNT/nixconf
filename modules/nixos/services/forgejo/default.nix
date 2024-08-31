@@ -53,7 +53,7 @@ in
           database = {
             type = "postgres";
             createDatabase = false;
-            host = "192.168.100.1";
+            host = config.containers.forgejo.hostAddress;
           };
 
           lfs.enable = true;
