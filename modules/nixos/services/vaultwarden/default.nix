@@ -56,6 +56,7 @@ in
             SIGNUPS_ALLOWED = false;
             ROCKET_ADDRESS = config.containers.vaultwarden.localAddress;
             DATABASE_URL = "postgresql://vaultwarden@${config.containers.vaultwarden.hostAddress}/vaultwarden";
+            IP_HEADER = "CF-Connecting-IP";
             SMTP_HOST = "shadow.mxrouting.net";
             SMTP_PORT = 465;
             SMTP_SSL = "force_tls";
