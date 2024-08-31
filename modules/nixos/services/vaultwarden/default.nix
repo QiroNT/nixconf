@@ -58,8 +58,8 @@ in
             DATABASE_URL = "postgresql://vaultwarden@${config.containers.vaultwarden.hostAddress}/vaultwarden";
             IP_HEADER = "CF-Connecting-IP";
             SMTP_HOST = "shadow.mxrouting.net";
+            SMTP_SECURITY = "force_tls";
             SMTP_PORT = 465;
-            SMTP_SSL = "force_tls";
             SMTP_USERNAME = "noreply@vaultwarden.chino.dev";
             SMTP_FROM = "noreply@vaultwarden.chino.dev";
             SMTP_FROM_NAME = "Chinos' Vaultwarden";
