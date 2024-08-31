@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ ... }:
 {
   imports = [
     ./hardware.nix
@@ -40,6 +40,7 @@
     services = {
       cloudflare-warp.enable = true;
       forgejo.enable = true;
+      vaultwarden.enable = true;
     };
     suites = {
       common.enable = true;
