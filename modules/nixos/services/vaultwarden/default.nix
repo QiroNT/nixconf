@@ -56,6 +56,7 @@ in
             SIGNUPS_ALLOWED = false;
             ROCKET_ADDRESS = config.containers.vaultwarden.localAddress;
             DATABASE_URL = "postgresql://vaultwarden@${config.containers.vaultwarden.hostAddress}/vaultwarden";
+            DATABASE_MAX_CONNS = 2; # it's only for me so no need to consume more ram
             IP_HEADER = "CF-Connecting-IP";
             SMTP_HOST = "shadow.mxrouting.net";
             SMTP_SECURITY = "force_tls";
