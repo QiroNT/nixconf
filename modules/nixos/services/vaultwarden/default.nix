@@ -73,7 +73,7 @@ in
         networking = {
           firewall = {
             enable = true;
-            allowedTCPPorts = [ 8222 ];
+            allowedTCPPorts = [ 8000 ];
           };
           # https://github.com/NixOS/nixpkgs/issues/162686
           useHostResolvConf = lib.mkForce false;

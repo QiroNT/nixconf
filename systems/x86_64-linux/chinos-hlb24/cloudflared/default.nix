@@ -10,7 +10,7 @@
     default = "http_status:404";
     ingress = {
       "git.chino.dev" = "http://${config.containers.forgejo.localAddress}:3000";
-      "vaultwarden.chino.dev" = "http://${config.containers.vaultwarden.localAddress}:8222";
+      "vaultwarden.chino.dev" = "http://${config.containers.vaultwarden.localAddress}:8000";
     };
   };
 
