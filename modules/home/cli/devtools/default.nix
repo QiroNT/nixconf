@@ -3,6 +3,7 @@
   pkgs,
   namespace,
   config,
+  system,
   ...
 }:
 let
@@ -13,46 +14,55 @@ in
     enable = lib.mkEnableOption "cli devtools";
   };
 
-  config = lib.mkIf cfg.enable {
-    home.packages = with pkgs; [
-      # databases
-      postgresql_16_jit # til: postgres has jit
-      sqlite
+  config = lib.mkMerge [
+    (lib.mkIf cfg.enable {
+      home.packages = with pkgs; [
+        # databases
+        postgresql_16_jit # til: postgres has jit
+        sqlite
 
-      # cloud
-      turso-cli
-      awscli2
+        # cloud
+        turso-cli
+        awscli2
 
-      # c
-      autoconf
-      automake
-      cmake
+        # c
+        autoconf
+        automake
+        cmake
 
-      # wasm
-      binaryen
-      emscripten
+        # wasm
+        binaryen
+        emscripten
 
-      # js
-      nodejs_22
-      corepack_22
-      bun
-      dprint
+        # js
+        nodejs_22
+        corepack_22
+        bun
+        dprint
 
-      # go
-      go
+        # go
+        go
 
-      # rust
-      rustup
-      sccache
+        # rust
+        rustup
+        sccache
 
-      # lua
-      luajit
+        # lua
+        luajit
 
-      # docker / k8s
-      dive
-      kubectl
-      kubernetes-helm
-      argocd # just to help with configs at work
-    ];
-  };
+        # docker / k8s
+        dive
+        kubectl
+        kubernetes-helm
+        argocd # just to help with configs at work
+      ];
+    })
+
+    (lib.mkIf (cfg.enable && lib.snowfall.system.is-linux system) {
+      home.packages = with pkgs; [
+        # c
+        gcc
+      ];
+    })
+  ];
 }
