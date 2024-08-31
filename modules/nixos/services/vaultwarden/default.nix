@@ -46,44 +46,42 @@ in
 
       bindMounts."${config.sops.secrets."chinos-hlb24/vaultwarden/env".path}".isReadOnly = true;
 
-      config =
-        { ... }:
-        {
-          services.vaultwarden = {
-            enable = true;
-            dbBackend = "postgresql";
-            environmentFile = config.sops.secrets."chinos-hlb24/vaultwarden/env".path;
-            config = {
-              DOMAIN = "https://vaultwarden.chino.dev";
-              SIGNUPS_ALLOWED = false;
-              DATABASE_URL = "postgresql://vaultwarden@192.168.100.1/vaultwarden";
-              SMTP_HOST = "shadow.mxrouting.net";
-              SMTP_PORT = 465;
-              SMTP_SSL = "force_tls";
-              SMTP_USERNAME = "noreply@vaultwarden.chino.dev";
-              SMTP_FROM = "noreply@vaultwarden.chino.dev";
-              SMTP_FROM_NAME = "Chinos' Vaultwarden";
-            };
+      config = containerInputs: {
+        services.vaultwarden = {
+          enable = true;
+          dbBackend = "postgresql";
+          environmentFile = config.sops.secrets."chinos-hlb24/vaultwarden/env".path;
+          config = {
+            DOMAIN = "https://vaultwarden.chino.dev";
+            SIGNUPS_ALLOWED = false;
+            DATABASE_URL = "postgresql://vaultwarden@192.168.100.1/vaultwarden";
+            SMTP_HOST = "shadow.mxrouting.net";
+            SMTP_PORT = 465;
+            SMTP_SSL = "force_tls";
+            SMTP_USERNAME = "noreply@vaultwarden.chino.dev";
+            SMTP_FROM = "noreply@vaultwarden.chino.dev";
+            SMTP_FROM_NAME = "Chinos' Vaultwarden";
           };
-
-          systemd.tmpfiles.rules = [
-            "z ${
-              config.sops.secrets."chinos-hlb24/vaultwarden/env".path
-            } 0440 ${config.users.users.vaultwarden.name} ${config.users.groups.vaultwarden.name} - -"
-          ];
-
-          networking = {
-            firewall = {
-              enable = true;
-              allowedTCPPorts = [ 8222 ];
-            };
-            # https://github.com/NixOS/nixpkgs/issues/162686
-            useHostResolvConf = lib.mkForce false;
-          };
-          services.resolved.enable = true;
-
-          system.stateVersion = "24.05";
         };
+
+        systemd.tmpfiles.rules = [
+          "z ${
+            config.sops.secrets."chinos-hlb24/vaultwarden/env".path
+          } 0440 ${containerInputs.config.users.users.vaultwarden.name} ${containerInputs.config.users.groups.vaultwarden.name} - -"
+        ];
+
+        networking = {
+          firewall = {
+            enable = true;
+            allowedTCPPorts = [ 8222 ];
+          };
+          # https://github.com/NixOS/nixpkgs/issues/162686
+          useHostResolvConf = lib.mkForce false;
+        };
+        services.resolved.enable = true;
+
+        system.stateVersion = "24.05";
+      };
     };
 
     sops.secrets."chinos-hlb24/vaultwarden/env" = {
