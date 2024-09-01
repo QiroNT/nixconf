@@ -12,6 +12,7 @@
   # fix file system options
   fileSystems = {
     "/nix".options = [ "noatime" ];
+    "/swap".options = [ "noatime" ];
     "/boot".options = [
       "noatime"
       "errors=remount-ro"
@@ -19,7 +20,7 @@
   };
   swapDevices = [
     {
-      device = "/swapfile";
+      device = "/swap/swapfile";
       size = builtins.floor (4.5 * 1024);
     }
   ];

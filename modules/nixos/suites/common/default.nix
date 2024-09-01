@@ -29,6 +29,12 @@ in
       systemd-boot.enable = true;
     };
 
+    services.btrfs.autoScrub = {
+      enable = true;
+      interval = "weekly";
+      fileSystems = [ "/" ];
+    };
+
     networking.networkmanager.enable = true; # used to use that too
 
     networking.firewall = {
