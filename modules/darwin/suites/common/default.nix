@@ -66,6 +66,7 @@ in
         "iina" # video player, tho i usually use vlc
         "powershell"
         "macfuse"
+        "battery"
       ];
     };
   };
