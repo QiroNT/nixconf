@@ -39,7 +39,6 @@
   chinos = {
     wireless.enable = true;
     services = {
-      cloudflare-warp.enable = true;
       forgejo.enable = true;
       vaultwarden.enable = true;
     };
