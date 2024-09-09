@@ -23,7 +23,7 @@
   # technically given, but half built myself
   networking.hostName = "chinos-twr24";
 
-  time.timeZone = "Asia/Shanghai";
+  time.timeZone = "Australia/Sydney";
   i18n.defaultLocale = "en_US.UTF-8";
 
   # nvidia driver
