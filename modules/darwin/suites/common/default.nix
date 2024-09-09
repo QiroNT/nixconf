@@ -44,7 +44,7 @@ in
       user = "root";
       automatic = true;
       interval = {
-        Weekday = 0;
+        Day = 1;
         Hour = 2;
         Minute = 0;
       };
