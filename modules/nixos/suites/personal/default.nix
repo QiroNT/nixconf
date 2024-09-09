@@ -47,5 +47,10 @@ in
       path = "/home/qiront/.npmrc";
       owner = "qiront";
     };
+    sops.secrets."personal/npm/yarnrc" = {
+      sopsFile = ../../../../secrets/personal.yaml;
+      path = "/home/qiront/.yarnrc.yml";
+      owner = "qiront";
+    };
   };
 }
