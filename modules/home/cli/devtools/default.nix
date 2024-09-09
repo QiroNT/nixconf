@@ -17,6 +17,12 @@ in
   config = lib.mkMerge [
     (lib.mkIf cfg.enable {
       home.packages = with pkgs; [
+        # nix stuff
+        nixd # nix language server
+        nixfmt-rfc-style
+        deadnix
+        statix
+
         # databases
         postgresql_16_jit # til: postgres has jit
         sqlite

@@ -33,6 +33,7 @@
   chinos = {
     suites = {
       common.enable = true;
+      personal.enable = true;
       desktop.enable = true;
     };
   };

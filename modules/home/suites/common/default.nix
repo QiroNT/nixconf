@@ -17,8 +17,6 @@ in
       cli = {
         enable = true;
         git.enable = true;
-        devtools.enable = true;
-        nix-index.enable = true;
       };
     };
 

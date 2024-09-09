@@ -47,6 +47,7 @@
     secure-boot.enable = true;
     suites = {
       common.enable = true;
+      personal.enable = true;
       desktop.enable = true;
     };
   };

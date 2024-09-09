@@ -19,12 +19,6 @@ in
       # i have most things launched via NIX_AUTO_RUN,
       # these are just for quick access
       home.packages = with pkgs; [
-        # nix stuff
-        nixd # nix language server
-        nixfmt-rfc-style
-        deadnix
-        statix
-
         # coreutils and alternative
         coreutils-full
         parallel
