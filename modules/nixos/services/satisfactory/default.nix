@@ -23,6 +23,19 @@ in
       hostAddress6 = "fc00::1";
       localAddress6 = "fc00::4";
 
+      forwardPorts = [
+        {
+          protocol = "tcp";
+          hostPort = 7777;
+          containerPort = 7777;
+        }
+        {
+          protocol = "udp";
+          hostPort = 7777;
+          containerPort = 7777;
+        }
+      ];
+
       config = containerInputs: {
         imports = [ inputs.satisfactory-server-flake.nixosModules.satisfactory ];
 
