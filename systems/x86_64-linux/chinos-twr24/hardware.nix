@@ -4,6 +4,7 @@
 {
   config,
   lib,
+  pkgs,
   modulesPath,
   ...
 }:
@@ -15,9 +16,7 @@
     "nvme"
     "xhci_pci"
     "ahci"
-    "uas"
     "usbhid"
-    "sd_mod"
   ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
@@ -41,6 +40,12 @@
     device = "/dev/mapper/nixos";
     fsType = "btrfs";
     options = [ "subvol=@home" ];
+  };
+
+  fileSystems."/swap" = {
+    device = "/dev/mapper/nixos";
+    fsType = "btrfs";
+    options = [ "subvol=@swap" ];
   };
 
   fileSystems."/boot" = {

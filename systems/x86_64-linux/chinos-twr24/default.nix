@@ -1,10 +1,13 @@
-{ lib, config, ... }:
+{ lib, pkgs, ... }:
 {
   imports = [ ./hardware.nix ];
 
   # this doesn't need to be touched,
   # touching it will definitely break things, so beware
   system.stateVersion = "24.05";
+
+  # TODO figure out what happened
+  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_6_10;
 
   # fix file system options
   fileSystems = {
@@ -14,11 +17,18 @@
       "compress=lzo"
       "noatime"
     ];
+    "/swap".options = [ "noatime" ];
     "/boot".options = [
       "noatime"
       "errors=remount-ro"
     ];
   };
+  swapDevices = [
+    {
+      device = "/swap/swapfile";
+      size = builtins.floor (68.5 * 1024);
+    }
+  ];
 
   # technically given, but half built myself
   networking.hostName = "chinos-twr24";
@@ -30,7 +40,7 @@
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
     # package = config.boot.kernelPackages.nvidiaPackages.beta;
-    open = true;
+    open = false; # perf reasons
     modesetting.enable = true;
     nvidiaSettings = true;
   };

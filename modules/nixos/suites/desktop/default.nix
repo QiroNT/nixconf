@@ -56,7 +56,7 @@ in
     hardware.graphics.enable32Bit = true;
 
     # controller
-    hardware.xone.enable = true;
+    # hardware.xone.enable = true;
     hardware.xpadneo.enable = true;
 
     # mouse config (piper)
