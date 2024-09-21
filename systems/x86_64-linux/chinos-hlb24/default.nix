@@ -9,6 +9,8 @@
   # touching it will definitely break things, so beware
   system.stateVersion = "24.05";
 
+  boot.initrd.kernelModules = [ "amdgpu" ];
+
   # fix file system options
   fileSystems = {
     "/nix".options = [ "noatime" ];
