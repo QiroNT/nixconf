@@ -24,6 +24,7 @@ in
       wayland.enable = true;
     };
     services.desktopManager.plasma6.enable = true;
+    environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
     # i actually only use this for clipboard sync
     programs.kdeconnect.enable = true;
