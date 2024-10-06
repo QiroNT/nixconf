@@ -94,6 +94,13 @@ in
           options = [ "--cmd cd" ];
         };
 
+        # file explorer
+        yazi = {
+          enable = true;
+          enableBashIntegration = true;
+          enableZshIntegration = true;
+        };
+
         # the cat replacement that actually does something
         bat.enable = true;
 
