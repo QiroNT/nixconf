@@ -41,7 +41,10 @@
   chinos = {
     wireless.enable = true;
     services = {
-      forgejo.enable = true;
+      forgejo = {
+        enable = true;
+        actions-runner.enable = true;
+      };
       vaultwarden.enable = true;
       satisfactory.enable = true;
     };

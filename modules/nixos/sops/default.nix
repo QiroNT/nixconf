@@ -15,7 +15,7 @@ in
   config = lib.mkIf cfg.enable {
     sops = {
       defaultSopsFile = ../../../secrets/common.yaml;
-      age.keyFile = "/var/lib/sops-nix/key.txt";
+      age.keyFile = "/var/lib/sops-nix/keys.txt";
     };
   };
 }

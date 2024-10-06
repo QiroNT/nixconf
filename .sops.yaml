@@ -16,8 +16,8 @@ creation_rules:
     key_groups:
       - age:
           - *chinos-mbp23
-          - *chinos-hlb24
           - *chinos-twr24
+          - *chinos-hlb24
   - path_regex: secrets/personal.yaml$
     key_groups:
       - age:
@@ -27,4 +27,5 @@ creation_rules:
     key_groups:
       - age:
           - *chinos-mbp23
+          - *chinos-twr24
           - *chinos-hlb24

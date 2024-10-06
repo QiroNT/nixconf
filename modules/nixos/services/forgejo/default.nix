@@ -74,7 +74,7 @@ in
 
             actions = {
               ENABLED = true;
-              DEFAULT_ACTIONS_URL = "github";
+              DEFAULT_ACTIONS_URL = "https://code.forgejo.org";
             };
 
             mailer = {
