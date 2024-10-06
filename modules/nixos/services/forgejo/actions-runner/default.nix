@@ -31,6 +31,13 @@ in
         true;
 
       config = containerInputs: {
+        # note for future me:
+        # the runner services requires network to activate and blocks boot,
+        # but the networking for the container is only available after boot.
+        # until https://github.com/NixOS/nixpkgs/issues/75951
+        # or https://github.com/NixOS/nixpkgs/pull/140669 is closed,
+        # run the post-start script from the container unit file
+        # to manually activate the network
         services.gitea-actions-runner = {
           package = pkgs.forgejo-actions-runner;
           instances.default = {
