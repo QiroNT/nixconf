@@ -44,7 +44,6 @@ in
             enable = true;
             name = "chinos-hlb24";
             url = "https://git.chino.dev";
-            # Obtaining the path to the runner token file may differ
             tokenFile = config.sops.secrets."chinos-hlb24/forgejo/actions-runner/token".path;
             labels = [
               "ubuntu-latest:docker://ghcr.io/catthehacker/ubuntu:act-latest"
