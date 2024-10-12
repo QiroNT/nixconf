@@ -28,6 +28,7 @@ in
         eza # ls
         dua # most convenient disk stuff I've ever used
         ripgrep
+        ast-grep
         tldr # i can't live without this
 
         # yep i have 4 monitoring tools for some reason
