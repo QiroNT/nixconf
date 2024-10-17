@@ -25,5 +25,8 @@ in
 
     # https://github.com/NixOS/nixpkgs/issues/224525
     xdg.enable = true;
+
+    # would prevent conflicts with kde
+    fonts.fontconfig.enable = false;
   };
 }
