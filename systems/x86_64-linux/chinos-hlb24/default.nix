@@ -46,7 +46,7 @@
         actions-runner.enable = true;
       };
       vaultwarden.enable = true;
-      satisfactory.enable = true;
+      # satisfactory.enable = true;
     };
     suites = {
       common.enable = true;
