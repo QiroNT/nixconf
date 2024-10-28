@@ -43,12 +43,15 @@ in
       allowedUDPPorts = [ ];
     };
 
-    nix.gc = {
-      automatic = true;
-      persistent = true;
-      dates = "monthly";
-      randomizedDelaySec = "45min";
-      options = "--delete-older-than 30d";
+    nix = {
+      optimise.automatic = true;
+      gc = {
+        automatic = true;
+        persistent = true;
+        dates = "monthly";
+        randomizedDelaySec = "45min";
+        options = "--delete-older-than 30d";
+      };
     };
 
     users = {

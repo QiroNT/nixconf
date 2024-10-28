@@ -73,10 +73,16 @@ in
         # tho I probably should try fish, maybe later.
         zsh = {
           enable = true;
+          # zprof.enable = true;
 
           # for convenience, like aliases.
           # many plugins have home-manager support, so no need for omz plugin stuff
-          oh-my-zsh.enable = true;
+          oh-my-zsh = {
+            enable = true;
+            extraConfig = ''
+              zstyle ':omz:update' mode disabled
+            '';
+          };
 
           # make it more fish
           autosuggestion.enable = true;
@@ -175,44 +181,23 @@ in
     })
 
     (lib.mkIf (cfg.enable && lib.snowfall.system.is-darwin system) {
-      programs = {
-        # conda and pnpm paths
-        # conda is manually installed, i know nix community hates conda,
-        # tho given my willingness of dealing with python deps after the constant
-        # torture of javascript, i decided that i just don't care anymore
-        zsh.initExtra = ''
-          # >>> conda initialize >>>
-          # !! Contents within this block are managed by 'conda init' !!
-          __conda_setup="$('/Users/qiront/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-          if [ $? -eq 0 ]; then
-              eval "$__conda_setup"
-          else
-              if [ -f "/Users/qiront/opt/anaconda3/etc/profile.d/conda.sh" ]; then
-                  . "/Users/qiront/opt/anaconda3/etc/profile.d/conda.sh"
-              else
-                  export PATH="/Users/qiront/opt/anaconda3/bin:$PATH"
-              fi
-          fi
-          unset __conda_setup
-          # <<< conda initialize <<<
+      programs.zsh.initExtra = ''
+        # pnpm
+        export PNPM_HOME="/Users/qiront/Library/pnpm"
+        case ":$PATH:" in
+          *":$PNPM_HOME:"*) ;;
+          *) export PATH="$PNPM_HOME:$PATH" ;;
+        esac
+        # pnpm end
 
-          # pnpm
-          export PNPM_HOME="/Users/qiront/Library/pnpm"
-          case ":$PATH:" in
-            *":$PNPM_HOME:"*) ;;
-            *) export PATH="$PNPM_HOME:$PATH" ;;
-          esac
-          # pnpm end
-
-          # editor
-          if [[ -n $SSH_CONNECTION ]]; then
-            export EDITOR='nano'
-          else
-            export EDITOR='code --new-window --wait'
-          fi
-          export VISUAL="$EDITOR"
-        '';
-      };
+        # editor
+        if [[ -n $SSH_CONNECTION ]]; then
+          export EDITOR='nano'
+        else
+          export EDITOR='code --new-window --wait'
+        fi
+        export VISUAL="$EDITOR"
+      '';
     })
   ];
 }
