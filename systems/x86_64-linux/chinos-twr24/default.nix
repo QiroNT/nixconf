@@ -1,13 +1,13 @@
-{ lib, pkgs, ... }:
+{
+  config,
+  ...
+}:
 {
   imports = [ ./hardware.nix ];
 
   # this doesn't need to be touched,
   # touching it will definitely break things, so beware
   system.stateVersion = "24.05";
-
-  # TODO figure out what happened
-  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_6_10;
 
   # fix file system options
   fileSystems = {
@@ -39,7 +39,7 @@
   # nvidia driver
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
-    # package = config.boot.kernelPackages.nvidiaPackages.beta;
+    package = config.boot.kernelPackages.nvidiaPackages.beta;
     open = false; # perf reasons
     modesetting.enable = true;
     nvidiaSettings = true;
