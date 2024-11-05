@@ -2,6 +2,7 @@
 {
   imports = [
     ./hardware.nix
+    ./wg-quick.nix
     ./cloudflared
   ];
 
