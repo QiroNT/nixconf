@@ -333,6 +333,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-master": {
+      "locked": {
+        "lastModified": 1730806617,
+        "narHash": "sha256-CQdcIxJc+YDkx2ZtuspHJhxxB/DDj1dHgl76kP8Lw7A=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "d4a3fb6338aca5e5b9f46a9d3f42303e20e2bf62",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "master",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-stable": {
       "locked": {
         "lastModified": 1720386169,
@@ -416,6 +432,7 @@
         "nix-index-database": "nix-index-database",
         "nixos-generators": "nixos-generators",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-master": "nixpkgs-master",
         "satisfactory-server-flake": "satisfactory-server-flake",
         "snowfall-lib": "snowfall-lib",
         "sops-nix": "sops-nix",

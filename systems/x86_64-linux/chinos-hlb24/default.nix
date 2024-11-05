@@ -48,6 +48,7 @@
       };
       vaultwarden.enable = true;
       # satisfactory.enable = true;
+      factorio.enable = true;
     };
     suites = {
       common.enable = true;
