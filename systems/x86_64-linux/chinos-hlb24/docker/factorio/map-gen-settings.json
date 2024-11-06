@@ -1,0 +1,167 @@
+{
+  "default_enable_all_autoplace_controls": true,
+  "autoplace_controls": {
+    "aquilo_crude_oil": {
+      "frequency": 1,
+      "size": 1,
+      "richness": 1
+    },
+    "calcite": {
+      "frequency": 1,
+      "size": 1,
+      "richness": 1
+    },
+    "coal": {
+      "frequency": 2,
+      "size": 1,
+      "richness": 2
+    },
+    "copper-ore": {
+      "frequency": 1.33333337306976318359375,
+      "size": 1.33333337306976318359375,
+      "richness": 2
+    },
+    "crude-oil": {
+      "frequency": 1.33333337306976318359375,
+      "size": 1,
+      "richness": 2
+    },
+    "enemy-base": {
+      "frequency": 1,
+      "size": 1,
+      "richness": 1
+    },
+    "fluorine_vent": {
+      "frequency": 1,
+      "size": 1,
+      "richness": 1
+    },
+    "fulgora_cliff": {
+      "frequency": 1,
+      "size": 1,
+      "richness": 1
+    },
+    "fulgora_islands": {
+      "frequency": 1,
+      "size": 1,
+      "richness": 1
+    },
+    "gleba_cliff": {
+      "frequency": 1,
+      "size": 1,
+      "richness": 1
+    },
+    "gleba_enemy_base": {
+      "frequency": 1,
+      "size": 1,
+      "richness": 1
+    },
+    "gleba_plants": {
+      "frequency": 1,
+      "size": 1,
+      "richness": 1
+    },
+    "gleba_stone": {
+      "frequency": 1,
+      "size": 1,
+      "richness": 1
+    },
+    "gleba_water": {
+      "frequency": 1,
+      "size": 1,
+      "richness": 1
+    },
+    "iron-ore": {
+      "frequency": 1.33333337306976318359375,
+      "size": 1.33333337306976318359375,
+      "richness": 2
+    },
+    "lithium_brine": {
+      "frequency": 1,
+      "size": 1,
+      "richness": 1
+    },
+    "nauvis_cliff": {
+      "frequency": 1,
+      "size": 1,
+      "richness": 1
+    },
+    "rocks": {
+      "frequency": 1,
+      "size": 0.75,
+      "richness": 1
+    },
+    "scrap": {
+      "frequency": 1,
+      "size": 1,
+      "richness": 1
+    },
+    "starting_area_moisture": {
+      "frequency": 1,
+      "size": 1,
+      "richness": 1
+    },
+    "stone": {
+      "frequency": 1.33333337306976318359375,
+      "size": 1.33333337306976318359375,
+      "richness": 2
+    },
+    "sulfuric_acid_geyser": {
+      "frequency": 1,
+      "size": 1,
+      "richness": 1
+    },
+    "trees": {
+      "frequency": 1,
+      "size": 1,
+      "richness": 1
+    },
+    "tungsten_ore": {
+      "frequency": 1,
+      "size": 1,
+      "richness": 1
+    },
+    "uranium-ore": {
+      "frequency": 1,
+      "size": 1,
+      "richness": 1.5
+    },
+    "vulcanus_coal": {
+      "frequency": 1,
+      "size": 1,
+      "richness": 1.33333337306976318359375
+    },
+    "vulcanus_volcanism": {
+      "frequency": 1,
+      "size": 1,
+      "richness": 1
+    },
+    "water": {
+      "frequency": 1,
+      "size": 0.75,
+      "richness": 1
+    }
+  },
+  "autoplace_settings": {},
+  "property_expression_names": {},
+  "starting_points": [
+    {
+      "x": 0,
+      "y": 0
+    }
+  ],
+  "seed": 2122965617,
+  "width": 2000000,
+  "height": 2000000,
+  "starting_area": 1,
+  "peaceful_mode": false,
+  "no_enemies_mode": false,
+  "cliff_settings": {
+    "name": "",
+    "control": "",
+    "cliff_elevation_0": 10,
+    "cliff_elevation_interval": 40,
+    "cliff_smoothing": 1,
+    "richness": 1
+  }
+}

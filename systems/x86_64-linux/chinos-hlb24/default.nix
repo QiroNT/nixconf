@@ -41,6 +41,7 @@
 
   chinos = {
     wireless.enable = true;
+    docker.enable = true;
     services = {
       forgejo = {
         enable = true;
@@ -48,7 +49,6 @@
       };
       vaultwarden.enable = true;
       # satisfactory.enable = true;
-      factorio.enable = true;
     };
     suites = {
       common.enable = true;

@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  watchtower:
+    image: containrrr/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      # - /root/.docker/config.json:/config.json
+
+  factorio:
+    image: factoriotools/factorio:stable
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+    ports:
+      - "34197:34197/udp"
+    volumes:
+      - /opt/factorio:/factorio
+      - ./factorio/map-gen-settings.json:/factorio/config/map-gen-settings.json
+      - ./factorio/map-settings.json:/factorio/config/map-settings.json
+      - ./factorio/server-settings.json:/factorio/config/server-settings.json
+      - ./factorio/server-adminlist.json:/factorio/config/server-adminlist.json
+      - ./factorio/server-whitelist.json:/factorio/config/server-whitelist.json
+    environment:
+      - GENERATE_NEW_SAVE=true
+      - SAVE_NAME=aspce

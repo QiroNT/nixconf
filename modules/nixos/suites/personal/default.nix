@@ -17,6 +17,7 @@ in
     chinos = {
       sops.enable = true;
       kernel-latest.enable = lib.mkDefault true;
+      docker.enable = true;
     };
 
     # SUID wrapper, not sure if i need this, but just to not bother my future self
@@ -32,13 +33,6 @@ in
       # Add any missing dynamic libraries for unpackaged programs
       # here, NOT in environment.systemPackages
       libraries = with pkgs; [ ];
-    };
-
-    # the program that i have to use to do any work
-    users.users.qiront.extraGroups = [ "docker" ];
-    virtualisation.docker = {
-      enable = true;
-      storageDriver = "btrfs";
     };
 
     # private npm registry
