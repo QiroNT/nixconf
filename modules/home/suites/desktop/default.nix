@@ -34,7 +34,6 @@ in
         heroic
         inkscape-with-extensions
         jetbrains.idea-community-bin
-        libreoffice-qt6-fresh
         obsidian
         piper
         protonup-qt
