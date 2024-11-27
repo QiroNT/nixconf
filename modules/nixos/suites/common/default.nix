@@ -88,6 +88,8 @@ in
     # i dont have a server for wg so...
     services.tailscale.enable = true;
 
+    services.cloudflare-warp.enable = true;
+
     # appimage
     programs.appimage = {
       enable = true;

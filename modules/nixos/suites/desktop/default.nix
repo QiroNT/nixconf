@@ -14,20 +14,13 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    chinos = {
+      kde.enable = true;
+    };
+
     # packages installed in system profile. to search by name, run:
     # $ nix-env -qaP | grep wget
     environment.systemPackages = with pkgs; [ ];
-
-    # desktop environment
-    services.displayManager.sddm = {
-      enable = true;
-      wayland.enable = true;
-    };
-    services.desktopManager.plasma6.enable = true;
-    environment.sessionVariables.NIXOS_OZONE_WL = "1";
-
-    # i actually only use this for clipboard sync
-    programs.kdeconnect.enable = true;
 
     fonts.fontDir.enable = true;
 
