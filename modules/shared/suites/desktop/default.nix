@@ -25,12 +25,8 @@ in
       fira-code
       fira-code-symbols
       monaspace
-      (nerdfonts.override {
-        fonts = [
-          "FiraCode"
-          "Monaspace"
-        ];
-      })
+      nerd-fonts.fira-code
+      nerd-fonts.monaspace
     ];
   };
 }
