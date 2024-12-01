@@ -36,7 +36,7 @@
   networking.nat = {
     enable = true;
     internalInterfaces = [ "ve-+" ];
-    externalInterface = "wlan0";
+    externalInterface = "enp1s0";
   };
 
   chinos = {
