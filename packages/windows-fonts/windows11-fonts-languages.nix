@@ -51,7 +51,7 @@
     "georgiab.ttf"
     "georgiai.ttf"
     "georgiaz.ttf" # Georgia
-    "holomdl2.ttf" # HoloLens MDL2 Assets
+    # "holomdl2.ttf" # HoloLens MDL2 Assets
     "impact.ttf" # Impact
     "Inkfree.ttf" # Ink Free
     "l_10646.ttf" # Lucida Sans Unicode
@@ -133,9 +133,7 @@
     "monbaiti.ttf" # Mongolian Baiti
     "mmrtext.ttf"
     "mmrtextb.ttf" # Myanmar Text
-    "Nirmala.ttf"
-    "NirmalaB.ttf" # Nirmala UI
-    "NirmalaS.ttf" # Nirmala UI Semilight
+    "Nirmala.ttc" # Nirmala UI
   ];
 
   thai = [
