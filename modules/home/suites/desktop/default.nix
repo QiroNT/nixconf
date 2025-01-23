@@ -27,6 +27,7 @@ in
         audacity
         bitwarden-desktop
         bottles
+        element-desktop
         filezilla
         geogebra6
         gimp

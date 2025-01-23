@@ -29,6 +29,9 @@ in
       systemd-boot.enable = true;
     };
 
+    # firmware updates
+    services.fwupd.enable = true;
+
     services.btrfs.autoScrub = {
       enable = true;
       interval = "weekly";
