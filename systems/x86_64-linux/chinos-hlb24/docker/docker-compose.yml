@@ -29,3 +29,13 @@ services:
     environment:
       - GENERATE_NEW_SAVE=true
       - SAVE_NAME=aspce
+
+  minecraft-startech:
+    build: ./minecraft/jre17
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+    ports:
+      - "25565:25565/tcp"
+    volumes:
+      - /opt/minecraft-startech:/work

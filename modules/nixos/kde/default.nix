@@ -20,6 +20,7 @@ in
       wayland.enable = true;
     };
     services.desktopManager.plasma6.enable = true;
+    services.xserver.enable = true;
 
     # disable by prefixing "NIXOS_OZONE_WL= " before a command
     environment.sessionVariables.NIXOS_OZONE_WL = "1";
