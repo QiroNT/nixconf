@@ -24,7 +24,6 @@ in
         statix
 
         # databases
-        postgresql_16_jit # til: postgres has jit
         sqlite
 
         # cloud
