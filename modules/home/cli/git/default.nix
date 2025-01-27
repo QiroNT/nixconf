@@ -32,7 +32,7 @@ in
           difftastic.enable = true;
 
           userName = "QiroNT";
-          userEmail = "i@ntz.im";
+          userEmail = "i@chino.dev";
           extraConfig = {
             # why merge when you can stash & rebase
             pull.rebase = "true";
@@ -53,10 +53,10 @@ in
             # tutorial: https://git-send-email.io/
             # auth with $ git config --global sendemail.smtpPass 'app password'
             sendemail = {
-              smtpserver = "smtppro.zoho.com";
-              smtpserverport = "587";
-              smtpencryption = "tls";
-              smtpuser = "i@ntz.im";
+              smtpserver = "shadow.mxrouting.net";
+              smtpserverport = "465";
+              smtpencryption = "ssl";
+              smtpuser = "i@chino.dev";
             };
           };
         };
