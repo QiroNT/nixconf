@@ -63,6 +63,7 @@ in
       casks = [
         "android-platform-tools" # adb stuff, tho it doesn't bind to path, probably'll do it later
         "eloston-chromium"
+        "google-chrome" # keystone sucks
         "iina" # video player, tho i usually use vlc
         "powershell"
         "macfuse"

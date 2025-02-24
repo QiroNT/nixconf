@@ -11,6 +11,7 @@
     ingress = {
       "git.chino.dev" = "http://${config.containers.forgejo.localAddress}:3000";
       "vaultwarden.chino.dev" = "http://${config.containers.vaultwarden.localAddress}:8000";
+      "minecraft-startech.chino.dev" = "tcp://localhost:25565";
     };
   };
 
