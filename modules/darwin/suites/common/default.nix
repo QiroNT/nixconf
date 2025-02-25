@@ -41,7 +41,6 @@ in
     security.pam.enableSudoTouchIdAuth = true;
 
     nix.gc = {
-      user = "root";
       automatic = true;
       interval = {
         Day = 1;
@@ -50,9 +49,6 @@ in
       };
       options = "--delete-older-than 30d";
     };
-
-    # auto upgrade nix package and the daemon service
-    services.nix-daemon.enable = true;
 
     homebrew = {
       enable = true;

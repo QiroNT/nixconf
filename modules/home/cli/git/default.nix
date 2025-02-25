@@ -25,7 +25,11 @@ in
         # the software people used to convince everyone else to use
         git = {
           enable = true;
-          package = pkgs.gitFull;
+          package = pkgs.git.override {
+            sendEmailSupport = true;
+            withSsh = true;
+            withLibsecret = !lib.snowfall.system.is-darwin system;
+          };
           lfs.enable = true;
 
           # idk what im missing out before
