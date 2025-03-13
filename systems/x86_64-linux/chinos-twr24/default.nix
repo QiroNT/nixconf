@@ -42,7 +42,7 @@
   boot.kernelPackages = lib.mkForce pkgs.linuxPackages_6_13;
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
-    package = config.boot.kernelPackages.nvidiaPackages.beta;
+    # package = config.boot.kernelPackages.nvidiaPackages.beta;
     open = false; # perf reasons
     modesetting.enable = true;
     nvidiaSettings = true;

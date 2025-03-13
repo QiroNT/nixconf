@@ -35,6 +35,7 @@ in
         heroic
         inkscape-with-extensions
         jetbrains.idea-community-bin
+        monero-gui
         obsidian
         piper
         protonup-qt
