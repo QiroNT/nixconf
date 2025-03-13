@@ -38,7 +38,7 @@ in
       };
     };
 
-    security.pam.enableSudoTouchIdAuth = true;
+    security.pam.services.sudo_local.touchIdAuth = true;
 
     nix.gc = {
       automatic = true;
@@ -62,7 +62,6 @@ in
         "google-chrome" # keystone sucks
         "iina" # video player, tho i usually use vlc
         "powershell"
-        "macfuse"
         "battery"
       ];
     };
