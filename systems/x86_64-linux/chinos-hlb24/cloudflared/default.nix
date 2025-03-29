@@ -17,7 +17,5 @@
 
   sops.secrets."chinos-hlb24/cloudflared/creds-file" = {
     sopsFile = ../../../../secrets/chinos-hlb24.yaml;
-    owner = config.services.cloudflared.user;
-    group = config.services.cloudflared.group;
   };
 }
