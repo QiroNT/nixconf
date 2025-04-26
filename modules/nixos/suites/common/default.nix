@@ -89,7 +89,10 @@ in
     };
 
     # i dont have a server for wg so...
-    services.tailscale.enable = true;
+    services.tailscale = {
+      enable = true;
+      useRoutingFeatures = "server";
+    };
 
     services.cloudflare-warp.enable = true;
 
