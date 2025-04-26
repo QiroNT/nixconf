@@ -39,6 +39,9 @@
     externalInterface = "enp1s0";
   };
 
+  # exit node
+  services.tailscale.useRoutingFeatures = "server";
+
   chinos = {
     wireless.enable = true;
     docker.enable = true;
