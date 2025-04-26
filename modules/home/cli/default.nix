@@ -161,7 +161,7 @@ in
         inetutils # telnet / ping
       ];
 
-      programs.zsh.initExtra = ''
+      programs.zsh.initContent = ''
         # pnpm
         export PNPM_HOME="/home/qiront/.local/share/pnpm"
         case ":$PATH:" in
@@ -181,7 +181,7 @@ in
     })
 
     (lib.mkIf (cfg.enable && lib.snowfall.system.is-darwin system) {
-      programs.zsh.initExtra = ''
+      programs.zsh.initContent = ''
         # pnpm
         export PNPM_HOME="/Users/qiront/Library/pnpm"
         case ":$PATH:" in
