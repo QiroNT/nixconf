@@ -40,8 +40,8 @@ in
         emscripten
 
         # js
-        nodejs_22
-        corepack_22
+        nodejs_24
+        corepack_latest
         bun
         dprint
 
