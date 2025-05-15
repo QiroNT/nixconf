@@ -71,7 +71,7 @@
     lib.mkFlake {
       channels-config = {
         allowUnfree = true;
-        permittedInsecurePackages = [ ];
+        permittedInsecurePackages = [ "ventoy-1.1.05" ];
       };
 
       systems = {
