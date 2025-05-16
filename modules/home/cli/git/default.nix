@@ -38,6 +38,12 @@ in
           userName = "QiroNT";
           userEmail = "i@chino.dev";
           extraConfig = {
+            # main good
+            init.defaultBranch = "main";
+
+            # should be default
+            diff.algorithm = "histogram";
+
             # why merge when you can stash & rebase
             pull.rebase = "true";
 
