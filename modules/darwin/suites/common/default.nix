@@ -13,6 +13,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    # TODO move this to home manager once they support it
     system.defaults = {
       NSGlobalDomain = {
         AppleShowAllExtensions = true; # show all file extensions
@@ -40,6 +41,9 @@ in
 
     security.pam.services.sudo_local.touchIdAuth = true;
 
+    # TODO remove this upon removing system.defaults
+    system.primaryUser = "qiront";
+
     nix.gc = {
       automatic = true;
       interval = {
@@ -52,6 +56,7 @@ in
 
     homebrew = {
       enable = true;
+      user = "qiront";
       brews = [ "ext4fuse" ];
       # software that can't update itself.
       # giving the ablitity to self update is usually more efficient,
