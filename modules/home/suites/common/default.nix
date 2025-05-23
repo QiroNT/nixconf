@@ -17,6 +17,7 @@ in
       cli = {
         enable = true;
         git.enable = true;
+        tldr.enable = true;
       };
     };
 
