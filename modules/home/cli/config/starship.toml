@@ -1,6 +1,6 @@
-"$schema" = 'https://starship.rs/config-schema.json'
+'$schema' = 'https://starship.rs/config-schema.json'
 
-format = """$directory$fill $all"""
+format = '$directory$fill $all'
 continuation_prompt = '[󰇙](bold green) '
 
 [aws]
@@ -9,12 +9,21 @@ symbol = ' '
 [buf]
 symbol = ' '
 
+[bun]
+symbol = ' '
+
 [c]
 symbol = ' '
+
+[cpp]
+symbol = ' '
 
 [character]
 success_symbol = '[\$](bold green)'
 error_symbol = '[\$](bold red)'
+
+[cmake]
+symbol = ' '
 
 [conda]
 symbol = ' '
@@ -24,6 +33,9 @@ symbol = ' '
 
 [dart]
 symbol = ' '
+
+[deno]
+symbol = ' '
 
 [directory]
 truncate_to_repo = false
@@ -51,8 +63,17 @@ style = 'dimmed black'
 [fossil_branch]
 symbol = ' '
 
+[gcloud]
+symbol = ' '
+
 [git_branch]
 symbol = ' '
+
+[git_commit]
+tag_symbol = '  '
+
+[git_status]
+use_git_executable = true
 
 [golang]
 symbol = ' '
@@ -107,10 +128,12 @@ symbol = ' '
 [os.symbols]
 Alpaquita = ' '
 Alpine = ' '
+AlmaLinux = ' '
 Amazon = ' '
 Android = ' '
 Arch = ' '
 Artix = ' '
+CachyOS = ' '
 CentOS = ' '
 Debian = ' '
 DragonFly = ' '
@@ -122,6 +145,7 @@ Garuda = '󰛓 '
 Gentoo = ' '
 HardenedBSD = '󰞌 '
 Illumos = '󰈸 '
+Kali = ' '
 Linux = ' '
 Mabox = ' '
 Macos = ' '
@@ -131,6 +155,7 @@ MidnightBSD = ' '
 Mint = ' '
 NetBSD = ' '
 NixOS = ' '
+Nobara = ' '
 OpenBSD = '󰈺 '
 openSUSE = ' '
 OracleLinux = '󰌷 '
@@ -138,11 +163,13 @@ Pop = ' '
 Raspbian = ' '
 Redhat = ' '
 RedHatEnterprise = ' '
+RockyLinux = ' '
 Redox = '󰀘 '
 Solus = '󰠳 '
 SUSE = ' '
 Ubuntu = ' '
 Unknown = ' '
+Void = ' '
 Windows = '󰍲 '
 
 [package]
@@ -157,6 +184,9 @@ symbol = ' '
 [pijul_channel]
 symbol = ' '
 
+[pixi]
+symbol = '󰏗 '
+
 [python]
 symbol = ' '
 
@@ -167,7 +197,7 @@ symbol = '󰟔 '
 symbol = ' '
 
 [rust]
-symbol = ' '
+symbol = '󱘗 '
 
 [scala]
 symbol = ' '
@@ -181,3 +211,6 @@ format = '[$user]($style) '
 
 [zig]
 symbol = ' '
+
+[gradle]
+symbol = ' '
