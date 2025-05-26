@@ -88,6 +88,9 @@ in
       ];
     };
 
+    # for debugging
+    services.nixseparatedebuginfod.enable = true;
+
     # i dont have a server for wg so...
     services.tailscale.enable = true;
 
