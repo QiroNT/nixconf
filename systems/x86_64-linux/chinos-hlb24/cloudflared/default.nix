@@ -1,4 +1,4 @@
-{ config, ... }:
+{ lib, config, ... }:
 {
   chinos = {
     sops.enable = true;
@@ -16,6 +16,6 @@
   };
 
   sops.secrets."chinos-hlb24/cloudflared/creds-file" = {
-    sopsFile = ../../../../secrets/chinos-hlb24.yaml;
+    sopsFile = lib.snowfall.fs.get-file "secrets/chinos-hlb24.yaml";
   };
 }

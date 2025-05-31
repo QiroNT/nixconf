@@ -65,7 +65,9 @@
       };
 
       shared-modules = builtins.attrValues (
-        lib.snowfall.module.create-modules { src = ./modules/shared; }
+        lib.snowfall.module.create-modules {
+          src = lib.snowfall.fs.get-file "modules/shared";
+        }
       );
     in
     lib.mkFlake {
@@ -82,7 +84,11 @@
               lanzaboote.nixosModules.lanzaboote
               sops-nix.nixosModules.sops
             ]);
-          darwin = shared-modules;
+          darwin =
+            shared-modules
+            ++ (with inputs; [
+              sops-nix.darwinModules.sops
+            ]);
           install-iso = shared-modules;
           sd-aarch64 = shared-modules;
         };

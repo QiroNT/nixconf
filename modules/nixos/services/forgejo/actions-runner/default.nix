@@ -74,7 +74,7 @@ in
     };
 
     sops.secrets."chinos-hlb24/forgejo/actions-runner/token" = {
-      sopsFile = ../../../../../secrets/chinos-hlb24.yaml;
+      sopsFile = lib.snowfall.fs.get-file "secrets/chinos-hlb24.yaml";
     };
   };
 }

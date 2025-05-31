@@ -1,4 +1,4 @@
-{ config, ... }:
+{ lib, config, ... }:
 {
   chinos.sops.enable = true;
 
@@ -6,6 +6,6 @@
     config.sops.secrets."chinos-hlb24/wg-client/wg-cattery.conf".path;
 
   sops.secrets."chinos-hlb24/wg-client/wg-cattery.conf" = {
-    sopsFile = ../../../secrets/chinos-hlb24.yaml;
+    sopsFile = lib.snowfall.fs.get-file "secrets/chinos-hlb24.yaml";
   };
 }

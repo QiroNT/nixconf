@@ -88,7 +88,7 @@ in
     };
 
     sops.secrets."chinos-hlb24/vaultwarden/env" = {
-      sopsFile = ../../../../secrets/chinos-hlb24.yaml;
+      sopsFile = lib.snowfall.fs.get-file "secrets/chinos-hlb24.yaml";
     };
   };
 }

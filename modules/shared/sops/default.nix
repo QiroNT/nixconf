@@ -14,7 +14,7 @@ in
 
   config = lib.mkIf cfg.enable {
     sops = {
-      defaultSopsFile = ../../../secrets/common.yaml;
+      defaultSopsFile = lib.snowfall.fs.get-file "secrets/common.yaml";
       age.keyFile = "/var/lib/sops-nix/keys.txt";
     };
   };
