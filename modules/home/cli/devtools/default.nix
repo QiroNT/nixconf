@@ -35,10 +35,6 @@ in
         automake
         cmake
 
-        # wasm
-        binaryen
-        emscripten
-
         # js
         nodejs_24
         corepack_latest
