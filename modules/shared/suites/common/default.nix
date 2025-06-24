@@ -19,6 +19,11 @@ in
         # enable flakes support
         experimental-features = "nix-command flakes pipe-operators";
 
+        trusted-users = [
+          "root"
+          "qiront"
+        ];
+
         substituters = [
           "https://numtide.cachix.org"
           "https://cache.garnix.io"
