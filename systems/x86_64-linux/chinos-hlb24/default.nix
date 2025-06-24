@@ -52,7 +52,7 @@
       };
       vaultwarden.enable = true;
       # satisfactory.enable = true;
-      monerod.enable = true;
+      # monerod.enable = true;
     };
     suites = {
       common.enable = true;
