@@ -55,7 +55,7 @@ in
         # the linux browser (TM)
         firefox = {
           enable = true;
-          package = pkgs.firefox-devedition-bin;
+          package = pkgs.firefox-devedition;
         };
 
         # i'd rather like to configure in vscode and use config sync,
