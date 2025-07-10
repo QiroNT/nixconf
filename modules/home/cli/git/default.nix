@@ -35,7 +35,7 @@ in
           # idk what im missing out before
           difftastic.enable = true;
 
-          userName = "QiroNT";
+          userName = "Chino Moka";
           userEmail = "i@chino.dev";
           extraConfig = {
             # main good

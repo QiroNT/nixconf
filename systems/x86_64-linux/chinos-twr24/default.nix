@@ -39,7 +39,7 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   # nvidia driver
-  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_6_14;
+  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_6_15;
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
     # package = config.boot.kernelPackages.nvidiaPackages.beta;
