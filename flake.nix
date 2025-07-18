@@ -99,7 +99,7 @@
         };
       };
 
-      homes.modules = with inputs; [ nix-index-database.hmModules.nix-index ];
+      homes.modules = with inputs; [ nix-index-database.homeModules.nix-index ];
 
       outputs-builder = channels: { formatter = channels.nixpkgs.nixfmt-rfc-style; };
     };
