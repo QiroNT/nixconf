@@ -1,11 +1,11 @@
 builds:
   exclude: []
   include:
-    - '*.x86_64-linux.*'
-    - '*.aarch64-linux.*'
-    - '*.aarch64-darwin.*'
-    - homeConfigurations.*
+    # - "*.x86_64-linux.*"
+    # - "*.aarch64-linux.*"
+    # - "*.aarch64-darwin.*"
+    # - homeConfigurations.*
     - nixosConfigurations.*
     - darwinConfigurations.*
-    - install-isoConfigurations.*
-    - sd-aarch64Configurations.*
+    # - install-isoConfigurations.*
+    # - sd-aarch64Configurations.*
