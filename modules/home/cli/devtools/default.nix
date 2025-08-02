@@ -36,7 +36,7 @@ in
         cmake
 
         # js
-        nodejs_24
+        nodejs_22
         corepack_latest
         bun
         dprint

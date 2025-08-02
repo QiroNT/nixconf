@@ -29,6 +29,7 @@ in
         bottles
         element-desktop
         filezilla
+        gale
         geogebra6
         gimp
         gparted
