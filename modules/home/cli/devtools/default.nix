@@ -41,6 +41,9 @@ in
         bun
         dprint
 
+        # py
+        uv
+
         # go
         go
 
