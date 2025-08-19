@@ -32,11 +32,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    snowfall-lib = {
-      url = "github:snowfallorg/lib";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
@@ -44,6 +39,14 @@
 
     import-tree = {
       url = "github:vic/import-tree";
+    };
+
+    easy-hosts = {
+      url = "github:tgirlcloud/easy-hosts";
+    };
+
+    pkgs-by-name-for-flake-parts = {
+      url = "github:drupol/pkgs-by-name-for-flake-parts";
     };
 
     satisfactory-server-flake = {
