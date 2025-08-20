@@ -4,7 +4,7 @@
 
   easy-hosts = {
     autoConstruct = true;
-    path = ../../hosts;
+    path = builtins.path { path = ../..; } + "/hosts";
 
     perClass = class: {
       specialArgs = {
