@@ -1,6 +1,6 @@
 { inputs, config, ... }:
 {
-  imports = with inputs.self.modules.generic; [ sops ];
+  imports = with inputs.self.modules.nixos; [ sops ];
 
   services.cloudflared = {
     enable = true;
