@@ -1,9 +1,14 @@
-top@{ lib, ... }:
+{ self, lib, ... }:
 {
-  flake.modules.generic.nix =
-    { pkgs, config, ... }:
+  flake.modules = self.lib.mkAny "nix" (
     {
-      imports = with top.config.flake.modules.generic; [
+      class,
+      pkgs,
+      config,
+      ...
+    }:
+    {
+      imports = with (self.lib.withAny class); [
         sops
       ];
 
@@ -60,5 +65,6 @@ top@{ lib, ... }:
           };
         })
       ];
-    };
+    }
+  );
 }

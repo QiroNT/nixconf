@@ -1,9 +1,9 @@
-top@{ lib, ... }:
+{ self, lib, ... }:
 {
-  flake.modules.generic.vaultwarden =
+  flake.modules = self.lib.mkAny "vaultwarden" (
     { class, config, ... }:
     lib.optionalAttrs (class == "nixos") {
-      imports = with top.config.flake.modules.generic; [
+      imports = with (self.lib.withAny class); [
         sops
         postgresql
       ];
@@ -80,5 +80,6 @@ top@{ lib, ... }:
       sops.secrets."chinos-hlb24/vaultwarden/env" = {
         sopsFile = ../../secrets/chinos-hlb24.yaml;
       };
-    };
+    }
+  );
 }

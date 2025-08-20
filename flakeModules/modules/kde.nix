@@ -1,6 +1,6 @@
-{ lib, ... }:
+{ self, lib, ... }:
 {
-  flake.modules.generic.kde =
+  flake.modules = self.lib.mkAny "kde" (
     { class, pkgs, ... }:
     lib.optionalAttrs (class == "nixos") {
       # desktop environment
@@ -20,5 +20,6 @@
 
       # i actually only use this for clipboard sync
       programs.kdeconnect.enable = true;
-    };
+    }
+  );
 }

@@ -1,11 +1,13 @@
-{ lib, config, ... }:
+{ self, lib, ... }:
 {
-  flake.modules.generic.profilePersonal =
+  flake.modules = self.lib.mkAny "profilePersonal" (
     { class, pkgs, ... }:
     {
       imports = [
         {
-          imports = with config.flake.modules.generic; [
+          imports = with (self.lib.withAny class); [
+            profileBase
+
             docker
           ];
         }
@@ -43,5 +45,6 @@
 
         })
       ];
-    };
+    }
+  );
 }

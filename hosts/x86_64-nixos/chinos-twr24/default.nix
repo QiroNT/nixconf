@@ -5,8 +5,7 @@
   ...
 }:
 {
-  imports = with inputs.self.modules.generic; [
-    profileBase
+  imports = with inputs.self.modules.nixos; [
     profileDesktop
     profilePersonal
 

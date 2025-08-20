@@ -1,6 +1,6 @@
-{ inputs, ... }:
+{ inputs, self, ... }:
 {
-  flake.modules.generic.nixpkgs =
+  flake.modules = self.lib.mkAny "nixpkgs" (
     { inputs', ... }:
     {
       nixpkgs = {
@@ -15,5 +15,6 @@
           inputs.self.overlays.default
         ];
       };
-    };
+    }
+  );
 }

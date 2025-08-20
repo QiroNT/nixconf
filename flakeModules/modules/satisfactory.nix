@@ -1,7 +1,12 @@
-{ inputs, lib, ... }:
 {
-  flake.modules.generic.satisfactory =
-    { class, pkgs, ... }:
+  inputs,
+  self,
+  lib,
+  ...
+}:
+{
+  flake.modules = self.lib.mkAny "satisfactory" (
+    { class, ... }:
     lib.optionalAttrs (class == "nixos") {
       containers.satisfactory = {
         autoStart = true;
@@ -45,5 +50,6 @@
           system.stateVersion = "24.05";
         };
       };
-    };
+    }
+  );
 }

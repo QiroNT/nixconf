@@ -1,6 +1,6 @@
-{ ... }:
+{ self, ... }:
 {
-  flake.modules.generic.fonts =
+  flake.modules = self.lib.mkAny "fonts" (
     { pkgs, ... }:
     {
       fonts.packages = with pkgs; [
@@ -20,5 +20,6 @@
         nerd-fonts.fira-code
         nerd-fonts.monaspace
       ];
-    };
+    }
+  );
 }

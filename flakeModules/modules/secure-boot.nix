@@ -1,7 +1,12 @@
-{ inputs, lib, ... }:
 {
-  flake.modules.generic.secure-boot =
-    { class, pkgs, ... }:
+  inputs,
+  self,
+  lib,
+  ...
+}:
+{
+  flake.modules = self.lib.mkAny "secure-boot" (
+    { class, ... }:
     lib.optionalAttrs (class == "nixos") {
       imports = [ inputs.lanzaboote.nixosModules.lanzaboote ];
 
@@ -21,5 +26,6 @@
         # TODO add pcr 11 after https://github.com/nix-community/lanzaboote/issues/61
         initrd.systemd.enable = true;
       };
-    };
+    }
+  );
 }

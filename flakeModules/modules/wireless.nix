@@ -1,7 +1,7 @@
-{ lib, ... }:
+{ self, lib, ... }:
 {
-  flake.modules.generic.wireless =
-    { class, pkgs, ... }:
+  flake.modules = self.lib.mkAny "wireless" (
+    { class, ... }:
     lib.optionalAttrs (class == "nixos") {
       networking = {
         # Received error during CMD_TRIGGER_SCAN: Operation not supported (95)
@@ -9,5 +9,6 @@
         # https://bugzilla.kernel.org/show_bug.cgi?id=203709#c94
         networkmanager.wifi.powersave = false;
       };
-    };
+    }
+  );
 }

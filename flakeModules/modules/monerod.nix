@@ -1,7 +1,7 @@
-{ lib, ... }:
+{ self, lib, ... }:
 {
-  flake.modules.generic.monerod =
-    { class, pkgs, ... }:
+  flake.modules = self.lib.mkAny "monerod" (
+    { class, ... }:
     lib.optionalAttrs (class == "nixos") {
       services.monero = {
         enable = true;
@@ -18,5 +18,6 @@
       };
 
       networking.firewall.allowedTCPPorts = [ 18089 ];
-    };
+    }
+  );
 }

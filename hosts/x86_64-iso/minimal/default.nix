@@ -1,7 +1,6 @@
 { lib, inputs, ... }:
 {
-  imports = with inputs.self.modules.generic; [
-    profileBase
+  imports = with inputs.self.modules.nixos; [
     profilePersonal
 
     kernel-latest

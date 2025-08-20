@@ -1,12 +1,13 @@
-{ lib, ... }:
+{ self, lib, ... }:
 {
-  flake.modules.generic.docker =
-    { class, pkgs, ... }:
+  flake.modules = self.lib.mkAny "docker" (
+    { class, ... }:
     lib.optionalAttrs (class == "nixos") {
       users.users.qiront.extraGroups = [ "docker" ];
       virtualisation.docker = {
         enable = true;
         storageDriver = "btrfs";
       };
-    };
+    }
+  );
 }

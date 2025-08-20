@@ -1,11 +1,11 @@
-{ lib, config, ... }:
+{ self, lib, ... }:
 {
-  flake.modules.generic.profileBase =
+  flake.modules = self.lib.mkAny "profileBase" (
     { class, pkgs, ... }:
     {
       imports = [
         {
-          imports = with config.flake.modules.generic; [
+          imports = with (self.lib.withAny class); [
             home-manager
             nix
             nixpkgs
@@ -149,5 +149,6 @@
           };
         })
       ];
-    };
+    }
+  );
 }

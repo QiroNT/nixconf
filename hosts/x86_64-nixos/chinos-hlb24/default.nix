@@ -1,6 +1,6 @@
 { inputs, ... }:
 {
-  imports = with inputs.self.modules.generic; [
+  imports = with inputs.self.modules.nixos; [
     profileBase
 
     docker

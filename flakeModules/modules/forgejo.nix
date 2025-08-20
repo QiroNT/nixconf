@@ -1,9 +1,9 @@
-top@{ lib, ... }:
+{ self, lib, ... }:
 {
-  flake.modules.generic.forgejo =
+  flake.modules = self.lib.mkAny "forgejo" (
     { class, config, ... }:
     lib.optionalAttrs (class == "nixos") {
-      imports = with top.config.flake.modules.generic; [
+      imports = with (self.lib.withAny class); [
         sops
         postgresql
       ];
@@ -102,5 +102,6 @@ top@{ lib, ... }:
       sops.secrets."chinos-hlb24/forgejo/mailer-password" = {
         sopsFile = ../../secrets/chinos-hlb24.yaml;
       };
-    };
+    }
+  );
 }

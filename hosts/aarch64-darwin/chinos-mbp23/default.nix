@@ -1,6 +1,6 @@
 { inputs, ... }:
 {
-  imports = with inputs.self.modules.generic; [
+  imports = with inputs.self.modules.darwin; [
     profileBase
     profileDesktop
     profilePersonal

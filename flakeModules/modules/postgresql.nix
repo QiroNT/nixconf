@@ -1,6 +1,6 @@
-{ lib, ... }:
+{ self, lib, ... }:
 {
-  flake.modules.generic.postgresql =
+  flake.modules = self.lib.mkAny "postgresql" (
     { class, pkgs, ... }:
     lib.optionalAttrs (class == "nixos") {
       services.postgresql = {
@@ -25,5 +25,6 @@
           max_parallel_maintenance_workers = 4;
         };
       };
-    };
+    }
+  );
 }

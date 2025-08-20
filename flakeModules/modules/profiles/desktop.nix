@@ -1,11 +1,13 @@
-{ lib, config, ... }:
+{ self, lib, ... }:
 {
-  flake.modules.generic.profileDesktop =
+  flake.modules = self.lib.mkAny "profileDesktop" (
     { class, pkgs, ... }:
     {
       imports = [
         {
-          imports = with config.flake.modules.generic; [
+          imports = with (self.lib.withAny class); [
+            profileBase
+
             aerospace
             fonts
             kde
@@ -52,5 +54,6 @@
 
         })
       ];
-    };
+    }
+  );
 }

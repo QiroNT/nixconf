@@ -1,11 +1,12 @@
-{ ... }:
+{ self, ... }:
 {
-  flake.modules.generic.sops =
+  flake.modules = self.lib.mkAny "sops" (
     { ... }:
     {
       sops = {
         defaultSopsFile = ../../secrets/common.yaml;
         age.keyFile = "/var/lib/sops-nix/keys.txt";
       };
-    };
+    }
+  );
 }

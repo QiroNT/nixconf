@@ -1,6 +1,6 @@
-top@{ lib, ... }:
+{ self, lib, ... }:
 {
-  flake.modules.generic.forgejo-actions-runner =
+  flake.modules = self.lib.mkAny "forgejo-actions-runner" (
     {
       class,
       pkgs,
@@ -8,7 +8,7 @@ top@{ lib, ... }:
       ...
     }:
     lib.optionalAttrs (class == "nixos") {
-      imports = with top.config.flake.modules.generic; [
+      imports = with (self.lib.withAny class); [
         sops
       ];
 
@@ -70,5 +70,6 @@ top@{ lib, ... }:
       sops.secrets."chinos-hlb24/forgejo/actions-runner/token" = {
         sopsFile = ../../secrets/chinos-hlb24.yaml;
       };
-    };
+    }
+  );
 }

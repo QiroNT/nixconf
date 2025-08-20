@@ -1,11 +1,12 @@
-{ lib, ... }:
+{ self, lib, ... }:
 {
-  flake.modules.generic.bluetooth =
-    { class, pkgs, ... }:
+  flake.modules = self.lib.mkAny "bluetooth" (
+    { class, ... }:
     lib.optionalAttrs (class == "nixos") {
       hardware.bluetooth = {
         enable = true;
         powerOnBoot = true;
       };
-    };
+    }
+  );
 }

@@ -1,6 +1,6 @@
-{ ... }:
+{ self, ... }:
 {
-  flake.modules.generic.home-manager =
+  flake.modules = self.lib.mkAny "home-manager" (
     {
       self,
       self',
@@ -24,5 +24,6 @@
             ;
         };
       };
-    };
+    }
+  );
 }
