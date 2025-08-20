@@ -65,6 +65,10 @@
           };
         })
       ];
+
+      sops.secrets."common/nix/netrc" = {
+        sopsFile = ../../secrets/common.yaml;
+      };
     }
   );
 }

@@ -14,10 +14,6 @@
 
           # create /etc/zshrc that loads the environment
           programs.zsh.enable = true;
-
-          sops.secrets."common/nix/netrc" = {
-            sopsFile = ../../../secrets/common.yaml;
-          };
         }
 
         (lib.optionalAttrs (class == "nixos") {
