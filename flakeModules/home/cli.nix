@@ -113,6 +113,7 @@
             atuin = {
               enable = true;
               settings = {
+                update_check = false;
                 auto_sync = true; # remember to login with `atuin login -u <USERNAME>`
                 enter_accept = true;
                 filter_mode_shell_up_key_binding = "session";

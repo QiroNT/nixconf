@@ -10,7 +10,9 @@
 
             aerospace
             fonts
-            kde
+            gtk
+            niri
+            stylix
           ];
         }
 

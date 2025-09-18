@@ -4,10 +4,10 @@
     { class, pkgs, ... }:
     lib.optionalAttrs (class == "nixos") {
       # terminal of choice
-      home.packages = with pkgs; [ wezterm ];
-      xdg.configFile.wezterm = {
-        source = ../../config/wezterm;
-        recursive = true;
+      programs.wezterm = {
+        enable = true;
+        packages = pkgs.wezterm;
+        extraConfig = builtins.readFile ../../config/wezterm/wezterm.lua;
       };
     };
 }

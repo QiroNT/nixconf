@@ -6,6 +6,7 @@
       imports = [
         {
           imports = with config.flake.modules.homeManager; [
+            niri
             wezterm
           ];
         }

@@ -13,6 +13,7 @@
           (final: prev: {
             wezterm = inputs'.wezterm.packages.default;
           })
+          inputs.niri.overlays.niri
           inputs.self.overlays.default
         ];
       };

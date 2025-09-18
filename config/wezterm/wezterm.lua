@@ -4,8 +4,6 @@ local config = {}
 config.initial_cols = 140
 config.initial_rows = 45
 
-config.color_scheme = 'Tokyo Night'
-
 config.font = wezterm.font_with_fallback {
   {
     family = 'MonaspiceNe Nerd Font',
