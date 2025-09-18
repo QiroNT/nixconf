@@ -6,7 +6,9 @@
       imports = [
         {
           imports = with config.flake.modules.homeManager; [
+            gtk
             niri
+            stylix
             wezterm
           ];
         }

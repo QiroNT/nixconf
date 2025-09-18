@@ -10,7 +10,6 @@
 
             aerospace
             fonts
-            gtk
             niri
             stylix
           ];

@@ -1,6 +1,6 @@
-{ self, lib, ... }:
+{ lib, ... }:
 {
-  flake.modules = self.lib.mkAny "gtk" (
+  flake.modules.homeManager.gtk =
     { class, pkgs, ... }:
     lib.optionalAttrs (class == "nixos") {
       gtk = {
@@ -10,6 +10,5 @@
           name = "Papirus";
         };
       };
-    }
-  );
+    };
 }

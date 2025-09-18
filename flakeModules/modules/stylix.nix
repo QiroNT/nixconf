@@ -47,12 +47,6 @@
                 applications = 10;
               };
             };
-
-            targets = {
-              # every theme except the built-in lacks values,
-              # maybe everyone's just lazy, idk
-              vscode.enable = false;
-            };
           };
         })
 
