@@ -6,6 +6,7 @@
       imports = with config.flake.modules.homeManager; [
         cli
         git
+        nh
         tldr
       ];
 

@@ -12,6 +12,7 @@
             fonts
             niri
             stylix
+            sunshine
           ];
         }
 
