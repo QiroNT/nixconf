@@ -1,8 +1,7 @@
-{ lib, ... }:
+{ lib, inputs, ... }:
 {
   flake.modules.homeManager.niri =
     {
-      inputs',
       class,
       config,
       ...
@@ -81,17 +80,14 @@
           ];
 
           spawn-at-startup = [
-            { command = [ "noctalia-shell" ]; }
-            { command = [ "firefox-devedition" ]; }
-            { command = [ "code" ]; }
-            { command = [ "wezterm" ]; }
-            { command = [ "vesktop" ]; }
+            { sh = "firefox-devedition"; }
+            { sh = "code"; }
+            { sh = "vesktop"; }
           ];
 
           binds =
             with config.lib.niri.actions;
             let
-              sh = spawn "sh" "-c";
               binds =
                 {
                   suffixes,
@@ -138,28 +134,28 @@
                 "Mod+Shift+Slash".action = show-hotkey-overlay;
 
                 "Mod+T".action = spawn "wezterm";
-                "Mod+Space".action = sh "noctalia-shell ipc call launcher toggle";
-                "Mod+Alt+L".action = sh "noctalia-shell ipc call lockScreen toggle";
+                "Mod+Space".action = spawn-sh "qs -c noctalia-shell ipc call launcher toggle";
+                "Mod+Alt+L".action = spawn-sh "qs -c noctalia-shell ipc call lockScreen toggle";
 
                 "Mod+Alt+S" = {
-                  action = sh "pkill orca || exec orca";
+                  action = spawn-sh "pkill orca || exec orca";
                   allow-when-locked = true;
                 };
 
                 "XF86AudioRaiseVolume" = {
-                  action = sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+";
+                  action = spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+";
                   allow-when-locked = true;
                 };
                 "XF86AudioLowerVolume" = {
-                  action = sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-";
+                  action = spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-";
                   allow-when-locked = true;
                 };
                 "XF86AudioMute" = {
-                  action = sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+                  action = spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
                   allow-when-locked = true;
                 };
                 "XF86AudioMicMute" = {
-                  action = sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
+                  action = spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
                   allow-when-locked = true;
                 };
 
@@ -269,7 +265,9 @@
 
         quickshell = {
           enable = true;
-          package = inputs'.noctalia.packages.default;
+          configs.noctalia-shell = inputs.noctalia-shell;
+          activeConfig = "noctalia-shell";
+          systemd.enable = true;
         };
       };
     };

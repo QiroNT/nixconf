@@ -213,7 +213,7 @@
     },
     "flake-utils": {
       "inputs": {
-        "systems": "systems_3"
+        "systems": "systems_2"
       },
       "locked": {
         "lastModified": 1731533236,
@@ -541,22 +541,14 @@
         "type": "github"
       }
     },
-    "noctalia": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "quickshell": [
-          "quickshell"
-        ],
-        "systems": "systems"
-      },
+    "noctalia-shell": {
+      "flake": false,
       "locked": {
-        "lastModified": 1759117174,
-        "narHash": "sha256-n0htX0NZJfLv6D9KFEXKk09TCg5v89oZ0BlvMQi/CKE=",
+        "lastModified": 1759156320,
+        "narHash": "sha256-iB2n0MP1/IMABbv48hCpiTbLRTLipL2bKIyGv7VLZb0=",
         "owner": "noctalia-dev",
         "repo": "noctalia-shell",
-        "rev": "49961882dd10381ce3bc273860a51197effa5f11",
+        "rev": "d5857e33639fc5be94c23840fa93d535b905e478",
         "type": "github"
       },
       "original": {
@@ -631,26 +623,6 @@
         "type": "github"
       }
     },
-    "quickshell": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1759128992,
-        "narHash": "sha256-crjxt1g3zc3OtmE4xfbFouiDwAxqUmRfpTtfnkkJ8/0=",
-        "owner": "outfoxxed",
-        "repo": "quickshell",
-        "rev": "1d94144976252a922e03e4c0fbb921ee8b8bb079",
-        "type": "github"
-      },
-      "original": {
-        "owner": "outfoxxed",
-        "repo": "quickshell",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "darwin": "darwin",
@@ -663,9 +635,8 @@
         "nix-index-database": "nix-index-database",
         "nixos-generators": "nixos-generators",
         "nixpkgs": "nixpkgs",
-        "noctalia": "noctalia",
+        "noctalia-shell": "noctalia-shell",
         "pkgs-by-name-for-flake-parts": "pkgs-by-name-for-flake-parts",
-        "quickshell": "quickshell",
         "satisfactory-server-flake": "satisfactory-server-flake",
         "sops-nix": "sops-nix",
         "stylix": "stylix",
@@ -789,7 +760,7 @@
           "nixpkgs"
         ],
         "nur": "nur",
-        "systems": "systems_2",
+        "systems": "systems",
         "tinted-foot": "tinted-foot",
         "tinted-kitty": "tinted-kitty",
         "tinted-schemes": "tinted-schemes",
@@ -826,21 +797,6 @@
       }
     },
     "systems_2": {
-      "locked": {
-        "lastModified": 1681028828,
-        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
-        "owner": "nix-systems",
-        "repo": "default",
-        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-systems",
-        "repo": "default",
-        "type": "github"
-      }
-    },
-    "systems_3": {
       "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
