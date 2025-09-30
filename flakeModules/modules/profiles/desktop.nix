@@ -11,6 +11,7 @@
             aerospace
             fonts
             niri
+            noctalia-shell
             stylix
             sunshine
           ];

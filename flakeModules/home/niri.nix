@@ -1,4 +1,4 @@
-{ lib, inputs, ... }:
+{ lib, ... }:
 {
   flake.modules.homeManager.niri =
     {
@@ -134,8 +134,8 @@
                 "Mod+Shift+Slash".action = show-hotkey-overlay;
 
                 "Mod+T".action = spawn "wezterm";
-                "Mod+Space".action = spawn-sh "qs -c noctalia-shell ipc call launcher toggle";
-                "Mod+Alt+L".action = spawn-sh "qs -c noctalia-shell ipc call lockScreen toggle";
+                "Mod+Space".action = spawn-sh "noctalia-shell ipc call launcher toggle";
+                "Mod+Alt+L".action = spawn-sh "noctalia-shell ipc call lockScreen toggle";
 
                 "Mod+Alt+S" = {
                   action = spawn-sh "pkill orca || exec orca";
@@ -261,13 +261,6 @@
                 prefixes."Mod+Ctrl" = "move-column-to";
               })
             ];
-        };
-
-        quickshell = {
-          enable = true;
-          configs.noctalia-shell = inputs.noctalia-shell;
-          activeConfig = "noctalia-shell";
-          systemd.enable = true;
         };
       };
     };
