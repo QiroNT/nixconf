@@ -15,7 +15,10 @@
         wayland-utils
         libsecret
         xwayland-satellite
+
         nautilus
+        pwvucontrol
+        udiskie
       ];
       environment.variables.NIXOS_OZONE_WL = "1";
 
