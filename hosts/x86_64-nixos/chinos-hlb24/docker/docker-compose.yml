@@ -21,14 +21,14 @@ services:
       - "34197:34197/udp"
     volumes:
       - /opt/factorio:/factorio
-      - ./factorio/map-gen-settings.json:/factorio/config/map-gen-settings.json
-      - ./factorio/map-settings.json:/factorio/config/map-settings.json
+      # - ./factorio/map-gen-settings.json:/factorio/config/map-gen-settings.json
+      # - ./factorio/map-settings.json:/factorio/config/map-settings.json
       - ./factorio/server-settings.json:/factorio/config/server-settings.json
       - ./factorio/server-adminlist.json:/factorio/config/server-adminlist.json
       - ./factorio/server-whitelist.json:/factorio/config/server-whitelist.json
     environment:
       - GENERATE_NEW_SAVE=true
-      - SAVE_NAME=aspce
+      - SAVE_NAME=asmod
 
   # minecraft-startech:
   #   build: ./minecraft/jre17

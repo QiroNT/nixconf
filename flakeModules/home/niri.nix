@@ -60,16 +60,16 @@
               ];
               open-on-workspace = "2";
             }
-            {
-              matches = [
-                {
-                  app-id = "^org.wezfurlong.wezterm$";
-                  at-startup = true;
-                }
-              ];
-              open-on-workspace = "3";
-              default-column-width.proportion = 1.;
-            }
+            # {
+            #   matches = [
+            #     {
+            #       app-id = "^org.wezfurlong.wezterm$";
+            #       at-startup = true;
+            #     }
+            #   ];
+            #   open-on-workspace = "3";
+            #   default-column-width.proportion = 1.;
+            # }
             {
               matches = [
                 { app-id = "^org.telegram.desktop$"; }
