@@ -47,8 +47,8 @@
             --remember-user-session \
             --time \
             --asterisks \
-            --power-shutdown /run/current-system/systemd/bin/systemctl poweroff \
-            --power-reboot /run/current-system/systemd/bin/systemctl reboot
+            --power-shutdown "/run/current-system/systemd/bin/systemctl poweroff" \
+            --power-reboot "/run/current-system/systemd/bin/systemctl reboot"
         '';
       };
     }
