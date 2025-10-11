@@ -3,6 +3,7 @@
   flake.modules = self.lib.mkAny "niri" (
     {
       inputs,
+      config,
       class,
       pkgs,
       ...
@@ -17,10 +18,19 @@
         xwayland-satellite
 
         nautilus
+        app2unit
+
         pwvucontrol
         udiskie
       ];
       environment.variables.NIXOS_OZONE_WL = "1";
+
+      programs.uwsm.enable = true;
+      programs.uwsm.waylandCompositors.niri = {
+        prettyName = "Niri";
+        comment = "A scrollable-tiling Wayland compositor";
+        binPath = "/run/current-system/sw/bin/niri-session";
+      };
 
       security = {
         polkit.enable = true;
@@ -28,12 +38,18 @@
       };
       services.greetd = {
         enable = true;
-        settings.default_session.command = ''${pkgs.tuigreet}/bin/tuigreet --time --asterisks --remember --cmd ${pkgs.writeScript "init-session" ''
-          # so here we're trying to stop a previous niri session
-          systemctl --user is-active niri.service && systemctl --user stop niri.service
-          # and then we start a new one
-          /run/current-system/sw/bin/niri-session
-        ''}'';
+        useTextGreeter = true;
+        settings.default_session.command = ''
+          ${pkgs.tuigreet}/bin/tuigreet \
+            --sessions "${config.services.displayManager.sessionData.desktops}/share/wayland-sessions" \
+            --xsessions "${config.services.displayManager.sessionData.desktops}/share/xsessions" \
+            --remember \
+            --remember-user-session \
+            --time \
+            --asterisks \
+            --power-shutdown /run/current-system/systemd/bin/systemctl poweroff \
+            --power-reboot /run/current-system/systemd/bin/systemctl reboot
+        '';
       };
     }
   );

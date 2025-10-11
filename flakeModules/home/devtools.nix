@@ -15,10 +15,6 @@
             # databases
             sqlite
 
-            # cloud
-            turso-cli
-            awscli2
-
             # c
             autoconf
             automake

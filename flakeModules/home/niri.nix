@@ -9,8 +9,16 @@
     lib.optionalAttrs (class == "nixos") {
       programs = {
         niri.settings = {
+          # nvidia fix, remove once either
+          # https://github.com/YaLTeR/niri/issues/2030
+          # https://github.com/YaLTeR/niri/issues/2477
+          # is closed
+          debug.wait-for-frame-completion-before-queueing = [ ];
+
           hotkey-overlay.skip-at-startup = true;
           prefer-no-csd = true;
+
+          input.keyboard.numlock = true;
 
           layout = {
             gaps = 3;
@@ -80,9 +88,9 @@
           ];
 
           spawn-at-startup = [
-            { sh = "firefox-devedition"; }
-            { sh = "code"; }
-            { sh = "vesktop"; }
+            { sh = "app2unit -- firefox-devedition"; }
+            { sh = "app2unit -- code"; }
+            { sh = "app2unit -- vesktop"; }
           ];
 
           binds =
@@ -133,7 +141,7 @@
               {
                 "Mod+Shift+Slash".action = show-hotkey-overlay;
 
-                "Mod+T".action = spawn "wezterm";
+                "Mod+T".action = spawn-sh "uwsm app -- wezterm";
                 "Mod+Space".action = spawn-sh "noctalia-shell ipc call launcher toggle";
                 "Mod+Alt+L".action = spawn-sh "noctalia-shell ipc call lockScreen toggle";
 
@@ -143,11 +151,11 @@
                 };
 
                 "XF86AudioRaiseVolume" = {
-                  action = spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+";
+                  action = spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.01+";
                   allow-when-locked = true;
                 };
                 "XF86AudioLowerVolume" = {
-                  action = spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-";
+                  action = spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.01-";
                   allow-when-locked = true;
                 };
                 "XF86AudioMute" = {
@@ -160,11 +168,11 @@
                 };
 
                 "XF86MonBrightnessUp" = {
-                  action = spawn "brightnessctl" "--class=backlight" "set" "+10%";
+                  action = spawn "brightnessctl" "--class=backlight" "set" "+5%";
                   allow-when-locked = true;
                 };
                 "XF86MonBrightnessDown" = {
-                  action = spawn "brightnessctl" "--class=backlight" "set" "10%-";
+                  action = spawn "brightnessctl" "--class=backlight" "set" "5%-";
                   allow-when-locked = true;
                 };
 
@@ -263,5 +271,10 @@
             ];
         };
       };
+
+      xdg.configFile."uwsm/env-niri".text = ''
+        export APP2UNIT_SLICES="a=app-graphical.slice b=background-graphical.slice s=session-graphical.slice"
+        export APP2UNIT_TYPE="scope"
+      '';
     };
 }
