@@ -68,16 +68,16 @@
               ];
               open-on-workspace = "2";
             }
-            # {
-            #   matches = [
-            #     {
-            #       app-id = "^org.wezfurlong.wezterm$";
-            #       at-startup = true;
-            #     }
-            #   ];
-            #   open-on-workspace = "3";
-            #   default-column-width.proportion = 1.;
-            # }
+            {
+              matches = [
+                {
+                  app-id = "^com.mitchellh.ghostty$";
+                  at-startup = true;
+                }
+              ];
+              open-on-workspace = "3";
+              default-column-width.proportion = 1.;
+            }
             {
               matches = [
                 { app-id = "^org.telegram.desktop$"; }
@@ -90,6 +90,7 @@
           spawn-at-startup = [
             { sh = "app2unit -- firefox-devedition"; }
             { sh = "app2unit -- code"; }
+            { sh = "app2unit -- ghostty"; }
             { sh = "app2unit -- vesktop"; }
           ];
 
@@ -141,7 +142,7 @@
               {
                 "Mod+Shift+Slash".action = show-hotkey-overlay;
 
-                "Mod+T".action = spawn-sh "uwsm app -- wezterm";
+                "Mod+T".action = spawn-sh "uwsm app -- ghostty";
                 "Mod+Space".action = spawn-sh "noctalia-shell ipc call launcher toggle";
                 "Mod+Alt+L".action = spawn-sh "noctalia-shell ipc call lockScreen toggle";
 

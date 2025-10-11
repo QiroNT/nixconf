@@ -1,7 +1,7 @@
 { inputs, ... }:
 {
   perSystem =
-    { inputs', system, ... }:
+    { system, ... }:
     {
       _module.args.pkgs = import inputs.nixpkgs {
         inherit system;
@@ -10,9 +10,6 @@
           permittedInsecurePackages = [ "ventoy-1.1.07" ];
         };
         overlays = [
-          (final: prev: {
-            wezterm = inputs'.wezterm.packages.default;
-          })
           inputs.self.overlays.default
         ];
       };

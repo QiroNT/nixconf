@@ -6,10 +6,10 @@
       imports = [
         {
           imports = with config.flake.modules.homeManager; [
+            ghostty
             gtk
             niri
             stylix
-            wezterm
           ];
         }
 
