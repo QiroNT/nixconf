@@ -3,6 +3,9 @@
   imports = with inputs.self.modules.nixos; [
     profileBase
 
+    users-qiront
+    users-yuri
+
     docker
     forgejo
     forgejo-actions-runner
@@ -39,7 +42,8 @@
     }
   ];
 
-  home-manager.users.qiront = import ./home.nix;
+  home-manager.users.qiront = import ./homes/qiront.nix;
+  home-manager.users.yuri = import ./homes/yuri.nix;
 
   networking.hostName = "chinos-hlb24"; # first homelab
 

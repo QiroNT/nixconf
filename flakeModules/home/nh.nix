@@ -1,12 +1,12 @@
 { ... }:
 {
   flake.modules.homeManager.nh =
-    { ... }:
+    { config, ... }:
     {
       programs.nh = {
         enable = true;
-        osFlake = "/home/qiront/.config/nix-config";
-        darwinFlake = "/Users/qiront/.config/nix-darwin";
+        osFlake = "${config.home.homeDirectory}/.config/nix-config";
+        darwinFlake = "${config.home.homeDirectory}/.config/nix-darwin";
       };
     };
 }

@@ -1,11 +1,19 @@
 { ... }:
 {
-  flake.lib.mkAny = name: module: {
-    nixos = {
-      ${name} = module;
+  flake.lib.mkAny =
+    name: module:
+    let
+      imports = [
+        { chinos.any.activeModules = [ name ]; }
+        module
+      ];
+    in
+    {
+      nixos = {
+        ${name} = { inherit imports; };
+      };
+      darwin = {
+        ${name} = { inherit imports; };
+      };
     };
-    darwin = {
-      ${name} = module;
-    };
-  };
 }

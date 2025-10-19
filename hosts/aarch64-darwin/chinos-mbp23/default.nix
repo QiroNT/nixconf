@@ -4,6 +4,8 @@
     profileBase
     profileDesktop
     profilePersonal
+
+    users-qiront
   ];
 
   # used for backwards compatibility, please read the changelog before changing.
@@ -11,5 +13,5 @@
   system.stateVersion = 4;
 
   users.users.qiront.home = "/Users/qiront";
-  home-manager.users.qiront = import ./home.nix;
+  home-manager.users.qiront = import ./homes/qiront.nix;
 }

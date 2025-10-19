@@ -7,6 +7,7 @@
         cli
         git
         nh
+        nix-index
         tldr
       ];
 

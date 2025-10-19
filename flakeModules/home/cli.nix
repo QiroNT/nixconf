@@ -1,7 +1,12 @@
 { lib, ... }:
 {
   flake.modules.homeManager.cli =
-    { class, pkgs, ... }:
+    {
+      class,
+      config,
+      pkgs,
+      ...
+    }:
     {
       imports = [
         {
@@ -152,7 +157,7 @@
 
           programs.zsh.initContent = ''
             # pnpm
-            export PNPM_HOME="/home/qiront/.local/share/pnpm"
+            export PNPM_HOME="${config.home.homeDirectory}/.local/share/pnpm"
             case ":$PATH:" in
               *":$PNPM_HOME:"*) ;;
               *) export PATH="$PNPM_HOME:$PATH" ;;
@@ -172,7 +177,7 @@
         (lib.optionalAttrs (class == "darwin") {
           programs.zsh.initContent = ''
             # pnpm
-            export PNPM_HOME="/Users/qiront/Library/pnpm"
+            export PNPM_HOME="${config.home.homeDirectory}/Library/pnpm"
             case ":$PATH:" in
               *":$PNPM_HOME:"*) ;;
               *) export PATH="$PNPM_HOME:$PATH" ;;

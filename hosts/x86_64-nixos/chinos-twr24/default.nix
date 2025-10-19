@@ -9,6 +9,8 @@
     profileDesktop
     profilePersonal
 
+    users-qiront
+
     binfmt
     bluetooth
     secure-boot
@@ -42,7 +44,7 @@
     }
   ];
 
-  home-manager.users.qiront = import ./home.nix;
+  home-manager.users.qiront = import ./homes/qiront.nix;
 
   # technically given, but half built myself
   networking.hostName = "chinos-twr24";

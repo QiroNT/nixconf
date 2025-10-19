@@ -3,6 +3,8 @@
   imports = with inputs.self.modules.nixos; [
     profilePersonal
 
+    users-qiront
+
     kernel-latest
     wireless
   ];
@@ -17,5 +19,5 @@
 
   users.users.qiront.password = "";
 
-  home-manager.users.qiront = import ./home.nix;
+  home-manager.users.qiront = import ./homes/qiront.nix;
 }

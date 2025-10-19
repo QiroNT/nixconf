@@ -20,10 +20,7 @@
             # enable flakes support
             experimental-features = "nix-command flakes pipe-operators";
 
-            trusted-users = [
-              "root"
-              "qiront"
-            ];
+            trusted-users = [ "root" ];
 
             substituters = [
               "https://cache.garnix.io"

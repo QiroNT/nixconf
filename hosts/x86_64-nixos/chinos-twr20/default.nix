@@ -4,6 +4,8 @@
     profileDesktop
     profilePersonal
 
+    users-qiront
+
     ./hardware.nix
   ];
 
@@ -30,7 +32,7 @@
     ];
   };
 
-  home-manager.users.qiront = import ./home.nix;
+  home-manager.users.qiront = import ./homes/qiront.nix;
 
   networking.hostName = "chinos-twr20"; # tower pc built in 2020, get it?
 
