@@ -6,6 +6,7 @@
       imports = with config.flake.modules.homeManager; [
         cli
         git
+        helix
         nh
         nix-index
         tldr
