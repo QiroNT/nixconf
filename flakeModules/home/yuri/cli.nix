@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ self, lib, ... }:
 {
   flake.modules.homeManager.yuri-cli =
     {
@@ -10,6 +10,10 @@
     {
       imports = [
         {
+          imports = with self.lib.prefixWith "yuri" config.flake.modules.homeManager; [
+            p10k
+          ];
+
           # i have most things launched via NIX_AUTO_RUN,
           # these are just for quick access
           home.packages = with pkgs; [
@@ -106,13 +110,6 @@
 
             # great file fuzzy finder
             fzf.enable = true;
-
-            # used to use headline, tho kinda slow, so switched to starship
-            starship = {
-              enable = true;
-              # using toml here to benefit from schema & lsp
-              settings = builtins.fromTOML (builtins.readFile ../../config/starship.toml);
-            };
 
             # zsh history is just too smol
             atuin = {
