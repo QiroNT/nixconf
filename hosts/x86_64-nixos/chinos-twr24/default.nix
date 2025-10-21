@@ -1,9 +1,4 @@
-{
-  lib,
-  inputs,
-  pkgs,
-  ...
-}:
+{ inputs, ... }:
 {
   imports = with inputs.self.modules.nixos; [
     profileDesktop
@@ -13,6 +8,7 @@
 
     binfmt
     bluetooth
+    kernel-cachyos
     secure-boot
     wireless
 
@@ -53,7 +49,6 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   # nvidia driver
-  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_6_16;
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
     # package = config.boot.kernelPackages.nvidiaPackages.beta;

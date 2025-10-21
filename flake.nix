@@ -74,6 +74,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.quickshell.follows = "quickshell";
     };
+
+    chaotic = {
+      url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    };
   };
 
   outputs =

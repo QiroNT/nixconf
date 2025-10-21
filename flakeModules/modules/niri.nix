@@ -45,6 +45,7 @@
             --xsessions "${config.services.displayManager.sessionData.desktops}/share/xsessions" \
             --remember \
             --remember-user-session \
+            --window-padding 1 \
             --time \
             --asterisks \
             --power-shutdown "/run/current-system/systemd/bin/systemctl poweroff" \

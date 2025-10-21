@@ -21,12 +21,12 @@
               };
               lfs.enable = true;
 
-              # idk what im missing out before
-              difftastic.enable = true;
+              settings = {
+                user = {
+                  name = "Chino Moka";
+                  email = "i@chino.dev";
+                };
 
-              userName = "Chino Moka";
-              userEmail = "i@chino.dev";
-              extraConfig = {
                 # main good
                 init.defaultBranch = "main";
 
@@ -48,6 +48,7 @@
                 branch.sort = "-committerdate";
 
                 # i still left wondering how on earth would i configure repo maintenance
+                # per host perhaps? not pretty tho
 
                 # tutorial: https://git-send-email.io/
                 # auth with $ git config --global sendemail.smtpPass 'app password'
@@ -62,13 +63,19 @@
 
             # the thing i use to auth the thing just above
             gh.enable = true; # ok it's github cli
+
+            # idk what im missing out before
+            difftastic = {
+              enable = true;
+              git.enable = true;
+            };
           };
         }
 
         (lib.optionalAttrs (class == "nixos") {
           # for git credentials
           home.packages = with pkgs; [ libsecret ];
-          programs.git.extraConfig = {
+          programs.git.settings = {
             credential.helper = "/etc/profiles/per-user/$(whoami)/bin/git-credential-libsecret";
           };
         })
