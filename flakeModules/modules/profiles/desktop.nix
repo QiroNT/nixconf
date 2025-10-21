@@ -1,18 +1,17 @@
 { self, lib, ... }:
 {
-  flake.modules = self.lib.mkAny "profileDesktop" (
+  flake.modules = self.lib.mkAny "profile-desktop" (
     { class, pkgs, ... }:
     {
       imports = [
         {
-          imports = with (self.lib.withAny class); [
-            profileBase
+          imports = with self.lib.withAny class; [
+            profile-base
 
             aerospace
             fonts
             niri
             noctalia-shell
-            stylix
             sunshine
           ];
         }

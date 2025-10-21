@@ -1,6 +1,6 @@
 { lib, ... }:
 {
-  flake.modules.homeManager.niri =
+  flake.modules.homeManager.qiront-niri =
     {
       class,
       config,

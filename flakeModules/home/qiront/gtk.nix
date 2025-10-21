@@ -1,6 +1,6 @@
 { lib, ... }:
 {
-  flake.modules.homeManager.gtk =
+  flake.modules.homeManager.qiront-gtk =
     { class, pkgs, ... }:
     lib.optionalAttrs (class == "nixos") {
       gtk = {

@@ -1,7 +1,7 @@
-{ inputs, ... }:
+{ self, inputs, ... }:
 {
-  imports = with inputs.self.modules.homeManager; [
-    profileBase
+  imports = with self.lib.prefixWith "qiront" inputs.self.modules.homeManager; [
+    profile-base
   ];
 
   home.stateVersion = "24.05";

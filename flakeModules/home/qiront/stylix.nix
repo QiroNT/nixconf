@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.modules.homeManager.stylix =
+  flake.modules.homeManager.qiront-stylix =
     { ... }:
     {
       stylix = {

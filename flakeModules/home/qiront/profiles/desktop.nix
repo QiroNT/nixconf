@@ -1,15 +1,19 @@
-{ lib, config, ... }:
 {
-  flake.modules.homeManager.profileDesktop =
+  self,
+  lib,
+  config,
+  ...
+}:
+{
+  flake.modules.homeManager.qiront-profile-desktop =
     { class, pkgs, ... }:
     {
       imports = [
         {
-          imports = with config.flake.modules.homeManager; [
+          imports = with self.lib.prefixWith "qiront" config.flake.modules.homeManager; [
             ghostty
             gtk
             niri
-            stylix
           ];
         }
 

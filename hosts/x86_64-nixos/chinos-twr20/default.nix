@@ -1,8 +1,8 @@
 { inputs, ... }:
 {
   imports = with inputs.self.modules.nixos; [
-    profileDesktop
-    profilePersonal
+    profile-desktop
+    profile-personal
 
     users-qiront
 

@@ -3,7 +3,7 @@
   flake.modules = self.lib.mkAny "forgejo" (
     { class, config, ... }:
     lib.optionalAttrs (class == "nixos") {
-      imports = with (self.lib.withAny class); [
+      imports = with self.lib.withAny class; [
         sops
         postgresql
       ];

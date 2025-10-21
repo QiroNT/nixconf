@@ -1,6 +1,6 @@
 { lib, ... }:
 {
-  flake.modules.homeManager.devtools =
+  flake.modules.homeManager.qiront-devtools =
     { class, pkgs, ... }:
     {
       imports = [
@@ -8,7 +8,7 @@
           home.packages = with pkgs; [
             # nix stuff
             nixd # nix language server
-            nixfmt-rfc-style
+            nixfmt
             deadnix
             statix
 

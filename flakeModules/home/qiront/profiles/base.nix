@@ -1,14 +1,14 @@
-{ config, ... }:
+{ self, config, ... }:
 {
-  flake.modules.homeManager.profileBase =
+  flake.modules.homeManager.qiront-profile-base =
     { ... }:
     {
-      imports = with config.flake.modules.homeManager; [
+      imports = with self.lib.prefixWith "qiront" config.flake.modules.homeManager; [
         cli
         git
-        helix
         nh
         nix-index
+        stylix
         tldr
       ];
 

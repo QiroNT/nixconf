@@ -1,6 +1,6 @@
 { lib, ... }:
 {
-  flake.modules.homeManager.git =
+  flake.modules.homeManager.yuri-git =
     { class, pkgs, ... }:
     {
       imports = [
@@ -23,8 +23,8 @@
 
               settings = {
                 user = {
-                  name = "Chino Moka";
-                  email = "i@chino.dev";
+                  name = "Sayuri Nekomiya";
+                  email = "bbh@awsl.rip";
                 };
 
                 # main good
@@ -46,18 +46,6 @@
                 # actually, vscode does this by default and it's much better,
                 # should set this in cli too
                 branch.sort = "-committerdate";
-
-                # i still left wondering how on earth would i configure repo maintenance
-                # per host perhaps? not pretty tho
-
-                # tutorial: https://git-send-email.io/
-                # auth with $ git config --global sendemail.smtpPass 'app password'
-                sendemail = {
-                  smtpserver = "shadow.mxrouting.net";
-                  smtpserverport = "465";
-                  smtpencryption = "ssl";
-                  smtpuser = "i@chino.dev";
-                };
               };
             };
 

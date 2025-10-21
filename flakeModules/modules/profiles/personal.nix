@@ -1,12 +1,12 @@
 { self, lib, ... }:
 {
-  flake.modules = self.lib.mkAny "profilePersonal" (
+  flake.modules = self.lib.mkAny "profile-personal" (
     { class, pkgs, ... }:
     {
       imports = [
         {
-          imports = with (self.lib.withAny class); [
-            profileBase
+          imports = with self.lib.withAny class; [
+            profile-base
 
             docker
           ];

@@ -1,6 +1,6 @@
 { lib, ... }:
 {
-  flake.modules.homeManager.ghostty =
+  flake.modules.homeManager.qiront-ghostty =
     { class, ... }:
     lib.optionalAttrs (class == "nixos") {
       programs.ghostty = {

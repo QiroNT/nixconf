@@ -1,6 +1,6 @@
 { lib, ... }:
 {
-  flake.modules.homeManager.tldr =
+  flake.modules.homeManager.qiront-tldr =
     { class, pkgs, ... }:
     {
       imports = [

@@ -1,7 +1,7 @@
 { lib, inputs, ... }:
 {
   imports = with inputs.self.modules.nixos; [
-    profilePersonal
+    profile-personal
 
     users-qiront
 

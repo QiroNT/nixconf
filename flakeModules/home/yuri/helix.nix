@@ -1,12 +1,12 @@
 { lib, ... }:
 {
-  flake.modules.homeManager.helix =
+  flake.modules.homeManager.yuri-helix =
     { pkgs, ... }:
     {
       programs.helix = {
         enable = true;
         settings = {
-          theme = lib.mkDefault "monokai";
+          # theme = "monokai"; # handled by stylix
           editor.cursor-shape = {
             normal = "block";
             insert = "bar";
@@ -23,7 +23,7 @@
           {
             name = "nix";
             auto-format = true;
-            formatter.command = lib.getExe pkgs.nixfmt-rfc-style;
+            formatter.command = lib.getExe pkgs.nixfmt;
           }
         ];
       };

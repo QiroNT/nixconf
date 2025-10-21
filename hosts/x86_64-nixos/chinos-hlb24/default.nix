@@ -1,7 +1,7 @@
 { inputs, ... }:
 {
   imports = with inputs.self.modules.nixos; [
-    profileBase
+    profile-base
 
     users-qiront
     users-yuri

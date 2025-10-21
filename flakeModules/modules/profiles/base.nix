@@ -1,11 +1,12 @@
 { self, lib, ... }:
 {
-  flake.modules = self.lib.mkAny "profileBase" (
+  flake.modules = self.lib.mkAny "profile-base" (
     { class, pkgs, ... }:
     {
       imports = [
         {
-          imports = with (self.lib.withAny class); [
+          imports = with self.lib.withAny class; [
+            stylix
             any
             home-manager
             nix

@@ -1,6 +1,6 @@
 { inputs, ... }:
 {
-  flake.modules.homeManager.nix-index =
+  flake.modules.homeManager.yuri-nix-index =
     { ... }:
     {
       imports = [ inputs.nix-index-database.homeModules.nix-index ];

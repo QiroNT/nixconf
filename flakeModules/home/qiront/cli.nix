@@ -1,6 +1,6 @@
 { lib, ... }:
 {
-  flake.modules.homeManager.cli =
+  flake.modules.homeManager.qiront-cli =
     {
       class,
       config,
@@ -111,7 +111,7 @@
             starship = {
               enable = true;
               # using toml here to benefit from schema & lsp
-              settings = builtins.fromTOML (builtins.readFile ../../config/starship.toml);
+              settings = builtins.fromTOML (builtins.readFile ./config/starship.toml);
             };
 
             # zsh history is just too smol

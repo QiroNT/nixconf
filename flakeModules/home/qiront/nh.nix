@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.modules.homeManager.nh =
+  flake.modules.homeManager.qiront-nh =
     { config, ... }:
     {
       programs.nh = {
