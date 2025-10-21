@@ -1,4 +1,4 @@
-{ self, lib, ... }:
+{ self, lib, ... }@flakeArgs:
 {
   flake.modules.homeManager.yuri-cli =
     {
@@ -10,7 +10,7 @@
     {
       imports = [
         {
-          imports = with self.lib.prefixWith "yuri" config.flake.modules.homeManager; [
+          imports = with self.lib.prefixWith "yuri" flakeArgs.config.flake.modules.homeManager; [
             p10k
           ];
 

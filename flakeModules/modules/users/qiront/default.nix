@@ -6,6 +6,7 @@
       imports = [
         {
           imports = with self.lib.prefixWith "users-qiront" (self.lib.withAny class); [
+            profile-personal
             nix
             docker
           ];
