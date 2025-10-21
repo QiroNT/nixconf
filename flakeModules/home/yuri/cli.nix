@@ -163,7 +163,7 @@
 
             # editor
             if [[ -n $SSH_CONNECTION ]]; then
-              export EDITOR='nano'
+              export EDITOR='hx'
             else
               export EDITOR='code --new-window --wait'
             fi
@@ -183,7 +183,7 @@
 
             # editor
             if [[ -n $SSH_CONNECTION ]]; then
-              export EDITOR='nano'
+              export EDITOR='hx'
             else
               export EDITOR='code --new-window --wait'
             fi
