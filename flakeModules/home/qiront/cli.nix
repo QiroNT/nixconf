@@ -1,30 +1,15 @@
 { lib, ... }:
 {
   flake.modules.homeManager.qiront-cli =
-    {
-      class,
-      config,
-      pkgs,
-      ...
-    }:
+    { class, pkgs, ... }:
     {
       imports = [
         {
-          # i have most things launched via NIX_AUTO_RUN,
+          # i have most things launched via comma,
           # these are just for quick access
           home.packages = with pkgs; [
-            # coreutils and alternative
-            coreutils-full
-            parallel
-            gnupg
-            fd # better find, why debian uses `fd-find` still bothers me
-            jq # i should learn this
-            eza # ls
-            dua # most convenient disk stuff I've ever used
-            ripgrep
-            ast-grep
-
-            # yep i have 4 monitoring tools for some reason
+            # yep i have 5 monitoring tools for some reason
+            fastfetch
             btop
             htop
             glances
@@ -60,77 +45,6 @@
             wrk
             oha
           ];
-
-          programs = {
-            # zsh is still supported more widely than fish,
-            # tho I probably should try fish, maybe later.
-            zsh = {
-              enable = true;
-              # zprof.enable = true;
-
-              # for convenience, like aliases.
-              # many plugins have home-manager support, so no need for omz plugin stuff
-              oh-my-zsh = {
-                enable = true;
-                extraConfig = ''
-                  zstyle ':omz:update' mode disabled
-                '';
-              };
-
-              # make it more fish
-              autosuggestion.enable = true;
-              syntaxHighlighting.enable = true;
-
-              shellAliases = {
-                cat = "bat";
-                diff = "difft";
-                ls = "eza";
-              };
-            };
-
-            # use zoxide to replace cd
-            zoxide = {
-              enable = true;
-              options = [ "--cmd cd" ];
-            };
-
-            # file explorer
-            yazi = {
-              enable = true;
-              enableBashIntegration = true;
-              enableZshIntegration = true;
-            };
-
-            # the cat replacement that actually does something
-            bat.enable = true;
-
-            # great file fuzzy finder
-            fzf.enable = true;
-
-            # used to use headline, tho kinda slow, so switched to starship
-            starship = {
-              enable = true;
-              # using toml here to benefit from schema & lsp
-              settings = builtins.fromTOML (builtins.readFile ./config/starship.toml);
-            };
-
-            # zsh history is just too smol
-            atuin = {
-              enable = true;
-              settings = {
-                update_check = false;
-                auto_sync = true; # remember to login with `atuin login -u <USERNAME>`
-                enter_accept = true;
-                filter_mode_shell_up_key_binding = "session";
-                style = "compact";
-              };
-            };
-
-            direnv = {
-              enable = true;
-              nix-direnv.enable = true;
-            };
-          };
         }
 
         (lib.optionalAttrs (class == "nixos") {
@@ -154,44 +68,9 @@
             tailscale
             inetutils # telnet / ping
           ];
-
-          programs.zsh.initContent = ''
-            # pnpm
-            export PNPM_HOME="${config.home.homeDirectory}/.local/share/pnpm"
-            case ":$PATH:" in
-              *":$PNPM_HOME:"*) ;;
-              *) export PATH="$PNPM_HOME:$PATH" ;;
-            esac
-            # pnpm end
-
-            # editor
-            if [[ -n $SSH_CONNECTION ]]; then
-              export EDITOR='nano'
-            else
-              export EDITOR='code --new-window --wait'
-            fi
-            export VISUAL="$EDITOR"
-          '';
         })
 
         (lib.optionalAttrs (class == "darwin") {
-          programs.zsh.initContent = ''
-            # pnpm
-            export PNPM_HOME="${config.home.homeDirectory}/Library/pnpm"
-            case ":$PATH:" in
-              *":$PNPM_HOME:"*) ;;
-              *) export PATH="$PNPM_HOME:$PATH" ;;
-            esac
-            # pnpm end
-
-            # editor
-            if [[ -n $SSH_CONNECTION ]]; then
-              export EDITOR='nano'
-            else
-              export EDITOR='code --new-window --wait'
-            fi
-            export VISUAL="$EDITOR"
-          '';
         })
       ];
     };
