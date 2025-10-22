@@ -36,7 +36,7 @@
             "1" = { };
             "2" = { };
             "3" = { };
-            "4" = { };
+            # "4" = { };
             # "5" = { };
             # "6" = { };
             # "7" = { };
@@ -65,24 +65,11 @@
             {
               matches = [
                 {
-                  app-id = "^code$";
-                  at-startup = true;
-                }
-                {
-                  app-id = "^obsidian$";
-                  at-startup = true;
-                }
-              ];
-              open-on-workspace = "2";
-            }
-            {
-              matches = [
-                {
                   app-id = "^com.mitchellh.ghostty$";
                   at-startup = true;
                 }
               ];
-              open-on-workspace = "3";
+              open-on-workspace = "2";
               default-column-width.proportion = 1.;
             }
             {
@@ -90,14 +77,13 @@
                 { app-id = "^org.telegram.desktop$"; }
                 { app-id = "^vesktop$"; }
               ];
-              open-on-workspace = "4";
+              open-on-workspace = "3";
             }
           ];
 
           spawn-at-startup = [
             { sh = "app2unit -- firefox-devedition"; }
-            { sh = "app2unit -- code"; }
-            { sh = "app2unit -- ghostty"; }
+            { sh = ''app2unit -- ghostty -e zsh -l -c "zellij a -c defaulted"''; }
             { sh = "app2unit -- vesktop"; }
           ];
 
