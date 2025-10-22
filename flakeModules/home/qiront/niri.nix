@@ -25,6 +25,13 @@
             border.width = 2;
           };
 
+          layer-rules = [
+            {
+              matches = [ { namespace = "^quickshell-overview$"; } ];
+              place-within-backdrop = true;
+            }
+          ];
+
           workspaces = {
             "1" = { };
             "2" = { };
