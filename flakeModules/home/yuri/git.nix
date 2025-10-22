@@ -6,8 +6,7 @@
       imports = [
         {
           home.packages = with pkgs; [
-            # great for glancing git while in terminal, not on par with gitlens tho
-            gitui
+            gitu
           ];
 
           programs = {
