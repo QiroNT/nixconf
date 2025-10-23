@@ -6,6 +6,7 @@
       programs = {
         zellij = {
           enable = true;
+          extraConfig = builtins.readFile ./config/zellij/unlock_first_keybinds.kdl;
           settings = {
             on_force_close = "quit";
             default_layout = "compact";
