@@ -7,8 +7,9 @@
         zellij = {
           enable = true;
           settings = {
-            default_layout = "compact";
             on_force_close = "quit";
+            default_layout = "compact";
+            pane_frames = false;
             plugins = {
               compact-bar = {
                 _props.location = "zellij:compact-bar";
