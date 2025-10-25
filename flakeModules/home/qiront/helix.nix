@@ -9,6 +9,7 @@
         settings = {
           editor = {
             color-modes = true;
+            bufferline = "multiple";
             line-number = "relative";
             rulers = [
               80
