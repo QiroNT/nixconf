@@ -57,6 +57,8 @@
           tinymist # typst
           typstyle
           vscode-langservers-extracted # html/css/json/eslint
+          clang-tools # c
+          lldb
         ];
       };
     };
