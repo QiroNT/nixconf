@@ -54,6 +54,11 @@
       url = "github:drupol/pkgs-by-name-for-flake-parts";
     };
 
+    infuse = {
+      url = "git+https://codeberg.org/amjoseph/infuse.nix";
+      flake = false;
+    };
+
     satisfactory-server-flake = {
       url = "github:nekowinston/satisfactory-server-flake";
       inputs.nixpkgs.follows = "nixpkgs";
