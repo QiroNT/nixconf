@@ -46,6 +46,12 @@
                 };
               };
 
+              default-language-servers =
+               (builtins.fromTOML (builtins.readFile ./config/helix/default-languages.toml)).language
+               |> builtins.filter (l: builtins.hasAttr "name" l && builtins.hasAttr "scope" l && builtins.hasAttr "language-servers" l)
+               |> map (l: lib.nameValuePair l.name { language-servers = _: l.language-servers; })
+               |> builtins.listToAttrs;
+
               codebook-langs = [
                 "c"
                 "cpp"
@@ -67,6 +73,7 @@
                 |> builtins.listToAttrs;
             in
             self.lib.infuse cfg [
+              default-language-servers
               codebook-cfg
             ]
             |> lib.mapAttrsToList (name: value: value // { inherit name; });
