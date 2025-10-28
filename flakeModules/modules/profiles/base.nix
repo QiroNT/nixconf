@@ -68,7 +68,17 @@
           };
 
           # for debugging
-          services.nixseparatedebuginfod.enable = true;
+          services.nixseparatedebuginfod2 = {
+            enable = true;
+            substituters = [
+              "local:"
+              "https://cache.nixos.org"
+              "https://cache.garnix.io"
+              "https://nix-community.cachix.org"
+              "https://numtide.cachix.org"
+              "https://niri.cachix.org"
+            ];
+          };
 
           # i dont have a server for wg so...
           services.tailscale.enable = true;
