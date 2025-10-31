@@ -110,7 +110,6 @@
                 "html"
                 "javascript"
                 "lua"
-                "markdown"
                 "nix"
                 "python"
                 "rust"
@@ -118,19 +117,27 @@
                 "typescript"
                 "zig"
               ];
-              codebook-cfg =
-                codebook-langs
-                |> map (l: lib.nameValuePair l { language-servers.__append = [ "codebook" ]; })
+              harper-langs = [
+                "markdown"
+                "typst"
+              ];
+
+              append-ls =
+                server: langs:
+                langs
+                |> map (l: lib.nameValuePair l { language-servers.__append = [ server ]; })
                 |> builtins.listToAttrs;
             in
             self.lib.infuse cfg [
               default-language-servers
-              codebook-cfg
+              (append-ls "codebook" codebook-langs)
+              (append-ls "harper-ls" harper-langs)
             ]
             |> lib.mapAttrsToList (name: value: value // { inherit name; });
 
           language-server = {
             tinymist.config = {
+              formatterMode = "typstyle";
               formatterProseWrap = true;
             };
             rust-analyzer.config = {
@@ -139,6 +146,10 @@
             codebook = {
               command = "codebook-lsp";
               args = [ "serve" ];
+            };
+            harper-ls = {
+              command = "harper-ls";
+              args = [ "--stdio" ];
             };
           };
         };
@@ -152,6 +163,7 @@
           clang-tools # c
           lldb
           codebook # spell check
+          harper
         ];
       };
     };
