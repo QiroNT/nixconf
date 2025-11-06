@@ -18,7 +18,7 @@
             # fetch
             wget
             curl
-            aria # no 2 needed
+            aria2
             yt-dlp
 
             # sync

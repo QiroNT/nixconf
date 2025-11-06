@@ -8,7 +8,7 @@
         noto-fonts
         noto-fonts-cjk-sans
         noto-fonts-cjk-serif
-        noto-fonts-emoji
+        noto-fonts-color-emoji
         source-han-sans
         source-han-serif
         geist-font

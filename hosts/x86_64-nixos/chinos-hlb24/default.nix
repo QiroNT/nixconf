@@ -8,7 +8,7 @@
 
     docker
     forgejo
-    forgejo-actions-runner
+    forgejo-runner
     kernel-latest
     # monerod
     # satisfactory
