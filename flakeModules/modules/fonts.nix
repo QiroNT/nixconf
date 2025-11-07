@@ -16,9 +16,8 @@
 
         fira-code
         fira-code-symbols
-        monaspace
+        local.monaspace
         nerd-fonts.fira-code
-        nerd-fonts.monaspace
       ];
     }
   );

@@ -37,8 +37,8 @@
                 name = "Geist";
               };
               monospace = {
-                package = pkgs.nerd-fonts.monaspace;
-                name = "MonaspiceNe Nerd Font";
+                package = pkgs.local.monaspace;
+                name = "Monaspace Neon NF";
               };
               emoji = {
                 package = pkgs.noto-fonts-color-emoji;
