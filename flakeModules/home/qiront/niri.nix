@@ -23,14 +23,17 @@
           layout = {
             gaps = 3;
             border.width = 2;
+            background-color = "transparent";
           };
 
           layer-rules = [
             {
-              matches = [ { namespace = "^quickshell-overview$"; } ];
+              matches = [ { namespace = "^noctalia-wallpaper*"; } ];
               place-within-backdrop = true;
             }
           ];
+
+          overview.workspace-shadow.enable = false;
 
           workspaces = {
             "1" = { };
