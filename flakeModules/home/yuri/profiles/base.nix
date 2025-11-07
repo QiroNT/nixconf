@@ -1,7 +1,7 @@
 { self, config, ... }:
 {
   flake.modules.homeManager.yuri-profile-base =
-    { ... }:
+    { osConfig, ... }:
     {
       imports = with self.lib.prefixWith "yuri" config.flake.modules.homeManager; [
         cli
@@ -19,6 +19,6 @@
       xdg.enable = true;
 
       # would prevent conflicts with kde
-      fonts.fontconfig.enable = false;
+      fonts.fontconfig.enable = !self.lib.hasAny osConfig "kde";
     };
 }

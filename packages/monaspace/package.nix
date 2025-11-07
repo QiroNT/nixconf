@@ -35,6 +35,11 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     find "Variable Fonts" -type f -name '*.ttf' \
       -exec install -Dm644 {} -t $out/share/fonts/truetype \;
 
+    # trim spaces
+    pushd $out/share/fonts/truetype
+    for f in *\ *; do mv "$f" "''${f// /}"; done
+    popd
+
     pushd "Web Fonts"
 
     find "NerdFonts Web Fonts" -type f -name '*.woff' \
