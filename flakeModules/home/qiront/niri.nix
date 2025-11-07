@@ -35,6 +35,8 @@
 
           overview.workspace-shadow.enable = false;
 
+          animations.slowdown = 0.7;
+
           workspaces = {
             "1" = { };
             "2" = { };
