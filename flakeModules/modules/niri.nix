@@ -16,9 +16,10 @@
         wayland-utils
         libsecret
         xwayland-satellite
-
-        nautilus
         app2unit
+
+        kdePackages.ark
+        nautilus
 
         pwvucontrol
         udiskie

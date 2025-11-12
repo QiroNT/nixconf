@@ -39,3 +39,13 @@ services:
   #     - "25565:25565/tcp"
   #   volumes:
   #     - /opt/minecraft-startech:/work
+
+  minecraft-atm10:
+    build: ./minecraft/jre21
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+    ports:
+      - "25565:25565/tcp"
+    volumes:
+      - /opt/minecraft-atm10:/work
