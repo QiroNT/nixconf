@@ -23,10 +23,8 @@
             audacity
             bitwarden-desktop
             bottles
-            element-desktop
             filezilla
             gale
-            geogebra6
             gimp
             gparted
             heroic
@@ -37,7 +35,6 @@
             piper
             protonup-qt
             qbittorrent
-            qq
             r2modman
             signal-desktop
             syncplay

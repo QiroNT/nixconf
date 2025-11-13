@@ -13,11 +13,7 @@
             # the software people used to convince everyone else to use
             git = {
               enable = true;
-              package = pkgs.git.override {
-                sendEmailSupport = true;
-                withSsh = true;
-                withLibsecret = !pkgs.stdenvNoCC.isDarwin;
-              };
+              package = pkgs.gitFull;
               lfs.enable = true;
 
               settings = {
