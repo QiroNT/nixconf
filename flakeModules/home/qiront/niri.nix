@@ -41,12 +41,12 @@
             "1" = { };
             "2" = { };
             "3" = { };
-            # "4" = { };
-            # "5" = { };
-            # "6" = { };
-            # "7" = { };
-            # "8" = { };
-            # "9" = { };
+            "4" = { };
+            "5" = { };
+            "6" = { };
+            "7" = { };
+            "8" = { };
+            "9" = { };
           };
 
           window-rules = [
@@ -95,6 +95,7 @@
           binds =
             with config.lib.niri.actions;
             let
+              # https://github.com/sodiboo/system/blob/a6ff1448f3d9cafe55e79a68802f03d76d4894b4/personal/niri.mod.nix#L31
               binds =
                 {
                   suffixes,

@@ -26,11 +26,19 @@
       ];
       environment.variables.NIXOS_OZONE_WL = "1";
 
-      programs.uwsm.enable = true;
-      programs.uwsm.waylandCompositors.niri = {
-        prettyName = "Niri";
-        comment = "A scrollable-tiling Wayland compositor";
-        binPath = "/run/current-system/sw/bin/niri-session";
+      services.gnome.sushi.enable = true;
+      programs.nautilus-open-any-terminal = {
+        enable = true;
+        terminal = "ghostty";
+      };
+
+      programs.uwsm = {
+        enable = true;
+        waylandCompositors.niri = {
+          prettyName = "Niri";
+          comment = "A scrollable-tiling Wayland compositor";
+          binPath = "/run/current-system/sw/bin/niri-session";
+        };
       };
 
       security = {
