@@ -15,4 +15,6 @@ RUN addgroup --system --gid "$PGID" "$GROUP" \
 RUN chmod ugo=rwx /work \
   && chown -R "$USER":"$GROUP" /work
 
+USER ${PUID}:${PGID}
+
 ENTRYPOINT ["sh", "run.sh"]
