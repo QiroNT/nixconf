@@ -3,7 +3,7 @@
   flake.modules = self.lib.mkAny "noctalia-shell" (
     { inputs, class, ... }:
     lib.optionalAttrs (class == "nixos") {
-      imports = [ inputs.noctalia-shell.nixosModules.default ];
+      imports = [ inputs.noctalia.nixosModules.default ];
       services.noctalia-shell.enable = true;
     }
   );
