@@ -28,7 +28,12 @@
 
   # fix file system options
   fileSystems = {
-    "/nix".options = [ "noatime" ];
+    "/".options = [ "compress=zstd:1" ];
+    "/home".options = [ "compress=zstd:1" ];
+    "/nix".options = [
+      "compress=zstd:1"
+      "noatime"
+    ];
     "/swap".options = [ "noatime" ];
     "/boot".options = [
       "noatime"
