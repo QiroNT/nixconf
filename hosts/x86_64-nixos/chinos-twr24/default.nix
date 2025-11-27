@@ -21,10 +21,10 @@
 
   # fix file system options
   fileSystems = {
-    "/".options = [ "compress=lzo" ];
-    "/home".options = [ "compress=lzo" ];
+    "/".options = [ "compress=zstd:1" ];
+    "/home".options = [ "compress=zstd:1" ];
     "/nix".options = [
-      "compress=lzo"
+      "compress=zstd:1"
       "noatime"
     ];
     "/swap".options = [ "noatime" ];
