@@ -18,6 +18,7 @@
     ./hardware.nix
     ./wg-quick.nix
     ./cloudflared.nix
+    ./docker/immich
   ];
 
   # this doesn't need to be touched,
