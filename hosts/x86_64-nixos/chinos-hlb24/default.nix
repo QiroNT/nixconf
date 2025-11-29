@@ -26,6 +26,7 @@
   system.stateVersion = "24.05";
 
   boot.initrd.kernelModules = [ "amdgpu" ];
+  hardware.graphics.enable = true;
 
   # fix file system options
   fileSystems = {
