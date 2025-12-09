@@ -21,8 +21,8 @@
             cmake
 
             # js
-            nodejs_22
-            corepack_latest
+            nodejs_24
+            (corepack.override { nodejs = nodejs_24; })
             bun
             dprint
 
