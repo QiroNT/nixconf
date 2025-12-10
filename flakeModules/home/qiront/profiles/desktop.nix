@@ -24,7 +24,7 @@
             bitwarden-desktop
             bottles
             filezilla
-            gale
+            # gale
             gimp
             gparted
             heroic
