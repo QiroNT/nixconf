@@ -22,7 +22,7 @@
 
             # js
             nodejs_24
-            (corepack.override { nodejs = nodejs_24; })
+            # (corepack.override { nodejs = nodejs_24; })
             bun
             dprint
 
