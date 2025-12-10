@@ -18,7 +18,14 @@
   # touching it will definitely break things, so beware
   system.stateVersion = "24.05";
 
-  boot.kernelPackages = pkgs.linuxPackages_6_17;
+  boot = {
+    kernelPackages = pkgs.linuxPackages_6_17;
+    kernelModules = [ "rtw89_8852be" ];
+    extraModprobeConfig = ''
+      options rtw89_pci disable_aspm_l1=y disable_aspm_l1ss=y disable_clkreq=y
+      options rtw89_core disable_ps_mode=y
+    '';
+  };
 
   # fix file system options
   fileSystems = {
