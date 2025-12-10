@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, pkgs, ... }:
 {
   imports = with inputs.self.modules.nixos; [
     profile-desktop
@@ -8,7 +8,6 @@
 
     binfmt
     bluetooth
-    kernel-cachyos
     secure-boot
     wireless
 
@@ -18,6 +17,8 @@
   # this doesn't need to be touched,
   # touching it will definitely break things, so beware
   system.stateVersion = "24.05";
+
+  boot.kernelPackages = pkgs.linuxPackages_6_17;
 
   # fix file system options
   fileSystems = {
