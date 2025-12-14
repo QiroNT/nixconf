@@ -18,6 +18,8 @@
     ./hardware.nix
     ./wg-quick.nix
     ./cloudflared.nix
+    ./caddy.nix
+    ./certdx.nix
     ./docker/immich
   ];
 

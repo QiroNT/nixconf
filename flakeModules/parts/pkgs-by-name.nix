@@ -6,6 +6,7 @@
     { ... }:
     {
       pkgsDirectory = ../../packages;
+      pkgsNameSeparator = "-";
     };
 
   flake = {
