@@ -78,6 +78,7 @@
               "https://nix-community.cachix.org"
               "https://numtide.cachix.org"
               "https://niri.cachix.org"
+              "https://attic.xuyh0120.win/lantian"
             ];
           };
 

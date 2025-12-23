@@ -12,6 +12,7 @@
         overlays = [
           inputs.self.overlays.default
           inputs.nur.overlays.default
+          inputs.nix-cachyos-kernel.overlays.pinned
         ];
       };
     };

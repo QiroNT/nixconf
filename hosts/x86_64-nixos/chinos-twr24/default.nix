@@ -8,6 +8,7 @@
 
     binfmt
     bluetooth
+    nvidia
     secure-boot
     wireless
 
@@ -19,7 +20,7 @@
   system.stateVersion = "24.05";
 
   boot = {
-    kernelPackages = pkgs.linuxPackages_6_17;
+    kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto;
     kernelModules = [ "rtw89_8852be" ];
     extraModprobeConfig = ''
       options rtw89_pci disable_aspm_l1=y disable_aspm_l1ss=y disable_clkreq=y
@@ -55,15 +56,6 @@
 
   time.timeZone = "Australia/Sydney";
   i18n.defaultLocale = "en_US.UTF-8";
-
-  # nvidia driver
-  services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.nvidia = {
-    # package = config.boot.kernelPackages.nvidiaPackages.beta;
-    open = true;
-    modesetting.enable = true;
-    nvidiaSettings = true;
-  };
 
   # https://github.com/NixOS/nixpkgs/issues/133715
   environment.sessionVariables = {
