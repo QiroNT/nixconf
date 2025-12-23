@@ -6,6 +6,7 @@
       imports = with self.lib.prefixWith "yuri" config.flake.modules.homeManager; [
         cli
         git
+        helix
         nh
         nix-index
         stylix
