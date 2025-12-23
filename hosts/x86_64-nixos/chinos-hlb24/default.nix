@@ -10,10 +10,12 @@
     forgejo
     forgejo-runner
     kernel-latest
-    # monerod
-    # satisfactory
+    sidestore-vpn
     vaultwarden
     wireless
+
+    # monerod
+    # satisfactory
 
     ./hardware.nix
     ./wg-quick.nix

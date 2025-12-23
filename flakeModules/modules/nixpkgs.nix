@@ -10,6 +10,7 @@
         };
         overlays = [
           inputs.self.overlays.default
+          inputs.nur.overlays.default
         ];
       };
     }
