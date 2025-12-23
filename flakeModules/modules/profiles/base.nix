@@ -41,6 +41,7 @@
 
           networking.networkmanager.enable = true; # used to use that too
 
+          networking.nftables.enable = true;
           networking.firewall = {
             # enable = false;
             allowedTCPPorts = [ ];
