@@ -25,9 +25,19 @@
             sbctl # debug secure boot
           ];
 
-          boot.loader = {
-            efi.canTouchEfiVariables = true;
-            systemd-boot.enable = true;
+          boot = {
+            loader = {
+              efi.canTouchEfiVariables = true;
+              systemd-boot.enable = true;
+            };
+            initrd = {
+              compressor = "zstd";
+              compressorArgs = [
+                "-19"
+                "-T0"
+              ];
+              systemd.enable = true;
+            };
           };
 
           # firmware updates
