@@ -1,4 +1,9 @@
-{ self, lib, ... }:
+{
+  inputs,
+  self,
+  lib,
+  ...
+}:
 {
   flake.modules = self.lib.mkAny "profile-base" (
     { class, pkgs, ... }:
@@ -19,6 +24,11 @@
         }
 
         (lib.optionalAttrs (class == "nixos") {
+          imports = [
+            inputs.srvos.nixosModules.common
+            inputs.srvos.nixosModules.mixins-terminfo
+          ];
+
           # packages installed in system profile. to search by name, run:
           # $ nix-env -qaP | grep wget
           environment.systemPackages = with pkgs; [
@@ -36,7 +46,6 @@
                 "-19"
                 "-T0"
               ];
-              systemd.enable = true;
             };
           };
 
@@ -105,6 +114,10 @@
         })
 
         (lib.optionalAttrs (class == "darwin") {
+          imports = [
+            inputs.srvos.darwinModules.common
+          ];
+
           # TODO move this to home manager once they support it
           system.defaults = {
             NSGlobalDomain = {

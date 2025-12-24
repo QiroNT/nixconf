@@ -1,4 +1,9 @@
-{ self, lib, ... }:
+{
+  inputs,
+  self,
+  lib,
+  ...
+}:
 {
   flake.modules = self.lib.mkAny "profile-desktop" (
     { class, pkgs, ... }:
@@ -17,6 +22,10 @@
         }
 
         (lib.optionalAttrs (class == "nixos") {
+          imports = [
+            inputs.srvos.nixosModules.desktop
+          ];
+
           fonts.fontDir.enable = true;
 
           i18n.inputMethod = {
@@ -53,7 +62,9 @@
         })
 
         (lib.optionalAttrs (class == "darwin") {
-
+          imports = [
+            inputs.srvos.darwinModules.desktop
+          ];
         })
       ];
     }

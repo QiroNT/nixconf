@@ -26,7 +26,6 @@ in
   systemd.services.certdx-server = {
     wantedBy = clientServices;
     before = clientServices;
-    after = [ "network-online.target" ];
 
     serviceConfig = {
       Restart = "always";

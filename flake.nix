@@ -82,6 +82,11 @@
     nix-cachyos-kernel = {
       url = "github:xddxdd/nix-cachyos-kernel";
     };
+
+    srvos = {
+      url = "github:nix-community/srvos";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
