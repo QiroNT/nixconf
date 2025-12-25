@@ -1,7 +1,7 @@
 { self, lib, ... }:
 {
   flake.modules.homeManager.qiront-helix =
-    { pkgs, ... }:
+    { config, pkgs, ... }:
     {
       programs.helix = {
         enable = true;
@@ -96,7 +96,8 @@
               };
 
               default-language-servers =
-                (builtins.fromTOML (builtins.readFile ./config/helix/default-languages.toml)).language
+                (builtins.fromTOML (builtins.readFile "${config.programs.helix.package.src}/languages.toml"))
+                .language
                 |> builtins.filter (
                   l: builtins.hasAttr "name" l && builtins.hasAttr "scope" l && builtins.hasAttr "language-servers" l
                 )
