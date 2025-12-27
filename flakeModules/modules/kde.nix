@@ -1,8 +1,8 @@
-{ self, lib, ... }:
+{ self, ... }:
 {
-  flake.modules = self.lib.mkAny "kde" (
-    { class, pkgs, ... }:
-    lib.optionalAttrs (class == "nixos") {
+  flake.modules = self.lib.mkAnyNixos "kde" (
+    { pkgs, ... }:
+    {
       # desktop environment
       services.displayManager.sddm = {
         enable = true;

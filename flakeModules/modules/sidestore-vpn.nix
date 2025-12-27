@@ -1,8 +1,8 @@
-{ self, lib, ... }:
+{ self, ... }:
 {
-  flake.modules = self.lib.mkAny "sidestore-vpn" (
-    { class, pkgs, ... }:
-    lib.optionalAttrs (class == "nixos") {
+  flake.modules = self.lib.mkAnyNixos "sidestore-vpn" (
+    { pkgs, ... }:
+    {
       systemd.services.sidestore-vpn = {
         description = "SideStore VPN";
         wantedBy = [ "multi-user.target" ];

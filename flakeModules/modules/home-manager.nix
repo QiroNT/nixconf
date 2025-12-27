@@ -1,6 +1,6 @@
-{ lib, self, ... }:
+{ self, ... }:
 {
-  flake.modules = self.lib.mkAny "home-manager" (
+  flake.modules = self.lib.mkAnyMatch "home-manager" (
     {
       self,
       self',
@@ -10,16 +10,10 @@
       ...
     }:
     {
-      imports =
-        [ ]
-        ++ (lib.optionals (class == "nixos") [
-          inputs.home-manager.nixosModules.home-manager
-        ])
-        ++ (lib.optionals (class == "darwin") [
-          inputs.home-manager.darwinModules.home-manager
-        ]);
+      nixos.imports = [ inputs.home-manager.nixosModules.home-manager ];
+      darwin.imports = [ inputs.home-manager.darwinModules.home-manager ];
 
-      home-manager = {
+      any.home-manager = {
         useUserPackages = true;
         useGlobalPkgs = true;
 

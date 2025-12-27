@@ -1,8 +1,8 @@
-{ self, lib, ... }:
+{ self, ... }:
 {
-  flake.modules = self.lib.mkAny "aerospace" (
-    { class, pkgs, ... }:
-    lib.optionalAttrs (class == "darwin") {
+  flake.modules = self.lib.mkAnyDarwin "aerospace" (
+    { pkgs, ... }:
+    {
       environment.systemPackages = with pkgs; [
         aerospace
       ];

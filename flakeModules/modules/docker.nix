@@ -1,8 +1,8 @@
-{ self, lib, ... }:
+{ self, ... }:
 {
-  flake.modules = self.lib.mkAny "docker" (
-    { class, ... }:
-    lib.optionalAttrs (class == "nixos") {
+  flake.modules = self.lib.mkAnyNixos "docker" (
+    { ... }:
+    {
       virtualisation.docker = {
         enable = true;
         storageDriver = "btrfs";

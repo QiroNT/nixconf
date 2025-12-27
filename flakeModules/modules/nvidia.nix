@@ -1,9 +1,9 @@
 # https://github.com/xddxdd/nixos-config/blob/master/nixos/hardware/nvidia/only.nix
-{ self, lib, ... }:
+{ self, ... }:
 {
-  flake.modules = self.lib.mkAny "nvidia" (
-    { class, pkgs, ... }:
-    lib.optionalAttrs (class == "nixos") {
+  flake.modules = self.lib.mkAnyNixos "nvidia" (
+    { pkgs, ... }:
+    {
       # nvidia driver
       services.xserver.videoDrivers = [ "nvidia" ];
       hardware.nvidia = {

@@ -1,8 +1,8 @@
-{ self, lib, ... }:
+{ self, ... }:
 {
-  flake.modules = self.lib.mkAny "kernel-latest" (
-    { class, pkgs, ... }:
-    lib.optionalAttrs (class == "nixos") {
+  flake.modules = self.lib.mkAnyNixos "kernel-latest" (
+    { pkgs, ... }:
+    {
       boot.kernelPackages = pkgs.linuxPackages_latest;
     }
   );

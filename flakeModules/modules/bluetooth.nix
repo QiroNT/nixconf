@@ -1,8 +1,8 @@
-{ self, lib, ... }:
+{ self, ... }:
 {
-  flake.modules = self.lib.mkAny "bluetooth" (
-    { class, ... }:
-    lib.optionalAttrs (class == "nixos") {
+  flake.modules = self.lib.mkAnyNixos "bluetooth" (
+    { ... }:
+    {
       hardware.bluetooth = {
         enable = true;
         powerOnBoot = true;

@@ -5,9 +5,9 @@
   ...
 }:
 {
-  flake.modules = self.lib.mkAny "satisfactory" (
-    { class, ... }:
-    lib.optionalAttrs (class == "nixos") {
+  flake.modules = self.lib.mkAnyNixos "satisfactory" (
+    { ... }:
+    {
       containers.satisfactory = {
         autoStart = true;
 

@@ -5,9 +5,9 @@
   ...
 }:
 {
-  flake.modules = self.lib.mkAny "secure-boot" (
-    { class, ... }:
-    lib.optionalAttrs (class == "nixos") {
+  flake.modules = self.lib.mkAnyNixos "secure-boot" (
+    { ... }:
+    {
       imports = [ inputs.lanzaboote.nixosModules.lanzaboote ];
 
       boot = {

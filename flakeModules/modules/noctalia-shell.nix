@@ -1,8 +1,8 @@
-{ self, lib, ... }:
+{ self, ... }:
 {
-  flake.modules = self.lib.mkAny "noctalia-shell" (
-    { inputs, class, ... }:
-    lib.optionalAttrs (class == "nixos") {
+  flake.modules = self.lib.mkAnyNixos "noctalia-shell" (
+    { inputs, ... }:
+    {
       imports = [ inputs.noctalia.nixosModules.default ];
       services.noctalia-shell.enable = true;
     }

@@ -1,8 +1,8 @@
-{ self, lib, ... }:
+{ self, ... }:
 {
-  flake.modules = self.lib.mkAny "binfmt" (
-    { class, ... }:
-    lib.optionalAttrs (class == "nixos") {
+  flake.modules = self.lib.mkAnyNixos "binfmt" (
+    { ... }:
+    {
       boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
     }
   );

@@ -1,18 +1,12 @@
-{ lib, self, ... }:
+{ self, ... }:
 {
-  flake.modules = self.lib.mkAny "sops" (
-    { inputs, class, ... }:
+  flake.modules = self.lib.mkAnyMatch "sops" (
+    { inputs, ... }:
     {
-      imports =
-        [ ]
-        ++ (lib.optionals (class == "nixos") [
-          inputs.sops-nix.nixosModules.sops
-        ])
-        ++ (lib.optionals (class == "darwin") [
-          inputs.sops-nix.darwinModules.sops
-        ]);
+      nixos.imports = [ inputs.sops-nix.nixosModules.sops ];
+      darwin.imports = [ inputs.sops-nix.darwinModules.sops ];
 
-      sops = {
+      any.sops = {
         defaultSopsFile = "${self}/secrets/common.yaml";
         age.keyFile = "/var/lib/sops-nix/keys.txt";
       };

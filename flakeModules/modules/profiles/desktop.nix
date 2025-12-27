@@ -1,72 +1,69 @@
 {
   inputs,
   self,
-  lib,
   ...
 }:
 {
-  flake.modules = self.lib.mkAny "profile-desktop" (
+  flake.modules = self.lib.mkAnyMatch "profile-desktop" (
     { class, pkgs, ... }:
     {
-      imports = [
-        {
-          imports = with self.lib.withAny class; [
-            profile-base
+      any = {
+        imports = with self.lib.withAny class; [
+          profile-base
 
-            aerospace
-            fonts
-            niri
-            noctalia-shell
-            sunshine
-          ];
-        }
+          aerospace
+          fonts
+          niri
+          noctalia-shell
+          sunshine
+        ];
+      };
 
-        (lib.optionalAttrs (class == "nixos") {
-          imports = [
-            inputs.srvos.nixosModules.desktop
-          ];
+      nixos = {
+        imports = [
+          inputs.srvos.nixosModules.desktop
+        ];
 
-          fonts.fontDir.enable = true;
+        fonts.fontDir.enable = true;
 
-          i18n.inputMethod = {
-            enable = true;
-            type = "fcitx5";
-            fcitx5 = {
-              waylandFrontend = true;
-              addons = with pkgs; [ fcitx5-rime ];
-            };
+        i18n.inputMethod = {
+          enable = true;
+          type = "fcitx5";
+          fcitx5 = {
+            waylandFrontend = true;
+            addons = with pkgs; [ fcitx5-rime ];
           };
+        };
 
-          # sound
-          security.rtkit.enable = true;
-          services.pipewire = {
-            enable = true;
-            alsa.enable = true;
-            alsa.support32Bit = true;
-            pulse.enable = true;
-          };
+        # sound
+        security.rtkit.enable = true;
+        services.pipewire = {
+          enable = true;
+          alsa.enable = true;
+          alsa.support32Bit = true;
+          pulse.enable = true;
+        };
 
-          # printing
-          services.printing.enable = true;
+        # printing
+        services.printing.enable = true;
 
-          # the app that maximizes my retention
-          programs.steam.enable = true;
-          hardware.graphics.enable32Bit = true;
+        # the app that maximizes my retention
+        programs.steam.enable = true;
+        hardware.graphics.enable32Bit = true;
 
-          # controller
-          # hardware.xone.enable = true;
-          hardware.xpadneo.enable = true;
+        # controller
+        # hardware.xone.enable = true;
+        hardware.xpadneo.enable = true;
 
-          # mouse config (piper)
-          services.ratbagd.enable = true;
-        })
+        # mouse config (piper)
+        services.ratbagd.enable = true;
+      };
 
-        (lib.optionalAttrs (class == "darwin") {
-          imports = [
-            inputs.srvos.darwinModules.desktop
-          ];
-        })
-      ];
+      darwin = {
+        imports = [
+          inputs.srvos.darwinModules.desktop
+        ];
+      };
     }
   );
 }

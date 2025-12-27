@@ -1,8 +1,8 @@
-{ self, lib, ... }:
+{ self, ... }:
 {
-  flake.modules = self.lib.mkAny "postgresql" (
-    { class, pkgs, ... }:
-    lib.optionalAttrs (class == "nixos") {
+  flake.modules = self.lib.mkAnyNixos "postgresql" (
+    { pkgs, ... }:
+    {
       services.postgresql = {
         enable = true;
         enableJIT = true;

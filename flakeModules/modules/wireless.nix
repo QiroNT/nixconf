@@ -1,8 +1,8 @@
-{ self, lib, ... }:
+{ self, ... }:
 {
-  flake.modules = self.lib.mkAny "wireless" (
-    { class, ... }:
-    lib.optionalAttrs (class == "nixos") {
+  flake.modules = self.lib.mkAnyNixos "wireless" (
+    { ... }:
+    {
       networking = {
         # Received error during CMD_TRIGGER_SCAN: Operation not supported (95)
         # Received Deauthentication event, reason: 4, from_ap: false

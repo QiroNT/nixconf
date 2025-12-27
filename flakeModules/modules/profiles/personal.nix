@@ -1,38 +1,32 @@
-{ self, lib, ... }:
+{ self, ... }:
 {
-  flake.modules = self.lib.mkAny "profile-personal" (
+  flake.modules = self.lib.mkAnyMatch "profile-personal" (
     { class, pkgs, ... }:
     {
-      imports = [
-        {
-          imports = with self.lib.withAny class; [
-            profile-base
+      any = {
+        imports = with self.lib.withAny class; [
+          profile-base
 
-            docker
-          ];
-        }
+          docker
+        ];
+      };
 
-        (lib.optionalAttrs (class == "nixos") {
-          # SUID wrapper, not sure if i need this, but just to not bother my future self
-          programs.mtr.enable = true;
-          programs.gnupg.agent = {
-            enable = true;
-            enableSSHSupport = true;
-          };
+      nixos = {
+        # SUID wrapper, not sure if i need this, but just to not bother my future self
+        programs.mtr.enable = true;
+        programs.gnupg.agent = {
+          enable = true;
+          enableSSHSupport = true;
+        };
 
-          # compatibility
-          programs.nix-ld = {
-            enable = true;
-            # Add any missing dynamic libraries for unpackaged programs
-            # here, NOT in environment.systemPackages
-            libraries = with pkgs; [ ];
-          };
-        })
-
-        (lib.optionalAttrs (class == "darwin") {
-
-        })
-      ];
+        # compatibility
+        programs.nix-ld = {
+          enable = true;
+          # Add any missing dynamic libraries for unpackaged programs
+          # here, NOT in environment.systemPackages
+          libraries = with pkgs; [ ];
+        };
+      };
     }
   );
 }

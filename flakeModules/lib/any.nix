@@ -1,20 +1,51 @@
 { lib, config, ... }:
+let
+  buildModule = name: module: {
+    ${name}.imports = [
+      { chinos.any.activeModules = [ name ]; }
+      module
+    ];
+  };
+in
 {
-  flake.lib.mkAny =
+  flake.lib.mkAny = name: module: {
+    nixos = buildModule name module;
+    darwin = buildModule name module;
+  };
+
+  flake.lib.mkAnyNixos = name: module: {
+    nixos = buildModule name module;
+    darwin = buildModule name { };
+  };
+
+  flake.lib.mkAnyDarwin = name: module: {
+    nixos = buildModule name { };
+    darwin = buildModule name module;
+  };
+
+  flake.lib.mkAnyMatch =
     name: module:
     let
-      imports = [
-        { chinos.any.activeModules = [ name ]; }
-        module
-      ];
+      apply = args: f: if builtins.isFunction f then f args else f;
+      mapReturn =
+        keys: args:
+        let
+          output = apply args module;
+        in
+        {
+          imports = keys |> map (key: output.${key} or { });
+        };
+      wrap = keys: lib.setFunctionArgs (mapReturn keys) (lib.functionArgs module);
     in
     {
-      nixos = {
-        ${name} = { inherit imports; };
-      };
-      darwin = {
-        ${name} = { inherit imports; };
-      };
+      nixos = buildModule name (wrap [
+        "any"
+        "nixos"
+      ]);
+      darwin = buildModule name (wrap [
+        "any"
+        "darwin"
+      ]);
     };
 
   flake.lib.withAny = class: config.flake.modules.${class};

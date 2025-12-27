@@ -1,8 +1,8 @@
 { self, lib, ... }:
 {
-  flake.modules = self.lib.mkAny "users-qiront-docker" (
-    { class, config, ... }:
-    lib.optionalAttrs (class == "nixos") {
+  flake.modules = self.lib.mkAnyNixos "users-qiront-docker" (
+    { config, ... }:
+    {
       config = lib.mkIf (self.lib.hasAny config "docker") {
         users.users.qiront.extraGroups = [ "docker" ];
       };

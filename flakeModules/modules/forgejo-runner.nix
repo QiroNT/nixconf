@@ -1,13 +1,13 @@
 { self, lib, ... }:
 {
-  flake.modules = self.lib.mkAny "forgejo-runner" (
+  flake.modules = self.lib.mkAnyNixos "forgejo-runner" (
     {
       class,
       pkgs,
       config,
       ...
     }:
-    lib.optionalAttrs (class == "nixos") {
+    {
       imports = with self.lib.withAny class; [
         sops
       ];

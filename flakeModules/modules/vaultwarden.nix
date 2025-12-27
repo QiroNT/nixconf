@@ -1,8 +1,8 @@
 { self, lib, ... }:
 {
-  flake.modules = self.lib.mkAny "vaultwarden" (
+  flake.modules = self.lib.mkAnyNixos "vaultwarden" (
     { class, config, ... }:
-    lib.optionalAttrs (class == "nixos") {
+    {
       imports = with self.lib.withAny class; [
         sops
         postgresql

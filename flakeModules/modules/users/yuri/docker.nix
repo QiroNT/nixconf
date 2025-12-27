@@ -1,8 +1,8 @@
 { self, lib, ... }:
 {
-  flake.modules = self.lib.mkAny "users-yuri-docker" (
-    { class, config, ... }:
-    lib.optionalAttrs (class == "nixos") {
+  flake.modules = self.lib.mkAnyNixos "users-yuri-docker" (
+    { config, ... }:
+    {
       config = lib.mkIf (self.lib.hasAny config "docker") {
         users.users.yuri.extraGroups = [ "docker" ];
       };

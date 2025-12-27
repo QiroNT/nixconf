@@ -1,15 +1,15 @@
-{ self, lib, ... }:
+{ self, ... }:
 {
-  flake.modules = self.lib.mkAny "niri" (
+  flake.modules = self.lib.mkAnyNixos "niri" (
     {
       inputs,
       config,
-      class,
       pkgs,
       ...
     }:
-    lib.optionalAttrs (class == "nixos") {
+    {
       imports = [ inputs.niri.nixosModules.niri ];
+
       programs.niri.enable = true;
       environment.systemPackages = with pkgs; [
         wl-clipboard
