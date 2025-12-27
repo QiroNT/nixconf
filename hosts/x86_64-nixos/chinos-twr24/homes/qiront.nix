@@ -1,6 +1,6 @@
-{ self, inputs, ... }:
+{ self, ... }:
 {
-  imports = with self.lib.prefixWith "qiront" inputs.self.modules.homeManager; [
+  imports = with self.lib.prefixWith "qiront" self.modules.homeManager; [
     profile-base
     profile-desktop
     profile-personal

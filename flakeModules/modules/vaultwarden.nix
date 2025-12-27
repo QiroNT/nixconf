@@ -78,7 +78,7 @@
       };
 
       sops.secrets."chinos-hlb24/vaultwarden/env" = {
-        sopsFile = ../../secrets/chinos-hlb24.yaml;
+        sopsFile = "${self}/secrets/chinos-hlb24.yaml";
       };
     }
   );

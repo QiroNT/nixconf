@@ -72,7 +72,7 @@
       ];
 
       sops.secrets."common/nix/netrc" = {
-        sopsFile = ../../secrets/common.yaml;
+        sopsFile = "${self}/secrets/common.yaml";
       };
     }
   );

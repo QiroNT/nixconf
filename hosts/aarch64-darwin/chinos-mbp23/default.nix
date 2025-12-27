@@ -1,6 +1,6 @@
-{ inputs, ... }:
+{ self, ... }:
 {
-  imports = with inputs.self.modules.darwin; [
+  imports = with self.modules.darwin; [
     profile-base
     profile-desktop
     profile-personal

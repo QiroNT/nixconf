@@ -1,14 +1,14 @@
-{ inputs, config, ... }:
+{ self, config, ... }:
 let
   port = 2283;
 in
 {
-  imports = with inputs.self.modules.nixos; [ sops ];
+  imports = with self.modules.nixos; [ sops ];
 
   sops.secrets."chinos-hlb24/immich/env" = {
     owner = config.users.users.qiront.name;
     group = config.users.users.qiront.group;
-    sopsFile = ../../../../../secrets/chinos-hlb24.yaml;
+    sopsFile = "${self}/secrets/chinos-hlb24.yaml";
   };
 
   systemd.services.tailscale-serve-immich = {

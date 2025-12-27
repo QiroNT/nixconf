@@ -1,6 +1,6 @@
-{ inputs, ... }:
+{ self, ... }:
 {
-  imports = with inputs.self.modules.nixos; [
+  imports = with self.modules.nixos; [
     profile-base
 
     users-qiront

@@ -1,19 +1,9 @@
-{ inputs, self, ... }:
+{ self, ... }:
 {
   flake.modules = self.lib.mkAny "nixpkgs" (
-    { ... }:
+    { nixpkgsArgs, ... }:
     {
-      nixpkgs = {
-        config = {
-          allowUnfree = true;
-          permittedInsecurePackages = [ "ventoy-1.1.07" ];
-        };
-        overlays = [
-          inputs.self.overlays.default
-          inputs.nur.overlays.default
-          inputs.nix-cachyos-kernel.overlays.pinned
-        ];
-      };
+      nixpkgs = nixpkgsArgs;
     }
   );
 }

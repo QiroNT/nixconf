@@ -100,7 +100,7 @@
       };
 
       sops.secrets."chinos-hlb24/forgejo/mailer-password" = {
-        sopsFile = ../../secrets/chinos-hlb24.yaml;
+        sopsFile = "${self}/secrets/chinos-hlb24.yaml";
       };
     }
   );

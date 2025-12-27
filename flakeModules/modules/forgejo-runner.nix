@@ -67,7 +67,7 @@
       };
 
       sops.secrets."chinos-hlb24/forgejo/runner/token" = {
-        sopsFile = ../../secrets/chinos-hlb24.yaml;
+        sopsFile = "${self}/secrets/chinos-hlb24.yaml";
       };
     }
   );

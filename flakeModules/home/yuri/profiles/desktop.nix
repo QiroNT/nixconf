@@ -31,7 +31,7 @@
             gparted
             heroic
             inkscape-with-extensions
-            jetbrains.idea-community-bin
+            jetbrains.idea
             monero-gui
             obsidian
             piper

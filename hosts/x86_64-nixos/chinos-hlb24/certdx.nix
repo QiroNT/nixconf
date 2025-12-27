@@ -1,8 +1,7 @@
 {
-  inputs,
+  self,
   lib,
   pkgs,
-  config,
   ...
 }:
 let
@@ -20,7 +19,7 @@ let
     |> builtins.listToAttrs;
 in
 {
-  imports = with inputs.self.modules.nixos; [ sops ];
+  imports = with self.modules.nixos; [ sops ];
 
   # https://github.com/ParaParty/certdx/blob/main/systemd-service/certdx-server.service
   systemd.services.certdx-server = {
@@ -68,7 +67,7 @@ in
       conf =
         file:
         lib.nameValuePair "chinos-hlb24/certdx/${file}" {
-          sopsFile = ../../../secrets/chinos-hlb24.yaml;
+          sopsFile = "${self}/secrets/chinos-hlb24.yaml";
           owner = "nobody";
           group = "nogroup";
           restartUnits = [ "certdx-server.service" ];

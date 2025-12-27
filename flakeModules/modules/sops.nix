@@ -13,7 +13,7 @@
         ]);
 
       sops = {
-        defaultSopsFile = ../../secrets/common.yaml;
+        defaultSopsFile = "${self}/secrets/common.yaml";
         age.keyFile = "/var/lib/sops-nix/keys.txt";
       };
     }

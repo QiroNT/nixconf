@@ -1,6 +1,6 @@
-{ inputs, config, ... }:
+{ self, config, ... }:
 {
-  imports = with inputs.self.modules.nixos; [ sops ];
+  imports = with self.modules.nixos; [ sops ];
 
   services.cloudflared = {
     enable = true;
@@ -16,6 +16,6 @@
   };
 
   sops.secrets."chinos-hlb24/cloudflared/creds-file" = {
-    sopsFile = ../../../secrets/chinos-hlb24.yaml;
+    sopsFile = "${self}/secrets/chinos-hlb24.yaml";
   };
 }

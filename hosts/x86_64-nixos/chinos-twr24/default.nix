@@ -1,6 +1,6 @@
-{ inputs, pkgs, ... }:
+{ self, pkgs, ... }:
 {
-  imports = with inputs.self.modules.nixos; [
+  imports = with self.modules.nixos; [
     profile-desktop
     profile-personal
 

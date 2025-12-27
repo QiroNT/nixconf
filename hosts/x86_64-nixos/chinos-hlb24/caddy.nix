@@ -1,5 +1,5 @@
 {
-  inputs,
+  self,
   lib,
   pkgs,
   config,
@@ -10,7 +10,7 @@ let
   caddyCertdxData = "/var/lib/caddy-certdx";
 in
 {
-  imports = with inputs.self.modules.nixos; [ sops ];
+  imports = with self.modules.nixos; [ sops ];
 
   services.caddy = {
     enable = true;
@@ -75,7 +75,7 @@ in
       conf =
         file:
         lib.nameValuePair "chinos-hlb24/caddy-certdx/${file}" {
-          sopsFile = ../../../secrets/chinos-hlb24.yaml;
+          sopsFile = "${self}/secrets/chinos-hlb24.yaml";
           path = "${caddyCertdxData}/${file}";
           owner = config.users.users.caddy.name;
           group = config.users.users.caddy.group;
