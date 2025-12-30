@@ -141,7 +141,7 @@
               {
                 "Mod+Shift+Slash".action = show-hotkey-overlay;
 
-                "Mod+T".action = spawn-sh "uwsm app -- ghostty";
+                "Mod+T".action = spawn-sh "app2unit -- ghostty";
                 "Mod+Space".action = spawn-sh "noctalia-shell ipc call launcher toggle";
                 "Mod+Alt+L".action = spawn-sh "noctalia-shell ipc call lockScreen toggle";
 
