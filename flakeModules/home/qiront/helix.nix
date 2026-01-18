@@ -59,13 +59,15 @@
                       STTY=/bin/stty
                     fi
 
-                    # save and restore tty settings
-                    SAVED_TTY=$($STTY -g < /dev/tty)
-                    $STTY sane < /dev/tty
+                    {
+                      # save and restore tty settings
+                      SAVED_TTY=$($STTY -g)
+                      $STTY sane
 
-                    ${pkgs.yazi}/bin/yazi "$1" --chooser-file=/dev/stdout < /dev/tty
-
-                    $STTY "$SAVED_TTY" < /dev/tty
+                      ${pkgs.yazi}/bin/yazi "$1" --chooser-file=/dev/stdout
+                      
+                      $STTY "$SAVED_TTY"
+                    } < /dev/tty
                   fi
                 '';
               in
