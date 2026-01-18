@@ -53,21 +53,17 @@
                     cat "$YAZI_TMP/out"
                     rm -rf "$YAZI_TMP"
                   else
-                    # use the system stty if possible to fix permission issue
-                    # on macos
+                    # use the system stty if possible to fix permission issue on macos
                     STTY=stty
                     if [ -f /bin/stty ]; then
                       STTY=/bin/stty
                     fi
 
                     # save and restore tty settings
-                    # the "official" version fixes settings by using stuff like
-                    # `x1b[?1049h]`, which is not what helix uses exactly.
-                    # this script just save and restores it instead.
                     SAVED_TTY=$($STTY -g < /dev/tty)
                     $STTY sane < /dev/tty
 
-                    ${pkgs.yazi}/bin/yazi "$1" --chooser-file=/dev/stdout
+                    ${pkgs.yazi}/bin/yazi "$1" --chooser-file=/dev/stdout < /dev/tty
 
                     $STTY "$SAVED_TTY" < /dev/tty
                   fi
