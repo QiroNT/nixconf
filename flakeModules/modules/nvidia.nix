@@ -2,13 +2,14 @@
 { self, ... }:
 {
   flake.modules = self.lib.mkAnyNixos "nvidia" (
-    { pkgs, ... }:
+    { pkgs, config, ... }:
     {
       # nvidia driver
       services.xserver.videoDrivers = [ "nvidia" ];
       hardware.nvidia = {
         # package = config.boot.kernelPackages.nvidiaPackages.beta;
-        open = true;
+        package = config.boot.kernelPackages.nvidiaPackages.latest;
+        open = false;
         modesetting.enable = true;
         powerManagement.enable = true;
         nvidiaSettings = false;
