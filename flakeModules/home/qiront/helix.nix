@@ -94,8 +94,7 @@
               };
 
               default-language-servers =
-                (builtins.fromTOML (builtins.readFile "${config.programs.helix.package.src}/languages.toml"))
-                .language
+                (fromTOML (builtins.readFile "${config.programs.helix.package.src}/languages.toml")).language
                 |> builtins.filter (
                   l: builtins.hasAttr "name" l && builtins.hasAttr "scope" l && builtins.hasAttr "language-servers" l
                 )
@@ -104,16 +103,27 @@
 
               codebook-langs = [
                 "c"
+                "c-sharp"
                 "cpp"
                 "css"
+                "elixir"
+                "erlang"
+                "go"
+                "haskell"
                 "html"
+                "java"
                 "javascript"
                 "lua"
                 "nix"
+                "odin"
+                "php"
                 "python"
+                "ruby"
                 "rust"
+                "swift"
                 "toml"
                 "typescript"
+                "yaml"
                 "zig"
               ];
               harper-langs = [
@@ -161,6 +171,7 @@
           vscode-langservers-extracted # html/css/json/eslint
           clang-tools # c
           lldb
+          jdt-language-server # java
           codebook # spell check
           harper
         ];
