@@ -6,7 +6,7 @@
       imports = [
         {
           home.packages = with pkgs; [
-            # gitu
+            gitu
           ];
 
           programs = {
