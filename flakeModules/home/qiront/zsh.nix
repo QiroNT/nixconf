@@ -121,6 +121,13 @@
             esac
             # pnpm end
 
+            # Jetbrains
+            export TOOLBOX_PATH="${config.home.homeDirectory}/Library/Application Support/JetBrains/Toolbox/scripts"
+            case ":$PATH:" in
+              *":$TOOLBOX_PATH:"*) ;;
+              *) export PATH="$TOOLBOX_PATH:$PATH" ;;
+            esac
+
             # editor
             export EDITOR="hx"
             export VISUAL="$EDITOR"
