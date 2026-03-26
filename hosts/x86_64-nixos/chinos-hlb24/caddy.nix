@@ -15,8 +15,8 @@ in
   services.caddy = {
     enable = true;
     package = pkgs.caddy.withPlugins {
-      plugins = [ "pkg.para.party/certdx/exec/caddytls@v0.4.2" ];
-      hash = "sha256-23Ttwx7S0oyunS1Y9mdFKRYeKK1o70bKclbuRaHgyiA=";
+      plugins = [ "pkg.para.party/certdx/exec/caddytls@v0.4.5" ];
+      hash = "sha256-yuMTytyez08VNjYmqckN6sAvQIKgMKX1p+H/FPTsQ88=";
     };
 
     # logFormat = lib.mkForce "level INFO";
