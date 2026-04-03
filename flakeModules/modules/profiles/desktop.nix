@@ -15,6 +15,7 @@
           fonts
           niri
           noctalia-shell
+          pipewire
           sunshine
         ];
       };
@@ -33,15 +34,6 @@
             waylandFrontend = true;
             addons = with pkgs; [ fcitx5-rime ];
           };
-        };
-
-        # sound
-        security.rtkit.enable = true;
-        services.pipewire = {
-          enable = true;
-          alsa.enable = true;
-          alsa.support32Bit = true;
-          pulse.enable = true;
         };
 
         # printing

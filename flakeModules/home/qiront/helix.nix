@@ -43,12 +43,8 @@
                   if [[ -n $ZELLIJ ]]; then
                     YAZI_TMP=$(mktemp -d)
 
-                    mkfifo "$YAZI_TMP/fifo"
-
-                    zellij run -fc --width 90% --height 90% -x 5% -y 5% -- \
-                      sh -c "${pkgs.yazi}/bin/yazi \"$1\" --chooser-file=\"$YAZI_TMP/out\" | tee \"$YAZI_TMP/fifo\""
-
-                    cat < "$YAZI_TMP/fifo" > /dev/null
+                    zellij run -fc --blocking --width 90% --height 90% -x 5% -y 5% -- \
+                      sh -c "${pkgs.yazi}/bin/yazi \"$1\" --chooser-file=\"$YAZI_TMP/out\""
 
                     cat "$YAZI_TMP/out"
                     rm -rf "$YAZI_TMP"
