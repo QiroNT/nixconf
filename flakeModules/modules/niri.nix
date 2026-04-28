@@ -10,7 +10,10 @@
     {
       imports = [ inputs.niri.nixosModules.niri ];
 
-      programs.niri.enable = true;
+      programs.niri = {
+        enable = true;
+        package = pkgs.niri;
+      };
       environment.systemPackages = with pkgs; [
         wl-clipboard
         wayland-utils
