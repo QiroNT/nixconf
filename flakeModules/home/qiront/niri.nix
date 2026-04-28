@@ -2,14 +2,20 @@
 {
   flake.modules.homeManager.qiront-niri =
     {
+      inputs,
       class,
       config,
       ...
     }:
     lib.optionalAttrs (class == "nixos") {
+      imports = [
+        inputs.dms.homeModules.dank-material-shell
+        inputs.dms.homeModules.niri
+      ];
+
       programs = {
         niri.settings = {
-          # nvidia fix, remove once either
+          # FIXME nvidia fix, remove once either
           # https://github.com/YaLTeR/niri/issues/2030
           # https://github.com/YaLTeR/niri/issues/2477
           # is closed
@@ -25,13 +31,6 @@
             border.width = 2;
             background-color = "transparent";
           };
-
-          layer-rules = [
-            {
-              matches = [ { namespace = "^noctalia-wallpaper*"; } ];
-              place-within-backdrop = true;
-            }
-          ];
 
           overview.workspace-shadow.enable = false;
 
@@ -142,37 +141,9 @@
                 "Mod+Shift+Slash".action = show-hotkey-overlay;
 
                 "Mod+T".action = spawn-sh "app2unit -- ghostty";
-                "Mod+Space".action = spawn-sh "noctalia-shell ipc call launcher toggle";
-                "Mod+Alt+L".action = spawn-sh "noctalia-shell ipc call lockScreen toggle";
 
                 "Mod+Alt+S" = {
                   action = spawn-sh "pkill orca || exec orca";
-                  allow-when-locked = true;
-                };
-
-                "XF86AudioRaiseVolume" = {
-                  action = spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.01+";
-                  allow-when-locked = true;
-                };
-                "XF86AudioLowerVolume" = {
-                  action = spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.01-";
-                  allow-when-locked = true;
-                };
-                "XF86AudioMute" = {
-                  action = spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
-                  allow-when-locked = true;
-                };
-                "XF86AudioMicMute" = {
-                  action = spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
-                  allow-when-locked = true;
-                };
-
-                "XF86MonBrightnessUp" = {
-                  action = spawn "brightnessctl" "--class=backlight" "set" "+5%";
-                  allow-when-locked = true;
-                };
-                "XF86MonBrightnessDown" = {
-                  action = spawn "brightnessctl" "--class=backlight" "set" "5%-";
                   allow-when-locked = true;
                 };
 
@@ -269,6 +240,14 @@
                 prefixes."Mod+Ctrl" = "move-column-to";
               })
             ];
+        };
+
+        dank-material-shell = {
+          enable = true;
+          niri = {
+            includes.enable = true;
+            enableSpawn = true;
+          };
         };
       };
 

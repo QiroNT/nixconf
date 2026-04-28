@@ -14,7 +14,6 @@
           aerospace
           fonts
           niri
-          noctalia-shell
           pipewire
           sunshine
         ];

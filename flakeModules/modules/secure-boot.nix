@@ -18,7 +18,7 @@
         };
         lanzaboote = {
           enable = true;
-          pkiBundle = "/etc/secureboot";
+          pkiBundle = "/var/lib/sbctl";
         };
 
         # to roll disk encryption keys into TPM, use the following:

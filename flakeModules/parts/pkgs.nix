@@ -1,9 +1,18 @@
-{ inputs, self, ... }:
+{
+  lib,
+  inputs,
+  self,
+  ...
+}:
 let
   nixpkgsArgs = {
     config = {
       allowUnfree = true;
-      permittedInsecurePackages = [ "ventoy-1.1.10" ];
+      allowInsecurePredicate =
+        pkg:
+        builtins.elem (lib.getName pkg) [
+          "ventoy"
+        ];
     };
     overlays = [
       self.overlays.default
