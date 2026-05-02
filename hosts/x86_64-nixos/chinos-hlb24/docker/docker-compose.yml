@@ -13,7 +13,8 @@ services:
       - WATCHTOWER_INCLUDE_STOPPED=true
 
   factorio:
-    image: factoriotools/factorio:stable
+    # image: factoriotools/factorio:stable
+    image: factoriotools/factorio:2.0.73
     restart: unless-stopped
     stdin_open: true
     tty: true
@@ -27,8 +28,9 @@ services:
       - ./factorio/server-adminlist.json:/factorio/config/server-adminlist.json
       - ./factorio/server-whitelist.json:/factorio/config/server-whitelist.json
     environment:
-      - GENERATE_NEW_SAVE=true
-      - SAVE_NAME=asmod
+      # - GENERATE_NEW_SAVE=true
+      - SAVE_NAME=se2
+      - DLC_SPACE_AGE=elevated-rails quality
 
   # minecraft-startech:
   #   build: ./minecraft/jre17
@@ -40,12 +42,12 @@ services:
   #   volumes:
   #     - /opt/minecraft-startech:/work
 
-  minecraft-atm10:
-    build: ./minecraft/jre21
-    restart: unless-stopped
-    stdin_open: true
-    tty: true
-    ports:
-      - "25565:25565/tcp"
-    volumes:
-      - /opt/minecraft-atm10:/work
+  # minecraft-atm10:
+  #   build: ./minecraft/jre21
+  #   restart: unless-stopped
+  #   stdin_open: true
+  #   tty: true
+  #   ports:
+  #     - "25565:25565/tcp"
+  #   volumes:
+  #     - /opt/minecraft-atm10:/work

@@ -61,6 +61,10 @@
   time.timeZone = "Australia/Sydney";
   i18n.defaultLocale = "en_US.UTF-8";
 
+  networking.firewall.allowedUDPPorts = [
+    34197
+  ];
+
   networking.nat = {
     enable = true;
     internalInterfaces = [ "ve-+" ];
