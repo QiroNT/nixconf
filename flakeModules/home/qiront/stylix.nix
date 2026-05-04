@@ -4,7 +4,10 @@
     { ... }:
     {
       stylix = {
-        targets.vscode.enable = false;
+        targets = {
+          vscode.enable = false;
+          dank-material-shell.enable = false;
+        };
       };
     };
 }
