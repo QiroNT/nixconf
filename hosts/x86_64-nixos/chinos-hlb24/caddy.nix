@@ -18,6 +18,7 @@ in
       plugins = [ "pkg.para.party/certdx/exec/caddytls@v0.4.5" ];
       hash = "sha256-yuMTytyez08VNjYmqckN6sAvQIKgMKX1p+H/FPTsQ88=";
     };
+    openFirewall = true;
 
     # logFormat = lib.mkForce "level INFO";
 
@@ -59,11 +60,6 @@ in
         '';
       };
   };
-
-  networking.firewall.allowedTCPPorts = [
-    80
-    443
-  ];
 
   sops.secrets =
     let
