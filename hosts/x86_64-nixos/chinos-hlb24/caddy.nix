@@ -35,7 +35,7 @@ in
         certdx {
           http {
             main_server {
-              url https://certdx.internal.chino.dev:${builtins.toString certdxPort}
+              url https://certdx.internal.chino.dev:${toString certdxPort}
               authMethod mtls
               ca ${caddyCertdxData}/mtls/ca.pem
               certificate ${caddyCertdxData}/mtls/client.pem
@@ -43,6 +43,7 @@ in
             }
           }
           ${cert "immich"}
+          ${cert "llm"}
         }
       '';
 
@@ -57,6 +58,9 @@ in
       {
         "immich.internal.chino.dev".extraConfig = certdx "immich" + ''
           reverse_proxy http://localhost:2283
+        '';
+        "llm.internal.chino.dev".extraConfig = certdx "llm" + ''
+          reverse_proxy http://localhost:11434
         '';
       };
   };

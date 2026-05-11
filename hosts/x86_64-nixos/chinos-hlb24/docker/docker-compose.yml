@@ -1,16 +1,29 @@
-version: "3"
+name: nixconf
 
 services:
-  watchtower:
-    image: containrrr/watchtower
+  llama-swap:
+    image: ghcr.io/mostlygeek/llama-swap:vulkan-non-root
     restart: unless-stopped
-    command: --interval 3600
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      # - /root/.docker/config.json:/config.json
+    command: --listen 0.0.0.0:11434
     environment:
-      - WATCHTOWER_CLEANUP=true
-      - WATCHTOWER_INCLUDE_STOPPED=true
+      - LLAMA_CACHE=/cache
+    ports:
+      - "127.0.0.1:11434:11434"
+    volumes:
+      - ./llama-swap/config.yaml:/app/config.yaml
+      - llama-cache:/cache
+    devices:
+      - /dev/dri:/dev/dri
+    depends_on:
+      - llama-swap-init
+
+  llama-swap-init:
+    image: alpine
+    restart: "no"
+    entrypoint: |
+      /bin/sh -c "chown 10001:10001 /cache"
+    volumes:
+      - llama-cache:/cache
 
   factorio:
     # image: factoriotools/factorio:stable
@@ -32,6 +45,16 @@ services:
       - SAVE_NAME=se2
       - DLC_SPACE_AGE=elevated-rails quality
 
+  # minecraft-atm10:
+  #   build: ./minecraft/jre21
+  #   restart: unless-stopped
+  #   stdin_open: true
+  #   tty: true
+  #   ports:
+  #     - "25565:25565/tcp"
+  #   volumes:
+  #     - /opt/minecraft-atm10:/work
+
   # minecraft-startech:
   #   build: ./minecraft/jre17
   #   restart: unless-stopped
@@ -42,12 +65,16 @@ services:
   #   volumes:
   #     - /opt/minecraft-startech:/work
 
-  # minecraft-atm10:
-  #   build: ./minecraft/jre21
+  # watchtower:
+  #   image: containrrr/watchtower
   #   restart: unless-stopped
-  #   stdin_open: true
-  #   tty: true
-  #   ports:
-  #     - "25565:25565/tcp"
+  #   command: --interval 3600
   #   volumes:
-  #     - /opt/minecraft-atm10:/work
+  #     - /var/run/docker.sock:/var/run/docker.sock
+  #     # - /root/.docker/config.json:/config.json
+  #   environment:
+  #     - WATCHTOWER_CLEANUP=true
+  #     - WATCHTOWER_INCLUDE_STOPPED=true
+
+volumes:
+  llama-cache:
