@@ -14,6 +14,7 @@
             ghostty
             gtk
             niri
+            paneru
           ];
         }
 

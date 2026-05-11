@@ -87,6 +87,11 @@
       url = "github:nix-community/srvos";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    paneru = {
+      url = "github:karinushka/paneru";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =

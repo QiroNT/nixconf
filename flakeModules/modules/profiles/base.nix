@@ -163,11 +163,12 @@
             "android-platform-tools" # adb stuff, tho it doesn't bind to path, probably'll do it later
             "battery"
             "calibre"
-            "ungoogled-chromium"
             "ghostty"
             "google-chrome" # keystone sucks
             "gpgfrontend"
             "iina" # video player, tho i usually use vlc
+            "paneru" # wm
+            "ungoogled-chromium"
           ];
         };
       };

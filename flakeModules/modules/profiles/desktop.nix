@@ -11,7 +11,6 @@
         imports = with self.lib.withAny class; [
           profile-base
 
-          aerospace
           fonts
           niri
           pipewire
