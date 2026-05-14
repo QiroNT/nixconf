@@ -133,7 +133,6 @@
         (lib.optionalAttrs (class == "nixos") {
           home.packages = with pkgs; [
             # cli stuff
-            kwalletcli
             rime-cli
             psmisc # killall
 
