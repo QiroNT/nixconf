@@ -15,8 +15,8 @@ in
   services.caddy = {
     enable = true;
     package = pkgs.caddy.withPlugins {
-      plugins = [ "pkg.para.party/certdx/exec/caddytls@v0.4.5" ];
-      hash = "sha256-yuMTytyez08VNjYmqckN6sAvQIKgMKX1p+H/FPTsQ88=";
+      plugins = [ "pkg.para.party/certdx/exec/caddytls@v0.5.0" ];
+      hash = "sha256-H8v9jXYwgzNKkA+gWfW/OuPkUPZ+c6dJ6/4NGB8Sf54=";
     };
     openFirewall = true;
 

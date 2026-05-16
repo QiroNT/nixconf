@@ -1,27 +1,31 @@
 {
-  lib,
-  buildGo125Module,
+  buildGo126Module,
   fetchFromGitHub,
   ...
 }:
 let
   buildExec =
     exec: vendorHash:
-    buildGo125Module rec {
+    buildGo126Module rec {
       pname = "certdx-${exec}";
-      version = "0.4.5";
+      version = "0.5.0";
 
       src = fetchFromGitHub {
         owner = "ParaParty";
         repo = "certdx";
         rev = "v${version}";
-        sha256 = "sha256-NXZJFWLMFv9qUqQaqLgj11iUMaoZg+fTp9Mpzgtxgu4=";
+        sha256 = "sha256-JTeL9P1kFKMtiauHSxyfIg/C/aO6M6jgz2MkXq9B2tQ=";
+      };
+
+      env = {
+        CGO_ENABLED = 0;
+        GOWORK = "off";
       };
 
       ldflags = [
         "-s"
         "-w"
-        "-X main.buildCommit=${src.rev}"
+        "-X main.buildTag=v${version}"
         "-X main.buildDate=1970-01-01T00:00:00Z"
       ];
 
@@ -35,7 +39,7 @@ let
     };
 in
 {
-  client = buildExec "client" "sha256-7ZwiPbSCKZr6BMXWFA14LJhCbVa1LOQr0hz2VYSpjCM=";
-  server = buildExec "server" "sha256-vni/u3cBqdJNSSy5+N9SyWJrM5dyxLHnCOkZahEtIn0=";
-  tools = buildExec "tools" "sha256-6yqmOldQCbUh9Kt56nY43p1kPbWhmjkyZgAq8MeXaws=";
+  client = buildExec "client" "sha256-vrvVDIuYsZq21KAQJ3FqSWILs3ocTd531+p6CoG9Pec=";
+  server = buildExec "server" "sha256-pzRinrFGU7wtWHHU2Kz4t7GCPeGT6TCwvQKwAMy8vZw=";
+  tools = buildExec "tools" "sha256-C7iHzZCsnVQVDQ2nTpQlXUrzvR0PjrSSBBtyz0wQ+Ns=";
 }
