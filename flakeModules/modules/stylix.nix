@@ -31,7 +31,7 @@
               name = "Geist";
             };
             monospace = {
-              package = pkgs.local.monaspace;
+              package = pkgs.monaspace;
               name = "Monaspace Neon NF";
             };
             emoji = {
