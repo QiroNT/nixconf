@@ -167,7 +167,6 @@
             "google-chrome" # keystone sucks
             "gpgfrontend"
             "iina" # video player, tho i usually use vlc
-            "paneru" # wm
             "ungoogled-chromium"
           ];
         };
