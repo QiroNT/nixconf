@@ -166,6 +166,8 @@
             "google-chrome" # keystone sucks
             "gpgfrontend"
             "iina" # video player, tho i usually use vlc
+            "macfuse"
+            "sshfs-mac"
             "ungoogled-chromium"
           ];
         };
