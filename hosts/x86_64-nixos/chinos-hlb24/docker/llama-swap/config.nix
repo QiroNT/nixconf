@@ -103,6 +103,12 @@ in
       '';
     })
     (model {
+      name = "gemma4-12b";
+      args = ''
+        -hf unsloth/gemma-4-12B-it-GGUF:Q4_K_M
+      '';
+    })
+    (model {
       name = "gemma4-e4b";
       args = ''
         -hf unsloth/gemma-4-E4B-it-GGUF:Q4_K_M
