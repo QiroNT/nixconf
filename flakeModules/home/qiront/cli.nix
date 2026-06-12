@@ -26,10 +26,14 @@
             rsync
             rclone
 
-            # compression
+            # archival
+            gnutar
             xz
             zstd
             brotli
+            _7zz
+            asar
+            payload-dumper-go
 
             # visual stuff
             ffmpeg-full
@@ -39,11 +43,22 @@
             libwebp
             optipng
 
-            # networking / testing
+            # disk
+            dua
+
+            # networking
+            bind
+            mtr
             iperf
             nmap
+            miniupnpc
             wrk
             oha
+
+            chafa # image printer
+            sops
+            vulkan-tools
+            watch
           ];
         }
 
@@ -53,19 +68,18 @@
             rime-cli
             psmisc # killall
 
-            # compression
-            p7zip
-
             # disk stuff
             ifuse # for ios
             mtools # NTFS
-            nfs-utils # nfs
+            nfs-utils
+            btdu
 
             # network
             cloudflared # tunnel
             cloudflare-warp
             tailscale
             inetutils # telnet / ping
+            nixos-firewall-tool
           ];
         })
 

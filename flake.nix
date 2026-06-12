@@ -92,6 +92,11 @@
       url = "github:karinushka/paneru";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    cachyos-pkgbuilds = {
+      url = "github:CachyOS/CachyOS-PKGBUILDS";
+      flake = false;
+    };
   };
 
   outputs =

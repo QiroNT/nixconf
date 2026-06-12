@@ -167,8 +167,10 @@
             "gpgfrontend"
             "iina" # video player, tho i usually use vlc
             "macfuse"
+            "music-decoy"
             "sshfs-mac"
             "ungoogled-chromium"
+            "utm"
           ];
         };
       };

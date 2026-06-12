@@ -42,9 +42,6 @@
 
             # docker / k8s
             dive
-            kubectl
-            kubernetes-helm
-            argocd # just to help with configs at work
 
             # cloud
             google-cloud-sdk

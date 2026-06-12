@@ -90,7 +90,11 @@
               };
 
               default-language-servers =
-                (fromTOML (builtins.readFile "${pkgs.helix-unwrapped.src}/languages.toml")).language
+                (fromTOML (
+                  builtins.readFile "${
+                    pkgs.helix-unwrapped.src.override { sparseCheckout = [ "languages.toml" ]; }
+                  }/languages.toml"
+                )).language
                 |> builtins.filter (
                   l: builtins.hasAttr "name" l && builtins.hasAttr "scope" l && builtins.hasAttr "language-servers" l
                 )
