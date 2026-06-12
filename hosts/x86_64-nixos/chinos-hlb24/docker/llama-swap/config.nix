@@ -61,57 +61,54 @@ in
     (model {
       name = "qwen3.6-27b";
       args = ''
-        -hf unsloth/Qwen3.6-27B-GGUF:Q4_K_M
-      '';
-    })
-    (model {
-      name = "qwen3.5-9bspec";
-      args = ''
-        -hf unsloth/Qwen3.5-9B-GGUF:Q4_K_M
-        -hfd unsloth/Qwen3.5-0.8B-GGUF:Q4_K_M
+        -hf unsloth/Qwen3.6-27B-MTP-GGUF:UD-Q4_K_XL
+        --spec-type draft-mtp --spec-draft-n-max 2
       '';
     })
     (model {
       name = "qwen3.5-9b";
       args = ''
-        -hf unsloth/Qwen3.5-9B-GGUF:Q4_K_M
+        -hf unsloth/Qwen3.5-9B-MTP-GGUF:UD-Q4_K_XL
+        --spec-type draft-mtp --spec-draft-n-max 2
       '';
     })
     (model {
       name = "qwen3.5-4b";
       args = ''
-        -hf unsloth/Qwen3.5-4B-GGUF:Q4_K_M
+        -hf unsloth/Qwen3.5-4B-MTP-GGUF:UD-Q4_K_XL
+        --spec-type draft-mtp --spec-draft-n-max 2
       '';
     })
     (model {
       name = "qwen3.5-2b";
       args = ''
-        -hf unsloth/Qwen3.5-2B-GGUF:Q4_K_M
+        -hf unsloth/Qwen3.5-2B-MTP-GGUF:UD-Q4_K_XL
+        --spec-type draft-mtp --spec-draft-n-max 2
       '';
     })
     (model {
       name = "gemma4-31b";
       args = ''
-        -hf unsloth/gemma-4-31B-it-GGUF:Q4_K_M
+        -hf unsloth/gemma-4-31B-it-qat-GGUF:UD-Q4_K_XL
       '';
       ctx = 65536;
     })
     (model {
       name = "gemma4-26b-a4b";
       args = ''
-        -hf unsloth/gemma-4-26B-A4B-it-GGUF:Q4_K_M
+        -hf unsloth/gemma-4-26B-A4B-it-qat-GGUF:UD-Q4_K_XL
       '';
     })
     (model {
       name = "gemma4-12b";
       args = ''
-        -hf unsloth/gemma-4-12B-it-GGUF:Q4_K_M
+        -hf unsloth/gemma-4-12B-it-qat-GGUF:UD-Q4_K_XL
       '';
     })
     (model {
       name = "gemma4-e4b";
       args = ''
-        -hf unsloth/gemma-4-E4B-it-GGUF:Q4_K_M
+        -hf unsloth/gemma-4-E4B-it-qat-GGUF:UD-Q4_K_XL
       '';
     })
   ];
