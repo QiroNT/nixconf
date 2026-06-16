@@ -20,6 +20,11 @@
         forwardPorts = [
           {
             protocol = "tcp";
+            hostPort = 8888;
+            containerPort = 8888;
+          }
+          {
+            protocol = "tcp";
             hostPort = 7777;
             containerPort = 7777;
           }
