@@ -24,8 +24,7 @@
           ];
 
           programs = {
-            # zsh is still supported more widely than fish,
-            # tho I probably should try fish, maybe later.
+            # i still want posix shell
             zsh = {
               enable = true;
               # zprof.enable = true;
@@ -45,8 +44,13 @@
 
               shellAliases = {
                 cat = "bat";
-                diff = "difft";
                 ls = "eza";
+              };
+
+              sessionVariables = {
+                EDITOR = "hx";
+                VISUAL = "hx";
+                MANPAGER = "bat -plman";
               };
             };
 
@@ -73,7 +77,7 @@
             starship = {
               enable = true;
               # using toml here to benefit from schema & lsp
-              settings = builtins.fromTOML (builtins.readFile ./config/starship.toml);
+              settings = fromTOML (builtins.readFile ./config/starship.toml);
             };
 
             # zsh history is just too smol
@@ -104,10 +108,6 @@
               *) export PATH="$PNPM_HOME:$PATH" ;;
             esac
             # pnpm end
-
-            # editor
-            export EDITOR="hx"
-            export VISUAL="$EDITOR"
           '';
         })
 
@@ -127,10 +127,6 @@
               *":$TOOLBOX_PATH:"*) ;;
               *) export PATH="$TOOLBOX_PATH:$PATH" ;;
             esac
-
-            # editor
-            export EDITOR="hx"
-            export VISUAL="$EDITOR"
           '';
         })
       ];

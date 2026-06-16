@@ -12,7 +12,7 @@
         {
           imports = with self.lib.prefixWith "qiront" config.flake.modules.homeManager; [
             ghostty
-            gtk
+            mime
             niri
             paneru
           ];

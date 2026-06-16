@@ -23,6 +23,7 @@
 
         kdePackages.ark
         nautilus
+        nomacs
 
         pwvucontrol
         udiskie
@@ -30,10 +31,7 @@
       environment.variables.NIXOS_OZONE_WL = "1";
 
       services.gnome.sushi.enable = true;
-      programs.nautilus-open-any-terminal = {
-        enable = true;
-        terminal = "ghostty";
-      };
+      programs.nautilus-open-any-terminal.enable = true;
 
       programs.uwsm = {
         enable = true;

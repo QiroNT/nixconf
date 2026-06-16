@@ -15,6 +15,13 @@
         imports = [ inputs.stylix.nixosModules.stylix ];
 
         stylix = {
+          icons = {
+            enable = true;
+            package = pkgs.papirus-icon-theme;
+            light = "Papirus-Light";
+            dark = "Papirus-Dark";
+          };
+
           cursor = {
             package = pkgs.bibata-cursors;
             name = "Bibata-Modern-Classic";

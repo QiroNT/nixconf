@@ -65,7 +65,7 @@
     };
 
     satisfactory-server-flake = {
-      url = "github:nekowinston/satisfactory-server-flake";
+      url = "./vendor/satisfactory-server-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

@@ -238,11 +238,11 @@
     },
     "flake-compat_3": {
       "locked": {
-        "lastModified": 1761588595,
-        "narHash": "sha256-XKUZz9zewJNUj46b4AJdiRZJAvSZ0Dqj2BNfXvFlJC4=",
+        "lastModified": 1767039857,
+        "narHash": "sha256-vNpUSpF5Nuw8xvDLj2KCwwksIbjua2LZCqhV1LNRDns=",
         "owner": "nixos",
         "repo": "flake-compat",
-        "rev": "f387cd2afec9419c8ee37694406ca490c3f34ee5",
+        "rev": "5edf11c44bc78a0d334f6334cdaf7d60d732daab",
         "type": "github"
       },
       "original": {
@@ -914,18 +914,14 @@
         "steam-fetcher": "steam-fetcher"
       },
       "locked": {
-        "lastModified": 1765398194,
-        "narHash": "sha256-1vFzgW8upTbn4PyzC2VrCLUoAEHOuJUto4OMw+uQRac=",
-        "owner": "nekowinston",
-        "repo": "satisfactory-server-flake",
-        "rev": "d7cb5e812adfa1143cb1ece20c1f4cee3a5a0e32",
-        "type": "github"
+        "path": "./vendor/satisfactory-server-flake",
+        "type": "path"
       },
       "original": {
-        "owner": "nekowinston",
-        "repo": "satisfactory-server-flake",
-        "type": "github"
-      }
+        "path": "./vendor/satisfactory-server-flake",
+        "type": "path"
+      },
+      "parent": []
     },
     "sops-nix": {
       "inputs": {

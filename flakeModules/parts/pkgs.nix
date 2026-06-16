@@ -12,6 +12,7 @@ let
         pkg:
         builtins.elem (lib.getName pkg) [
           "ventoy"
+          "electron"
         ];
     };
     overlays = [
