@@ -151,6 +151,8 @@
 
         homebrew = {
           enable = true;
+          enableBashIntegration = true;
+          enableZshIntegration = true;
           user = "qiront";
           # software that can't update itself.
           # giving the ablitity to self update is usually more efficient,
