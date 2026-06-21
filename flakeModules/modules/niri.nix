@@ -30,6 +30,12 @@
       ];
       environment.variables.NIXOS_OZONE_WL = "1";
 
+      services = {
+        accounts-daemon.enable = true;
+        geoclue2.enable = true;
+        power-profiles-daemon.enable = true;
+      };
+
       services.gnome.sushi.enable = true;
       programs.nautilus-open-any-terminal.enable = true;
 

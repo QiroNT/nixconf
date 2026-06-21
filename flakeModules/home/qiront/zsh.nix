@@ -50,7 +50,6 @@
               sessionVariables = {
                 EDITOR = "hx";
                 VISUAL = "hx";
-                MANPAGER = "bat -plman";
               };
             };
 
@@ -104,8 +103,8 @@
             # pnpm
             export PNPM_HOME="${config.home.homeDirectory}/.local/share/pnpm"
             case ":$PATH:" in
-              *":$PNPM_HOME:"*) ;;
-              *) export PATH="$PNPM_HOME:$PATH" ;;
+              *":$PNPM_HOME/bin:"*) ;;
+              *) export PATH="$PNPM_HOME/bin:$PATH" ;;
             esac
             # pnpm end
           '';
@@ -116,8 +115,8 @@
             # pnpm
             export PNPM_HOME="${config.home.homeDirectory}/Library/pnpm"
             case ":$PATH:" in
-              *":$PNPM_HOME:"*) ;;
-              *) export PATH="$PNPM_HOME:$PATH" ;;
+              *":$PNPM_HOME/bin:"*) ;;
+              *) export PATH="$PNPM_HOME/bin:$PATH" ;;
             esac
             # pnpm end
 

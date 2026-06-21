@@ -38,34 +38,7 @@
             ];
           };
         }
-
-        (lib.optionalAttrs pkgs.stdenvNoCC.isLinux {
-          optimise.automatic = true;
-          gc = {
-            automatic = true;
-            persistent = true;
-            dates = "monthly";
-            randomizedDelaySec = "45min";
-            options = "--delete-older-than 30d";
-          };
-        })
-
-        (lib.optionalAttrs pkgs.stdenvNoCC.isDarwin {
-          gc = {
-            automatic = true;
-            interval = {
-              Day = 1;
-              Hour = 2;
-              Minute = 0;
-            };
-            options = "--delete-older-than 30d";
-          };
-        })
       ];
-
-      sops.secrets."common/nix/netrc" = {
-        sopsFile = "${self}/secrets/common.yaml";
-      };
     }
   );
 }

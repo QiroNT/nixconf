@@ -19,6 +19,7 @@
             autoconf
             automake
             cmake
+            man-pages
 
             # js
             nodejs_24

@@ -1,7 +1,25 @@
 // https://github.com/zellij-org/zellij/blob/main/default-plugins/configuration/src/presets.rs
+// 
+// Changes:
+// - Alt-* changed to normal only to not confict with helix
+
 default_mode "locked"
 keybinds clear-defaults=true {
     normal {
+        bind "Alt n" { NewPane; }
+        bind "Alt f" { ToggleFloatingPanes; }
+        bind "Alt i" { MoveTab "Left"; }
+        bind "Alt o" { MoveTab "Right"; }
+        bind "Alt h" "Alt Left" { MoveFocusOrTab "Left"; }
+        bind "Alt l" "Alt Right" { MoveFocusOrTab "Right"; }
+        bind "Alt j" "Alt Down" { MoveFocus "Down"; }
+        bind "Alt k" "Alt Up" { MoveFocus "Up"; }
+        bind "Alt =" "Alt +" { Resize "Increase"; }
+        bind "Alt -" { Resize "Decrease"; }
+        bind "Alt [" { PreviousSwapLayout; }
+        bind "Alt ]" { NextSwapLayout; }
+        bind "Alt p" { TogglePaneInGroup; }
+        bind "Alt Shift p" { ToggleGroupMarking; }
     }
     locked {
         bind "Ctrl g" { SwitchToMode "Normal"; }
@@ -167,22 +185,6 @@ keybinds clear-defaults=true {
     }
     shared_except "renamepane" "renametab" "entersearch" "locked" {
         bind "esc" { SwitchToMode "locked"; }
-    }
-    shared_among "normal" "locked" {
-        bind "Alt n" { NewPane; }
-        bind "Alt f" { ToggleFloatingPanes; }
-        bind "Alt i" { MoveTab "Left"; }
-        bind "Alt o" { MoveTab "Right"; }
-        bind "Alt h" "Alt Left" { MoveFocusOrTab "Left"; }
-        bind "Alt l" "Alt Right" { MoveFocusOrTab "Right"; }
-        bind "Alt j" "Alt Down" { MoveFocus "Down"; }
-        bind "Alt k" "Alt Up" { MoveFocus "Up"; }
-        bind "Alt =" "Alt +" { Resize "Increase"; }
-        bind "Alt -" { Resize "Decrease"; }
-        bind "Alt [" { PreviousSwapLayout; }
-        bind "Alt ]" { NextSwapLayout; }
-        bind "Alt p" { TogglePaneInGroup; }
-        bind "Alt Shift p" { ToggleGroupMarking; }
     }
     shared_except "locked" "renametab" "renamepane" {
         bind "Enter" { SwitchToMode "Locked"; }
