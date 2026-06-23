@@ -16,7 +16,14 @@
               80
               120
             ];
-            indent-guides.render = true;
+            whitespace.render = {
+              tab = "all";
+            };
+            indent-guides = {
+              render = true;
+              character = "▏"; # left align
+              skip-levels = 1; # so that one tab can be rendered
+            };
             cursor-shape = {
               normal = "block";
               insert = "bar";
@@ -102,10 +109,13 @@
                 |> builtins.listToAttrs;
 
               codebook-langs = [
+                "astro"
+                "bash"
                 "c"
                 "c-sharp"
                 "cpp"
                 "css"
+                "dart"
                 "elixir"
                 "erlang"
                 "go"
@@ -115,14 +125,19 @@
                 "javascript"
                 "lua"
                 "nix"
+                "ocaml"
+                "ocaml-interface"
                 "odin"
                 "php"
                 "python"
                 "ruby"
                 "rust"
+                "svelte"
                 "swift"
                 "toml"
                 "typescript"
+                "vhdl"
+                "vue"
                 "yaml"
                 "zig"
               ];
@@ -164,15 +179,22 @@
         };
 
         extraPackages = with pkgs; [
+          # nix
           nixd
+          # rust
           rust-analyzer
-          tinymist # typst
+          # typst
+          tinymist
           typstyle
-          vscode-langservers-extracted # html/css/json/eslint
-          clang-tools # c
+          # html/css/json/eslint
+          vscode-langservers-extracted
+          # c
+          clang-tools
           lldb
-          jdt-language-server # java
-          codebook # spell check
+          # java
+          jdt-language-server
+          # spell check
+          codebook
           harper
         ];
       };
