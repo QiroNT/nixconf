@@ -64,6 +64,12 @@
               enable = true;
               git.enable = true;
             };
+
+            lazygit = {
+              enable = true;
+              enableBashIntegration = true;
+              enableZshIntegration = true;
+            };
           };
         }
 
