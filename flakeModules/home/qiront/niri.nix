@@ -154,7 +154,7 @@
                   action = dms-ipc "notifications" "toggle";
                   hotkey-overlay.title = "Toggle Notification Center";
                 };
-                "Mod+Alt+L" = {
+                "Mod+L" = {
                   action = dms-ipc "lock" "lock";
                   hotkey-overlay.title = "Toggle Lock Screen";
                 };
@@ -232,7 +232,7 @@
 
                 "Mod+W".action = toggle-column-tabbed-display;
 
-                "Print".action.screenshot = [ ];
+                "Print".action = spawn-sh "dms screenshot full --no-clipboard --stdout | satty -f -";
                 "Ctrl+Print".action.screenshot-screen = [ ];
                 "Alt+Print".action.screenshot-window = [ ];
 
@@ -292,10 +292,29 @@
           enable = true;
           niri.includes.enable = true;
         };
+
+        satty = {
+          enable = true;
+          settings = {
+            general = {
+              fullscreen = true;
+              early-exit = true;
+              save-after-copy = true;
+              actions-on-right-click = [ "save-to-clipboard" ];
+              copy-command = "wl-copy";
+            };
+          };
+        };
       };
 
-      home.packages = with pkgs; [
-      ];
+      home = {
+        packages = with pkgs; [
+        ];
+
+        sessionVariables = {
+          DMS_SCREENSHOT_EDITOR = "satty";
+        };
+      };
 
       xdg.configFile."uwsm/env-niri".text = ''
         export APP2UNIT_SLICES="a=app-graphical.slice b=background-graphical.slice s=session-graphical.slice"

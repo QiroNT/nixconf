@@ -24,11 +24,16 @@
         LIBVA_DRIVER_NAME = "nvidia";
         VDPAU_DRIVER = "nvidia";
         NVD_BACKEND = "direct";
+
+        # https://wiki.cachyos.org/configuration/gaming/#increase-maximum-shader-cache-size
+        __GL_SHADER_DISK_CACHE_SIZE = toString (32 * 1024 * 1024 * 1024);
       };
 
       # https://github.com/NVIDIA/egl-wayland/issues/126
       environment.etc."nvidia/nvidia-application-profiles-rc.d/50-limit-vram-usage.json".source =
         "${inputs.cachyos-pkgbuilds}/nvidia/nvidia-utils/limit-vram-usage";
+
+      programs.nix-ld.libraries = [ config.hardware.nvidia.package ];
     }
   );
 }

@@ -5,12 +5,13 @@
     {
       any = {
         imports = with self.lib.withAny class; [
-          stylix
           any
           home-manager
           nix
           nixpkgs
+          sing-box
           sops
+          stylix
         ];
 
         # create /etc/zshrc that loads the environment
@@ -61,6 +62,11 @@
           allowedUDPPorts = [ ];
         };
 
+        # fix ssh for uv
+        systemd.tmpfiles.rules = [
+          "L /etc/ssl/cert.pem - - - - /etc/ssl/certs/ca-bundle.crt"
+        ];
+
         users.defaultUserShell = pkgs.zsh;
 
         # ssh
@@ -102,7 +108,10 @@
         systemd.services.tailscaled.serviceConfig.Environment = [
           "TS_DEBUG_FIREWALL_MODE=nftables"
         ];
-        networking.firewall.trustedInterfaces = [ "tailscale0" ];
+        networking.firewall.trustedInterfaces = [
+          "tailscale0"
+          "sing0"
+        ];
 
         services.cloudflare-warp.enable = true;
 

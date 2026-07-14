@@ -24,7 +24,9 @@
           enable = true;
           # Add any missing dynamic libraries for unpackaged programs
           # here, NOT in environment.systemPackages
-          libraries = with pkgs; [ ];
+          libraries = with pkgs; [
+            (runCommand "steamrun-lib" { } "mkdir $out; ln -s ${steam-run.fhsenv}/usr/lib64 $out/lib")
+          ];
         };
       };
     }
