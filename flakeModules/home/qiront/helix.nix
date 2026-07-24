@@ -150,6 +150,7 @@
                 "zig"
               ];
               harper-langs = [
+                "git-commit"
                 "markdown"
                 "typst"
               ];

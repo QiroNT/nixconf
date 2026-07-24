@@ -23,7 +23,7 @@
             # apps
             audacity
             bitwarden-desktop
-            bottles
+            # bottles
             filezilla
             # gale
             gimp

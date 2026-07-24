@@ -1,4 +1,4 @@
-{ self, ... }:
+{ inputs, self, ... }:
 {
   flake.modules = self.lib.mkAnyMatch "stylix" (
     { inputs, pkgs, ... }:
@@ -7,7 +7,7 @@
         stylix = {
           enable = true;
           polarity = "dark";
-          base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+          base16Scheme = "${inputs.tt-schemes}/base16/catppuccin-mocha.yaml";
         };
       };
 

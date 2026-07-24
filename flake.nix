@@ -92,6 +92,11 @@
       url = "github:CachyOS/CachyOS-PKGBUILDS";
       flake = false;
     };
+
+    tt-schemes = {
+      url = "github:tinted-theming/schemes";
+      flake = false;
+    };
   };
 
   outputs =
