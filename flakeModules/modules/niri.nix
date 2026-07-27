@@ -31,6 +31,7 @@
       environment.variables.NIXOS_OZONE_WL = "1";
 
       services = {
+        logind.settings.Login.HandlePowerKey = "poweroff";
         accounts-daemon.enable = true;
         geoclue2.enable = true;
         power-profiles-daemon.enable = true;

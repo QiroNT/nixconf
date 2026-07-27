@@ -25,7 +25,10 @@
           hotkey-overlay.skip-at-startup = true;
           prefer-no-csd = true;
 
-          input.keyboard.numlock = true;
+          input = {
+            keyboard.numlock = true;
+            power-key-handling.enable = false;
+          };
 
           layout = {
             gaps = 3;

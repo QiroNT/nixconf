@@ -1,7 +1,7 @@
 { ... }:
 {
   flake.modules.homeManager.qiront-zellij =
-    { ... }:
+    { pkgs, ... }:
     {
       programs = {
         zellij = {
@@ -58,6 +58,22 @@
             add-zsh-hook preexec set_tab_to_command_line
           fi
         '';
+      };
+
+      systemd.user.services.zellij-shutdown = {
+        Unit = {
+          Description = "Shutdown (detached) Zellij sessions with the graphical session";
+          PartOf = [ "graphical-session.target" ];
+          After = [ "graphical-session.target" ];
+        };
+        Service = {
+          Type = "oneshot";
+          RemainAfterExit = true;
+          ExecStart = "${pkgs.coreutils}/bin/true";
+          ExecStop = "${pkgs.zellij}/bin/zellij kill-all-sessions --yes";
+          TimeoutStopSec = 10;
+        };
+        Install.WantedBy = [ "graphical-session.target" ];
       };
     };
 }

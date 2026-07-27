@@ -63,6 +63,10 @@
             # recording tool (lol)
             obs-studio.enable = true;
           };
+
+          services = {
+            kdeconnect.enable = true;
+          };
         })
 
         (lib.optionalAttrs (class == "darwin") {

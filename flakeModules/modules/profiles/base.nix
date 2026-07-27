@@ -34,6 +34,7 @@
           loader = {
             efi.canTouchEfiVariables = true;
             systemd-boot.enable = true;
+            timeout = 0; # apparently you can just press space
           };
           initrd = {
             compressor = "zstd";

@@ -34,6 +34,8 @@
             _7zz
             asar
             payload-dumper-go
+            lz4
+            cpio
 
             # visual stuff
             ffmpeg-full
@@ -45,6 +47,7 @@
 
             # disk
             dua
+            e2fsprogs
 
             # networking
             bind
@@ -65,21 +68,22 @@
         (lib.optionalAttrs (class == "nixos") {
           home.packages = with pkgs; [
             # cli stuff
-            rime-cli
             psmisc # killall
+            qemu
+            rime-cli
 
             # disk stuff
+            btdu
             ifuse # for ios
             mtools # NTFS
             nfs-utils
-            btdu
 
             # network
             cloudflared # tunnel
             cloudflare-warp
-            tailscale
             inetutils # telnet / ping
             nixos-firewall-tool
+            tailscale
           ];
         })
 
