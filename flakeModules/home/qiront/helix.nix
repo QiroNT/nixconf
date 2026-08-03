@@ -1,11 +1,20 @@
-{ self, lib, ... }:
+{ inputs, ... }:
 {
   flake.modules.homeManager.qiront-helix =
     { pkgs, ... }:
+    let
+      helix = inputs.helix-steel.packages.${pkgs.stdenv.hostPlatform.system}.helix;
+      steel = inputs.steel.packages.${pkgs.stdenv.hostPlatform.system}.steel;
+    in
     {
       programs.helix = {
         enable = true;
         defaultEditor = true;
+        package = helix.overrideAttrs (prevAttrs: {
+          cargoBuildFeatures = [
+            "helix-term/steel"
+          ];
+        });
 
         settings =
           let
@@ -91,105 +100,12 @@
             };
           };
 
-        languages = {
-          language =
-            let
-              cfg = {
-                nix = {
-                  auto-format = true;
-                  formatter.command = "${lib.getExe pkgs.nixfmt}";
-                };
-                typst = {
-                  auto-format = true;
-                };
-              };
-
-              default-language-servers =
-                (fromTOML (
-                  builtins.readFile "${
-                    pkgs.helix-unwrapped.src.override { sparseCheckout = [ "languages.toml" ]; }
-                  }/languages.toml"
-                )).language
-                |> builtins.filter (
-                  l: builtins.hasAttr "name" l && builtins.hasAttr "scope" l && builtins.hasAttr "language-servers" l
-                )
-                |> map (l: lib.nameValuePair l.name { language-servers = _: l.language-servers; })
-                |> builtins.listToAttrs;
-
-              codebook-langs = [
-                "astro"
-                "bash"
-                "c"
-                "c-sharp"
-                "cpp"
-                "css"
-                "dart"
-                "elixir"
-                "erlang"
-                "go"
-                "haskell"
-                "html"
-                "java"
-                "javascript"
-                "lua"
-                "nix"
-                "ocaml"
-                "ocaml-interface"
-                "odin"
-                "php"
-                "python"
-                "ruby"
-                "rust"
-                "svelte"
-                "swift"
-                "toml"
-                "typescript"
-                "vhdl"
-                "vue"
-                "yaml"
-                "zig"
-              ];
-              harper-langs = [
-                "git-commit"
-                "markdown"
-                "typst"
-              ];
-
-              append-ls =
-                server: langs:
-                langs
-                |> map (l: lib.nameValuePair l { language-servers.__append = [ server ]; })
-                |> builtins.listToAttrs;
-            in
-            self.lib.infuse cfg [
-              default-language-servers
-              (append-ls "codebook" codebook-langs)
-              (append-ls "harper-ls" harper-langs)
-            ]
-            |> lib.mapAttrsToList (name: value: value // { inherit name; });
-
-          language-server = {
-            tinymist.config = {
-              formatterMode = "typstyle";
-              formatterProseWrap = true;
-            };
-            rust-analyzer.config = {
-              check.command = "clippy";
-            };
-            codebook = {
-              command = "codebook-lsp";
-              args = [ "serve" ];
-            };
-            harper-ls = {
-              command = "harper-ls";
-              args = [ "--stdio" ];
-            };
-          };
-        };
-
         extraPackages = with pkgs; [
+          # scheme
+          schemat
           # nix
           nixd
+          nixfmt
           # rust
           rust-analyzer
           # typst
@@ -206,6 +122,15 @@
           codebook
           harper
         ];
+      };
+
+      home.packages = [
+        steel
+      ];
+
+      xdg.configFile."helix" = {
+        source = ./config/helix;
+        recursive = true;
       };
     };
 }

@@ -97,6 +97,16 @@
       url = "github:tinted-theming/schemes";
       flake = false;
     };
+
+    helix-steel = {
+      url = "github:mattwparas/helix/steel-event-system";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    steel = {
+      url = "github:mattwparas/steel";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
