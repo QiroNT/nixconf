@@ -15,6 +15,9 @@
             mouse_follows_focus = false;
             animation_speed = 20;
           };
+          decorations = {
+            workspace_popup_status = false;
+          };
           bindings = {
             window_focus_west = "alt - h";
             window_focus_east = "alt - l";
