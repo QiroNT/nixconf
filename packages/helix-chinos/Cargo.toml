@@ -1,0 +1,26 @@
+[workspace]
+members = [".", "helix-chinos-macros"]
+resolver = "3"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+
+[package]
+name = "helix-chinos"
+version.workspace = true
+edition.workspace = true
+
+[lib]
+name = "helix_chinos"
+crate-type = ["cdylib"]
+
+[dependencies]
+abi_stable = "0.11.3"
+compio = { version = "0.19.1", features = ["dispatcher"] }
+extension-traits = "2.0.2"
+eyre = "0.6.14"
+fake = "5.1.0"
+helix-chinos-macros = { path = "helix-chinos-macros" }
+steel-core = { version = "0.8.2", features = ["dylibs", "sync"] }
+textwrap = "0.16.2"

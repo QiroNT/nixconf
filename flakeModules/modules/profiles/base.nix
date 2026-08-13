@@ -96,6 +96,7 @@
             "https://cache.nixos.org"
             "https://nix-community.cachix.org"
             "https://numtide.cachix.org"
+            "https://fenix.cachix.org"
             "https://niri.cachix.org"
             "https://attic.xuyh0120.win/lantian"
           ];

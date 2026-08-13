@@ -5,6 +5,7 @@
     let
       helix = inputs.helix-steel.packages.${pkgs.stdenv.hostPlatform.system}.helix;
       steel = inputs.steel.packages.${pkgs.stdenv.hostPlatform.system}.steel;
+      helix-chinos = pkgs.local.helix-chinos.override { inherit steel; };
     in
     {
       programs.helix = {
@@ -132,5 +133,8 @@
         source = ./config/helix;
         recursive = true;
       };
+
+      xdg.dataFile."steel/native/libhelix_chinos.so".source =
+        "${helix-chinos}/share/steel/native/libhelix_chinos.so";
     };
 }
