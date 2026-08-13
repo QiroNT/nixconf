@@ -22,7 +22,7 @@
 ;;@doc
 ;; Insert lorem ipsum.
 (define (lorem . args)
-  (define count (if (null? args) 5 (car args)))
+  (define count (if (null? args) 5 (string->number (car args))))
   (helix.misc.await-callback (HelixChinos-lorem *helix-chinos* count)
     (lambda (lorem)
       (helix.static.insert_string lorem))))
