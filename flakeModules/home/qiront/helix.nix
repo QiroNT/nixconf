@@ -134,7 +134,18 @@
         recursive = true;
       };
 
-      xdg.dataFile."steel/native/libhelix_chinos.so".source =
-        "${helix-chinos}/share/steel/native/libhelix_chinos.so";
+      xdg.dataFile."steel/native" =
+        let
+          native = pkgs.symlinkJoin {
+            name = "steel-native";
+            paths = [
+              helix-chinos
+            ];
+          };
+        in
+        {
+          source = "${native}/share/steel/native";
+          recursive = true;
+        };
     };
 }
