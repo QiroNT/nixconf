@@ -34,7 +34,7 @@
             monero-gui
             obsidian
             piper
-            protonup-qt
+            protonplus
             qbittorrent
             r2modman
             signal-desktop
