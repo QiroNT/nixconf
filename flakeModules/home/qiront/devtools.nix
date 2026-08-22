@@ -20,6 +20,7 @@
             automake
             cmake
             man-pages
+            stdmanpages
 
             # js
             nodejs_24
@@ -53,6 +54,14 @@
           home.packages = with pkgs; [
             # c
             gcc
+            acl.man
+            attr.man
+            keyutils.man
+            libcap.man
+            libseccomp.man
+            liburing.man
+            numactl.man
+            rdma-core.man
           ];
         })
 

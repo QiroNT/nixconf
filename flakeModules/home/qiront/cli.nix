@@ -62,6 +62,7 @@
             sops
             vulkan-tools
             watch
+            watchexec
           ];
         }
 
