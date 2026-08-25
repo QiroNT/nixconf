@@ -14,308 +14,297 @@
         inputs.dms.homeModules.niri
       ];
 
-      programs = {
-        niri.settings = {
-          # FIXME nvidia fix, remove once either
-          # https://github.com/YaLTeR/niri/issues/2030
-          # https://github.com/YaLTeR/niri/issues/2477
-          # is closed
-          debug.wait-for-frame-completion-before-queueing = [ ];
+      programs.niri.settings = {
+        # FIXME nvidia fix, remove once either
+        # https://github.com/YaLTeR/niri/issues/2030
+        # https://github.com/YaLTeR/niri/issues/2477
+        # is closed
+        debug.wait-for-frame-completion-before-queueing = [ ];
 
-          hotkey-overlay.skip-at-startup = true;
-          prefer-no-csd = true;
+        hotkey-overlay.skip-at-startup = true;
+        prefer-no-csd = true;
 
-          input = {
-            keyboard.numlock = true;
-            power-key-handling.enable = false;
-          };
-
-          layout = {
-            gaps = 3;
-            border.width = 2;
-            background-color = "transparent";
-          };
-
-          overview.workspace-shadow.enable = false;
-
-          animations.slowdown = 0.7;
-
-          workspaces = {
-            "1" = { };
-            "2" = { };
-            "3" = { };
-            "4" = { };
-            "5" = { };
-            "6" = { };
-            "7" = { };
-            "8" = { };
-            "9" = { };
-          };
-
-          window-rules = [
-            {
-              # i hate this
-              geometry-corner-radius = {
-                bottom-left = 3.;
-                bottom-right = 3.;
-                top-left = 3.;
-                top-right = 3.;
-              };
-              clip-to-geometry = true;
-            }
-
-            {
-              matches = [
-                { app-id = "^firefox-devedition$"; }
-              ];
-              open-on-workspace = "1";
-            }
-            {
-              matches = [
-                {
-                  app-id = "^com.mitchellh.ghostty$";
-                  at-startup = true;
-                }
-              ];
-              open-on-workspace = "2";
-              default-column-width.proportion = 1.;
-            }
-            {
-              matches = [
-                { app-id = "^org.telegram.desktop$"; }
-                { app-id = "^vesktop$"; }
-              ];
-              open-on-workspace = "3";
-            }
-          ];
-
-          spawn-at-startup = [
-            { sh = "app2unit -- dms run"; }
-            { sh = "app2unit -- firefox-devedition"; }
-            { sh = ''app2unit -- ghostty -e zsh -l -c "zellij a -c defaulted"''; }
-            { sh = "app2unit -- vesktop"; }
-          ];
-
-          binds =
-            with config.lib.niri.actions;
-            let
-              # https://github.com/sodiboo/system/blob/a6ff1448f3d9cafe55e79a68802f03d76d4894b4/personal/niri.mod.nix#L31
-              binds =
-                {
-                  suffixes,
-                  prefixes,
-                  substitutions ? { },
-                }:
-                let
-                  replacer = lib.replaceStrings (lib.attrNames substitutions) (lib.attrValues substitutions);
-                  format =
-                    prefix: suffix:
-                    let
-                      actual-suffix =
-                        if lib.isList suffix.action then
-                          {
-                            action = lib.head suffix.action;
-                            args = lib.tail suffix.action;
-                          }
-                        else
-                          {
-                            inherit (suffix) action;
-                            args = [ ];
-                          };
-
-                      action = replacer "${prefix.action}-${actual-suffix.action}";
-                    in
-                    {
-                      name = "${prefix.key}+${suffix.key}";
-                      value.action.${action} = actual-suffix.args;
-                    };
-                  pairs =
-                    attrs: fn:
-                    lib.concatMap (
-                      key:
-                      fn {
-                        inherit key;
-                        action = attrs.${key};
-                      }
-                    ) (lib.attrNames attrs);
-                in
-                lib.listToAttrs (pairs prefixes (prefix: pairs suffixes (suffix: [ (format prefix suffix) ])));
-
-              dms-ipc = spawn "dms" "ipc";
-            in
-            lib.attrsets.mergeAttrsList [
-              {
-                "Mod+Shift+Slash".action = show-hotkey-overlay;
-
-                "Mod+T".action = spawn-sh "app2unit -- ghostty";
-
-                "Mod+Space" = {
-                  action = dms-ipc "spotlight" "toggle";
-                  hotkey-overlay.title = "Toggle Application Launcher";
-                };
-                "Mod+N" = {
-                  action = dms-ipc "notifications" "toggle";
-                  hotkey-overlay.title = "Toggle Notification Center";
-                };
-                "Mod+L" = {
-                  action = dms-ipc "lock" "lock";
-                  hotkey-overlay.title = "Toggle Lock Screen";
-                };
-                "Mod+X" = {
-                  action = dms-ipc "powermenu" "toggle";
-                  hotkey-overlay.title = "Toggle Power Menu";
-                };
-
-                "XF86AudioRaiseVolume" = {
-                  allow-when-locked = true;
-                  action = dms-ipc "audio" "increment" "3";
-                };
-                "XF86AudioLowerVolume" = {
-                  allow-when-locked = true;
-                  action = dms-ipc "audio" "decrement" "3";
-                };
-                "XF86AudioMute" = {
-                  allow-when-locked = true;
-                  action = dms-ipc "audio" "mute";
-                };
-                "XF86AudioMicMute" = {
-                  allow-when-locked = true;
-                  action = dms-ipc "audio" "micmute";
-                };
-                "XF86MonBrightnessUp" = {
-                  allow-when-locked = true;
-                  action = dms-ipc "brightness" "increment" "5" "";
-                };
-                "XF86MonBrightnessDown" = {
-                  allow-when-locked = true;
-                  action = dms-ipc "brightness" "decrement" "5" "";
-                };
-
-                "Mod+Alt+S" = {
-                  action = spawn-sh "pkill orca || exec orca";
-                  allow-when-locked = true;
-                };
-
-                "Mod+O" = {
-                  action = toggle-overview;
-                  repeat = false;
-                };
-
-                "Mod+Q".action = close-window;
-
-                "Mod+Tab".action = focus-workspace-previous;
-
-                "Mod+BracketLeft".action = consume-or-expel-window-left;
-                "Mod+BracketRight".action = consume-or-expel-window-right;
-
-                "Mod+Comma".action = consume-window-into-column;
-                "Mod+Period".action = expel-window-from-column;
-
-                "Mod+R".action = switch-preset-column-width;
-                "Mod+Shift+R".action = switch-preset-window-height;
-                "Mod+Ctrl+R".action = reset-window-height;
-
-                "Mod+F".action = maximize-column;
-                "Mod+Shift+F".action = fullscreen-window;
-
-                "Mod+Ctrl+F".action = expand-column-to-available-width;
-
-                "Mod+C".action = center-column;
-
-                "Mod+Ctrl+C".action = center-visible-columns;
-
-                "Mod+Minus".action = set-column-width "-10%";
-                "Mod+Equal".action = set-column-width "+10%";
-
-                "Mod+Shift+Minus".action = set-window-height "-10%";
-                "Mod+Shift+Equal".action = set-window-height "+10%";
-
-                "Mod+V".action = toggle-window-floating;
-                "Mod+Shift+V".action = switch-focus-between-floating-and-tiling;
-
-                "Mod+W".action = toggle-column-tabbed-display;
-
-                "Print".action = spawn-sh "dms screenshot full --no-clipboard --stdout | satty -f -";
-                "Ctrl+Print".action.screenshot-screen = [ ];
-                "Alt+Print".action.screenshot-window = [ ];
-
-                "Mod+Escape" = {
-                  action = toggle-keyboard-shortcuts-inhibit;
-                  allow-inhibiting = false;
-                };
-
-                "Mod+Shift+E".action = quit;
-                "Ctrl+Alt+Delete".action = quit;
-
-                "Mod+Shift+P".action = power-off-monitors;
-              }
-              (binds {
-                suffixes."Left" = "column-left";
-                suffixes."Down" = "window-down";
-                suffixes."Up" = "window-up";
-                suffixes."Right" = "column-right";
-                prefixes."Mod" = "focus";
-                prefixes."Mod+Ctrl" = "move";
-                prefixes."Mod+Shift" = "focus-monitor";
-                prefixes."Mod+Shift+Ctrl" = "move-column-to-monitor";
-                substitutions."monitor-column" = "monitor";
-                substitutions."monitor-window" = "monitor";
-              })
-              (binds {
-                suffixes."Home" = "first";
-                suffixes."End" = "last";
-                prefixes."Mod" = "focus-column";
-                prefixes."Mod+Ctrl" = "move-column-to";
-              })
-              (binds {
-                suffixes."Page_Down" = "workspace-down";
-                suffixes."Page_Up" = "workspace-up";
-                prefixes."Mod" = "focus";
-                prefixes."Mod+Ctrl" = "move-column-to";
-                prefixes."Mod+Shift" = "move";
-              })
-              (binds {
-                suffixes =
-                  (lib.range 1 9)
-                  |> map (n: {
-                    name = toString n;
-                    value = [
-                      "workspace"
-                      n
-                    ];
-                  })
-                  |> builtins.listToAttrs;
-                prefixes."Mod" = "focus";
-                prefixes."Mod+Ctrl" = "move-column-to";
-              })
-            ];
+        input = {
+          keyboard.numlock = true;
+          power-key-handling.enable = false;
         };
 
-        dank-material-shell = {
-          enable = true;
-          niri.includes.enable = true;
+        layout = {
+          gaps = 3;
+          border.width = 2;
+          background-color = "transparent";
         };
 
-        satty = {
-          enable = true;
-          settings = {
-            general = {
-              fullscreen = true;
-              early-exit = true;
-              save-after-copy = true;
-              actions-on-right-click = [ "save-to-clipboard" ];
-              copy-command = "wl-copy";
+        overview.workspace-shadow.enable = false;
+
+        animations.slowdown = 0.7;
+
+        workspaces = {
+          "1" = { };
+          "2" = { };
+          "3" = { };
+          "4" = { };
+          "5" = { };
+          "6" = { };
+          "7" = { };
+          "8" = { };
+          "9" = { };
+        };
+
+        window-rules = [
+          {
+            # i hate this
+            geometry-corner-radius = {
+              bottom-left = 3.;
+              bottom-right = 3.;
+              top-left = 3.;
+              top-right = 3.;
             };
-          };
-        };
-      };
+            clip-to-geometry = true;
+          }
 
-      home = {
-        packages = with pkgs; [
+          {
+            matches = [
+              { app-id = "^firefox-devedition$"; }
+            ];
+            open-on-workspace = "1";
+          }
+          {
+            matches = [
+              {
+                app-id = "^com.mitchellh.ghostty$";
+                at-startup = true;
+              }
+            ];
+            open-on-workspace = "2";
+            default-column-width.proportion = 1.;
+          }
+          {
+            matches = [
+              { app-id = "^org.telegram.desktop$"; }
+              { app-id = "^vesktop$"; }
+            ];
+            open-on-workspace = "3";
+          }
         ];
 
-        sessionVariables = {
-          DMS_SCREENSHOT_EDITOR = "satty";
+        spawn-at-startup = [
+          { sh = "app2unit -- dms run"; }
+          { sh = "app2unit -- firefox-devedition"; }
+          { sh = ''app2unit -- ghostty -e zsh -l -c "zellij a -c defaulted"''; }
+          { sh = "app2unit -- vesktop"; }
+        ];
+
+        binds =
+          with config.lib.niri.actions;
+          let
+            # https://github.com/sodiboo/system/blob/a6ff1448f3d9cafe55e79a68802f03d76d4894b4/personal/niri.mod.nix#L31
+            binds =
+              {
+                suffixes,
+                prefixes,
+                substitutions ? { },
+              }:
+              let
+                replacer = lib.replaceStrings (lib.attrNames substitutions) (lib.attrValues substitutions);
+                format =
+                  prefix: suffix:
+                  let
+                    actual-suffix =
+                      if lib.isList suffix.action then
+                        {
+                          action = lib.head suffix.action;
+                          args = lib.tail suffix.action;
+                        }
+                      else
+                        {
+                          inherit (suffix) action;
+                          args = [ ];
+                        };
+
+                    action = replacer "${prefix.action}-${actual-suffix.action}";
+                  in
+                  {
+                    name = "${prefix.key}+${suffix.key}";
+                    value.action.${action} = actual-suffix.args;
+                  };
+                pairs =
+                  attrs: fn:
+                  lib.concatMap (
+                    key:
+                    fn {
+                      inherit key;
+                      action = attrs.${key};
+                    }
+                  ) (lib.attrNames attrs);
+              in
+              lib.listToAttrs (pairs prefixes (prefix: pairs suffixes (suffix: [ (format prefix suffix) ])));
+
+            dms-ipc = spawn "dms" "ipc";
+          in
+          lib.attrsets.mergeAttrsList [
+            {
+              "Mod+Shift+Slash".action = show-hotkey-overlay;
+
+              "Mod+T".action = spawn-sh "app2unit -- ghostty";
+
+              "Mod+Space" = {
+                action = dms-ipc "spotlight" "toggle";
+                hotkey-overlay.title = "Toggle Application Launcher";
+              };
+              "Mod+N" = {
+                action = dms-ipc "notifications" "toggle";
+                hotkey-overlay.title = "Toggle Notification Center";
+              };
+              "Mod+L" = {
+                action = dms-ipc "lock" "lock";
+                hotkey-overlay.title = "Toggle Lock Screen";
+              };
+              "Mod+X" = {
+                action = dms-ipc "powermenu" "toggle";
+                hotkey-overlay.title = "Toggle Power Menu";
+              };
+
+              "XF86AudioRaiseVolume" = {
+                allow-when-locked = true;
+                action = dms-ipc "audio" "increment" "3";
+              };
+              "XF86AudioLowerVolume" = {
+                allow-when-locked = true;
+                action = dms-ipc "audio" "decrement" "3";
+              };
+              "XF86AudioMute" = {
+                allow-when-locked = true;
+                action = dms-ipc "audio" "mute";
+              };
+              "XF86AudioMicMute" = {
+                allow-when-locked = true;
+                action = dms-ipc "audio" "micmute";
+              };
+              "XF86MonBrightnessUp" = {
+                allow-when-locked = true;
+                action = dms-ipc "brightness" "increment" "5" "";
+              };
+              "XF86MonBrightnessDown" = {
+                allow-when-locked = true;
+                action = dms-ipc "brightness" "decrement" "5" "";
+              };
+
+              "Mod+Alt+S" = {
+                action = spawn-sh "pkill orca || exec orca";
+                allow-when-locked = true;
+              };
+
+              "Mod+O" = {
+                action = toggle-overview;
+                repeat = false;
+              };
+
+              "Mod+Q".action = close-window;
+
+              "Mod+Tab".action = focus-workspace-previous;
+
+              "Mod+BracketLeft".action = consume-or-expel-window-left;
+              "Mod+BracketRight".action = consume-or-expel-window-right;
+
+              "Mod+Comma".action = consume-window-into-column;
+              "Mod+Period".action = expel-window-from-column;
+
+              "Mod+R".action = switch-preset-column-width;
+              "Mod+Shift+R".action = switch-preset-window-height;
+              "Mod+Ctrl+R".action = reset-window-height;
+
+              "Mod+F".action = maximize-column;
+              "Mod+Shift+F".action = fullscreen-window;
+
+              "Mod+Ctrl+F".action = expand-column-to-available-width;
+
+              "Mod+C".action = center-column;
+
+              "Mod+Ctrl+C".action = center-visible-columns;
+
+              "Mod+Minus".action = set-column-width "-10%";
+              "Mod+Equal".action = set-column-width "+10%";
+
+              "Mod+Shift+Minus".action = set-window-height "-10%";
+              "Mod+Shift+Equal".action = set-window-height "+10%";
+
+              "Mod+V".action = toggle-window-floating;
+              "Mod+Shift+V".action = switch-focus-between-floating-and-tiling;
+
+              "Mod+W".action = toggle-column-tabbed-display;
+
+              "Print".action = spawn-sh "dms screenshot full --no-clipboard --stdout | satty -f -";
+              "Ctrl+Print".action.screenshot-screen = [ ];
+              "Alt+Print".action.screenshot-window = [ ];
+
+              "Mod+Escape" = {
+                action = toggle-keyboard-shortcuts-inhibit;
+                allow-inhibiting = false;
+              };
+
+              "Mod+Shift+E".action = quit;
+              "Ctrl+Alt+Delete".action = quit;
+
+              "Mod+Shift+P".action = power-off-monitors;
+            }
+            (binds {
+              suffixes."Left" = "column-left";
+              suffixes."Down" = "window-down";
+              suffixes."Up" = "window-up";
+              suffixes."Right" = "column-right";
+              prefixes."Mod" = "focus";
+              prefixes."Mod+Ctrl" = "move";
+              prefixes."Mod+Shift" = "focus-monitor";
+              prefixes."Mod+Shift+Ctrl" = "move-column-to-monitor";
+              substitutions."monitor-column" = "monitor";
+              substitutions."monitor-window" = "monitor";
+            })
+            (binds {
+              suffixes."Home" = "first";
+              suffixes."End" = "last";
+              prefixes."Mod" = "focus-column";
+              prefixes."Mod+Ctrl" = "move-column-to";
+            })
+            (binds {
+              suffixes."Page_Down" = "workspace-down";
+              suffixes."Page_Up" = "workspace-up";
+              prefixes."Mod" = "focus";
+              prefixes."Mod+Ctrl" = "move-column-to";
+              prefixes."Mod+Shift" = "move";
+            })
+            (binds {
+              suffixes =
+                (lib.range 1 9)
+                |> map (n: {
+                  name = toString n;
+                  value = [
+                    "workspace"
+                    n
+                  ];
+                })
+                |> builtins.listToAttrs;
+              prefixes."Mod" = "focus";
+              prefixes."Mod+Ctrl" = "move-column-to";
+            })
+          ];
+      };
+
+      programs.dank-material-shell = {
+        enable = true;
+        niri.includes.enable = true;
+      };
+
+      programs.satty = {
+        enable = true;
+        settings = {
+          general = {
+            fullscreen = true;
+            early-exit = true;
+            save-after-copy = true;
+            actions-on-right-click = [ "save-to-clipboard" ];
+            copy-command = "wl-copy";
+          };
         };
       };
 

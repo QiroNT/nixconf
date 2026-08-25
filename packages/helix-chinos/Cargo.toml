@@ -17,10 +17,21 @@ crate-type = ["cdylib"]
 
 [dependencies]
 abi_stable = "0.11.3"
-compio = { version = "0.19.1", features = ["dispatcher"] }
-extension-traits = "2.0.2"
+compio = { version = "0.19.2", features = ["dispatcher", "polling"] }
+extension-traits = "2.0.3"
 eyre = "0.6.14"
 fake = "5.1.0"
+futures = "0.3.34"
 helix-chinos-macros = { path = "helix-chinos-macros" }
-steel-core = { version = "0.8.2", features = ["dylibs", "sync"] }
+itertools = "0.15.0"
+memchr = "2.8.3"
+steel-core = { version = "0.8.3", features = ["dylibs", "sync"] }
 textwrap = "0.16.2"
+unicode-width = "0.2.2"
+
+[lints.clippy]
+pedantic = { level = "warn", priority = -1 }
+nursery = { level = "warn", priority = -1 }
+
+unwrap_used = "warn"
+todo = "warn"
