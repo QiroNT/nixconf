@@ -1,36 +1,36 @@
-(require "helix/configuration.scm")
+(require (prefix-in helix.configuration. "helix/configuration.scm"))
 
-(define (add-language-server language server)
-  (define config (get-language-config language))
+(define (*add-language-server* language server)
+  (define config (helix.configuration.get-language-config language))
   (define servers (hash-ref config 'language-servers))
-  (define-language language
+  (helix.configuration.define-language language
     (language-servers (cons server servers))))
 
-(define-lsp "steel-language-server"
+(helix.configuration.define-lsp "steel-language-server"
   (command "steel-language-server")
   (args '()))
-(define-language "scheme"
+(helix.configuration.define-language "scheme"
   (language-servers '("steel-language-server"))
   (auto-format #t)
   (formatter (command "schemat")))
 
-(define-language "nix"
+(helix.configuration.define-language "nix"
   (auto-format #t)
   (formatter (command "nixfmt")))
 
-(define-lsp "rust-analyzer"
+(helix.configuration.define-lsp "rust-analyzer"
   (config (check (hash 'command "clippy"))))
 
-(define-lsp "tinymist"
+(helix.configuration.define-lsp "tinymist"
   (config (formatterMode "typstyle")
     (formatterProseWrap #t)))
-(define-language "typst"
+(helix.configuration.define-language "typst"
   (auto-format #t))
 
-(define-lsp "codebook"
+(helix.configuration.define-lsp "codebook"
   (command "codebook-lsp")
   (args '("serve")))
-(for-each (lambda (language) (add-language-server language "codebook"))
+(for-each (lambda (language) (*add-language-server* language "codebook"))
   '("astro"
     "bash"
     "c"
@@ -63,10 +63,10 @@
     "yaml"
     "zig"))
 
-(define-lsp "harper-ls"
+(helix.configuration.define-lsp "harper-ls"
   (command "harper-ls")
   (args '("--stdio")))
-(for-each (lambda (language) (add-language-server language "harper-ls"))
+(for-each (lambda (language) (*add-language-server* language "harper-ls"))
   '("git-commit"
     "markdown"
     "typst"))

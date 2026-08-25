@@ -23,12 +23,12 @@
 
 (provide gitu)
 ;;@doc
-;; Open gitu.
+;; Open gitu at current buffer
 (define (gitu)
   (*open* "@gituPath@"))
 
 (provide lazygit)
 ;;@doc
-;; Open lazygit.
+;; Open lazygit at current buffer
 (define (lazygit)
   (*open* "@lazygitPath@"))

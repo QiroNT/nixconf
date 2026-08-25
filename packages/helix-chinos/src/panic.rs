@@ -1,4 +1,8 @@
-use std::{cell::Cell, io, panic, sync::Arc};
+use std::{
+    cell::Cell,
+    io, panic,
+    sync::{Arc, PoisonError},
+};
 
 thread_local! {
     static LAST_PANIC: Cell<Option<Vec<u8>>> =
@@ -11,16 +15,12 @@ pub fn install_panic_capture() {
         default_hook(info);
         let captured = io::set_output_capture(previous_capture);
 
-        let bytes = match Arc::try_unwrap(captured.expect("we've just set one"))
-            .expect("nobody should be holding it")
-            .into_inner()
-        {
-            Ok(buf) => buf,
-            Err(poisoned) => poisoned.into_inner(),
-        };
+        let bytes = captured
+            .and_then(|c| Arc::try_unwrap(c).ok())
+            .map(|c| c.into_inner().unwrap_or_else(PoisonError::into_inner));
 
         LAST_PANIC.with(|slot| {
-            slot.set(Some(bytes));
+            slot.set(bytes);
         });
     });
 }

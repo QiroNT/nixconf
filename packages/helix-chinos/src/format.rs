@@ -10,9 +10,10 @@ use crate::{
 
 mod block;
 mod sink;
+mod util;
 
 impl HelixChinosInner {
-    #[allow(clippy::unused_async)]
+    #[allow(clippy::unused_async, clippy::unused_async_trait_impl)]
     pub(crate) async fn format(&self, s: String, tab_width: usize) -> eyre::Result<String> {
         let rn = s.contains("\r\n");
         let s = s.replace("\r\n", "\n");

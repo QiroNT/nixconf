@@ -1,1 +1,2 @@
-(require "lib/languages.scm")
+(require "init/languages.scm")
+(require "init/yazi.scm")

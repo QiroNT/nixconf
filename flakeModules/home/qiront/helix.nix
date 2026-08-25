@@ -88,26 +88,11 @@
               "keep_primary_selection"
             ];
           };
-
-          keys.normal.space = {
-            # replace file explorer with yazi
-            e =
-              let
-                yazi-chooser = pkgs.writeShellScript "yazi-chooser" ''
-                  ${pkgs.yazi}/bin/yazi $1 --chooser-file=/dev/stdout
-                '';
-              in
-              [
-                ":set mouse false"
-                ":open %sh{${tty-popup yazi-chooser} '%{buffer_name}' | tr -d '\\n'}"
-                ":redraw"
-                ":set mouse true"
-              ];
-          };
         };
 
         extraPackages = with pkgs; [
           # scheme
+          racket
           schemat
           # nix
           nixd
@@ -143,9 +128,16 @@
                   ${pkgs.gitu}/bin/gitu > /dev/tty
                 ''
                 |> tty-popup;
+
               lazygitPath =
                 pkgs.writeShellScript "lazygit-popup" ''
                   ${pkgs.lazygit}/bin/lazygit > /dev/tty
+                ''
+                |> tty-popup;
+
+              yaziPath =
+                pkgs.writeShellScript "yazi-chooser" ''
+                  ${pkgs.yazi}/bin/yazi $1 --chooser-file=/dev/stdout
                 ''
                 |> tty-popup;
             }

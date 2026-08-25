@@ -42,6 +42,9 @@
             # lua
             luajit
 
+            # scheme
+            racket
+
             # docker / k8s
             dive
 
