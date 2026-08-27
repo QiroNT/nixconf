@@ -70,6 +70,9 @@
 
         users.defaultUserShell = pkgs.zsh;
 
+        # compose key
+        services.xserver.xkb.options = "terminate:ctrl_alt_bksp,compose:ralt";
+
         # ssh
         services.openssh = {
           enable = true;
