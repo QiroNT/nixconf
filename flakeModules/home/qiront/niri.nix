@@ -308,6 +308,8 @@
         };
       };
 
+      programs.qalculate.enable = true;
+
       xdg.configFile."uwsm/env-niri".text = ''
         export APP2UNIT_SLICES="a=app-graphical.slice b=background-graphical.slice s=session-graphical.slice"
         export APP2UNIT_TYPE="scope"
