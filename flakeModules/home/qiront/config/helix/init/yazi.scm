@@ -2,4 +2,4 @@
 
 ; replace file explorer with yazi
 (helix.keymaps.add-global-keybinding
-  (hash "normal" (hash "space" (hash "e" ':yazi))))
+  (hash 'normal (hash 'space (hash 'e ':yazi))))

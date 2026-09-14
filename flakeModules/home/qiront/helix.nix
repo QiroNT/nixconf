@@ -1,10 +1,15 @@
-{ inputs, ... }:
+{ ... }:
 {
   flake.modules.homeManager.qiront-helix =
-    { pkgs, ... }:
+    { inputs', pkgs, ... }:
     let
-      helix = inputs.helix-steel.packages.${pkgs.stdenv.hostPlatform.system}.helix;
-      steel = inputs.steel.packages.${pkgs.stdenv.hostPlatform.system}.steel;
+      helix = inputs'.helix-steel.packages.helix.overrideAttrs (old: {
+        buildFeatures = (old.buildFeatures or [ ]) ++ [
+          "git"
+          "steel"
+        ];
+      });
+      steel = inputs'.steel.packages.steel;
       helix-chinos = pkgs.local.helix-chinos.override { inherit steel; };
 
       tty-popup =
@@ -104,11 +109,16 @@
           typstyle
           # html/css/json/eslint
           vscode-langservers-extracted
+          vue-language-server
+          astro-language-server
+          svelte-language-server
           # c
           clang-tools
           lldb
           # java
           jdt-language-server
+          # markdown
+          rumdl
           # spell check
           codebook
           harper

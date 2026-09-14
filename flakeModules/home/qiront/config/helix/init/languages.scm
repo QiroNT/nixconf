@@ -2,9 +2,15 @@
 
 (define (*add-language-server* language server)
   (define config (helix.configuration.get-language-config language))
-  (define servers (hash-ref config 'language-servers))
+  (define servers (and (hash? config) (hash-try-get config 'language-servers)))
   (helix.configuration.define-language language
-    (language-servers (cons server servers))))
+    (language-servers (cons server (if (list? servers) servers '())))))
+
+(define (*add-code-action-on-save* language code-action)
+  (define config (helix.configuration.get-language-config language))
+  (define actions (and (hash? config) (hash-try-get config 'code-actions-on-save)))
+  (helix.configuration.define-language language
+    (code-actions-on-save (cons code-action (if (list? actions) actions '())))))
 
 (helix.configuration.define-lsp "steel-language-server"
   (command "steel-language-server")
@@ -19,13 +25,59 @@
   (formatter (command "nixfmt")))
 
 (helix.configuration.define-lsp "rust-analyzer"
-  (config (check (hash 'command "clippy"))))
+  (config
+    (check (hash 'command "clippy"))))
 
 (helix.configuration.define-lsp "tinymist"
-  (config (formatterMode "typstyle")
+  (config
+    (formatterMode "typstyle")
     (formatterProseWrap #t)))
 (helix.configuration.define-language "typst"
   (auto-format #t))
+
+(helix.configuration.define-lsp "vscode-eslint-language-server"
+  (config
+    (rulesCustomizations
+      (map (lambda (rule) (hash 'rule rule 'severity "off" 'fixable #t))
+        '("style/*"
+          "format/*"
+          "*-indent"
+          "*-spacing"
+          "*-spaces"
+          "*-order"
+          "*-dangle"
+          "*-newline"
+          "*quotes"
+          "*semi")))))
+(for-each (lambda (language)
+           (*add-language-server* language "vscode-eslint-language-server")
+           (*add-code-action-on-save* language "source.fixAll.eslint"))
+  '("javascript"
+    "jsx"
+    "typescript"
+    "tsx"
+    "vue"
+    "html"
+    "markdown"
+    "json"
+    "jsonc"
+    "yaml"
+    "toml"
+    "xml"
+    "graphql"
+    "astro"
+    "svelte"
+    "css"
+    "scss"
+    "less"))
+
+(helix.configuration.define-lsp "rumdl"
+  (config
+    (global (hash
+             'line-length
+             75
+             'disable
+             '("MD033")))))
 
 (helix.configuration.define-lsp "codebook"
   (command "codebook-lsp")
