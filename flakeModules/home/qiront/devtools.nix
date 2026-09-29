@@ -38,6 +38,8 @@
             # rust
             rustup
             sccache
+            bacon
+            cargo-edit
 
             # lua
             luajit
@@ -51,6 +53,16 @@
             # cloud
             google-cloud-sdk
           ];
+
+          programs = {
+            cargo = {
+              enable = true;
+              package = null;
+              settings = {
+                build.rustc-wrapper = "${pkgs.sccache}/bin/sccache";
+              };
+            };
+          };
         }
 
         (lib.optionalAttrs (class == "nixos") {
