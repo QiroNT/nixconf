@@ -3,12 +3,6 @@
   flake.modules.homeManager.qiront-helix =
     { inputs', pkgs, ... }:
     let
-      helix = inputs'.helix-steel.packages.helix.overrideAttrs (old: {
-        buildFeatures = (old.buildFeatures or [ ]) ++ [
-          "git"
-          "steel"
-        ];
-      });
       steel = inputs'.steel.packages.steel;
       helix-chinos = pkgs.local.helix-chinos.override { inherit steel; };
 
@@ -52,11 +46,7 @@
       programs.helix = {
         enable = true;
         defaultEditor = true;
-        package = helix.overrideAttrs (prevAttrs: {
-          cargoBuildFeatures = [
-            "helix-term/steel"
-          ];
-        });
+        package = pkgs.steelix;
 
         settings = {
           editor = {

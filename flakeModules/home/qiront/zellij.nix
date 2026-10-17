@@ -10,6 +10,7 @@
           settings = {
             default_layout = "compact";
             pane_frames = false;
+            scroll_mode_sync = false;
             plugins = {
               compact-bar = {
                 _props.location = "zellij:compact-bar";
