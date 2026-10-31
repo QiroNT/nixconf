@@ -102,7 +102,7 @@
             "https://numtide.cachix.org"
             "https://fenix.cachix.org"
             "https://niri.cachix.org"
-            # "https://attic.xuyh0120.win/lantian"
+            "https://cache.lantian.pub/lantian"
           ];
         };
 

@@ -12,6 +12,11 @@
 
       boot = {
         # secure boot, see lzbt & arch docs for setup
+
+        # to roll disk encryption keys into TPM, use the following:
+        # $ systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=7 --wipe-slot=tpm2 /dev/sdX
+        # TODO add pcr 11 after https://github.com/nix-community/lanzaboote/issues/61
+
         loader = {
           efi.canTouchEfiVariables = lib.mkForce false;
           systemd-boot.enable = lib.mkForce false;
@@ -20,11 +25,6 @@
           enable = true;
           pkiBundle = "/var/lib/sbctl";
         };
-
-        # to roll disk encryption keys into TPM, use the following:
-        # $ systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=7 --wipe-slot=tpm2 /dev/sdX
-        # TODO add pcr 11 after https://github.com/nix-community/lanzaboote/issues/61
-        initrd.systemd.enable = true;
       };
     }
   );
