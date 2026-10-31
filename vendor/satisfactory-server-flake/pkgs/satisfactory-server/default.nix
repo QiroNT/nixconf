@@ -18,8 +18,8 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     inherit (finalAttrs) name;
     appId = "1690800";
     depotId = "1690802";
-    manifestId = "7437610625655530204";
-    hash = "sha256-9HonZ/uEZgtKWb3GA+X8R9jXQfYaig11JtHmqLpSd6c=";
+    manifestId = "2874226577494387589";
+    hash = "sha256-8yMj8ZOfLlJlIeMxZctn/ghoQbbZxKcx783o0sGJuAs=";
   };
 
   dontBuild = true;

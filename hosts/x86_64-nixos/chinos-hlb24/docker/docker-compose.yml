@@ -45,6 +45,16 @@ services:
       - SAVE_NAME=se2
       - DLC_SPACE_AGE=elevated-rails quality
 
+  minecraft-startech:
+    build: ./minecraft/jre21
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+    ports:
+      - "25565:25565/tcp"
+    volumes:
+      - /opt/minecraft-startech:/work
+
   # minecraft-atm10:
   #   build: ./minecraft/jre21
   #   restart: unless-stopped
@@ -54,16 +64,6 @@ services:
   #     - "25565:25565/tcp"
   #   volumes:
   #     - /opt/minecraft-atm10:/work
-
-  # minecraft-startech:
-  #   build: ./minecraft/jre17
-  #   restart: unless-stopped
-  #   stdin_open: true
-  #   tty: true
-  #   ports:
-  #     - "25565:25565/tcp"
-  #   volumes:
-  #     - /opt/minecraft-startech:/work
 
   # watchtower:
   #   image: containrrr/watchtower

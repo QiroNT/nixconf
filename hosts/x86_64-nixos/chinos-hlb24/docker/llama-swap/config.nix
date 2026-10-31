@@ -59,6 +59,12 @@ in
 
   models = builtins.foldl' (x: y: x // y) { } [
     (model {
+      name = "qwen3.8-27b";
+      args = ''
+        -hf unsloth/Qwen3.8-27B-GGUF:UD-Q4_K_XL
+      '';
+    })
+    (model {
       name = "qwen3.6-27b";
       args = ''
         -hf unsloth/Qwen3.6-27B-MTP-GGUF:UD-Q4_K_XL

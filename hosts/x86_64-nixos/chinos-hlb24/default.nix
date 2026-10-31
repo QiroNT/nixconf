@@ -8,7 +8,6 @@
 
     docker
     forgejo
-    forgejo-runner
     kernel-latest
     satisfactory
     sidestore-vpn
