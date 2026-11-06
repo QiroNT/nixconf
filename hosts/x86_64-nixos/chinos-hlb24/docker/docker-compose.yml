@@ -2,7 +2,7 @@ name: nixconf
 
 services:
   magpie:
-    image: ghcr.io/yetone/magpie:stable
+    image: ghcr.io/yetone/magpie:latest
     restart: unless-stopped
     command: [web, --addr, 0.0.0.0:3430, --no-open]
     ports:
