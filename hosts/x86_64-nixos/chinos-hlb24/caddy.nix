@@ -44,6 +44,7 @@ in
           }
           ${cert "immich"}
           ${cert "llm"}
+          ${cert "magpie"}
         }
       '';
 
@@ -61,6 +62,9 @@ in
         '';
         "llm.internal.chino.dev".extraConfig = certdx "llm" + ''
           reverse_proxy http://localhost:11434
+        '';
+        "magpie.internal.chino.dev".extraConfig = certdx "magpie" + ''
+          reverse_proxy http://localhost:3430
         '';
       };
   };

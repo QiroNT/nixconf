@@ -22,6 +22,7 @@
     ./caddy.nix
     ./certdx.nix
     ./docker/immich
+    ./docker/magpie
   ];
 
   # this doesn't need to be touched,

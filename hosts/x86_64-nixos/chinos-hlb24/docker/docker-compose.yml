@@ -1,6 +1,19 @@
 name: nixconf
 
 services:
+  magpie:
+    image: ghcr.io/yetone/magpie:stable
+    restart: unless-stopped
+    command: [web, --addr, 0.0.0.0:3430, --no-open]
+    ports:
+      - "127.0.0.1:3430:3430"
+    env_file:
+      - /run/secrets/chinos-hlb24/magpie/env
+    environment:
+      - MAGPIE_PUBLIC_URL=https://magpie.internal.chino.dev
+    volumes:
+      - /opt/magpie/config:/config
+
   llama-swap:
     image: ghcr.io/mostlygeek/llama-swap:vulkan-non-root
     restart: unless-stopped
