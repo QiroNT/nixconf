@@ -59,6 +59,7 @@
             oha
 
             chafa # image printer
+            qemu
             sops
             vulkan-tools
             watch
@@ -70,7 +71,6 @@
           home.packages = with pkgs; [
             # cli stuff
             psmisc # killall
-            qemu
             rime-cli
 
             # disk stuff
