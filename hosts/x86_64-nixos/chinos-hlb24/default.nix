@@ -21,8 +21,7 @@
     ./cloudflared.nix
     ./caddy.nix
     ./certdx.nix
-    ./docker/immich
-    ./docker/magpie
+    ./docker
   ];
 
   # this doesn't need to be touched,
