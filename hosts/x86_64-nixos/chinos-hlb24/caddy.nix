@@ -15,8 +15,8 @@ in
   services.caddy = {
     enable = true;
     package = pkgs.caddy.withPlugins {
-      plugins = [ "pkg.para.party/certdx/exec/caddytls@v0.5.0" ];
-      hash = "sha256-YBOzHXkeSNgzbkdEPzFdNOMJl9hNztNnvQG4pja+uRk=";
+      plugins = [ "pkg.para.party/certdx/exec/caddytls@v0.9.1" ];
+      hash = "sha256-0aoWTPVM766Qmn4oDtt944M51YFPuWZYpJj1x69S30Q=";
     };
     openFirewall = true;
 
@@ -37,9 +37,7 @@ in
             main_server {
               url https://certdx.internal.chino.dev:${toString certdxPort}
               authMethod mtls
-              ca ${caddyCertdxData}/mtls/ca.pem
-              certificate ${caddyCertdxData}/mtls/client.pem
-              key ${caddyCertdxData}/mtls/client.key
+              pem ${caddyCertdxData}/mtls/client.pem
             }
           }
           ${cert "immich"}
@@ -71,11 +69,7 @@ in
 
   sops.secrets =
     let
-      files = [
-        "mtls/ca.pem"
-        "mtls/client.key"
-        "mtls/client.pem"
-      ];
+      files = [ "mtls/client.pem" ];
       conf =
         file:
         lib.nameValuePair "chinos-hlb24/caddy-certdx/${file}" {

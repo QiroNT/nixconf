@@ -12,7 +12,6 @@
             fastfetch
             btop
             htop
-            glances
             inxi
 
             # fetch

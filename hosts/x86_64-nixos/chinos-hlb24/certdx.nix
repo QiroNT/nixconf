@@ -9,9 +9,7 @@ let
 
   secretFiles = [
     "server-config.toml"
-    "mtls/ca.pem"
-    "mtls/server.key"
-    "mtls/server.pem"
+    "mtls/certdx-server.pem"
   ];
   secretMapping =
     secretFiles
@@ -32,6 +30,7 @@ in
       DynamicUser = true;
       StateDirectory = "certdx";
       WorkingDirectory = "/var/lib/certdx";
+      Environment = [ "CERTDX_DATA_DIR=/var/lib/certdx" ];
       LoadCredential =
         secretFiles |> map (file: "${secretMapping.${file}}:/run/secrets/chinos-hlb24/certdx/${file}");
       ExecStartPre = pkgs.writeShellScript "certdx-server-pre" ''

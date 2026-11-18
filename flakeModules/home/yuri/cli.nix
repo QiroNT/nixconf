@@ -31,7 +31,6 @@
             # yep i have 4 monitoring tools for some reason
             btop
             htop
-            glances
             inxi
 
             # fetch
