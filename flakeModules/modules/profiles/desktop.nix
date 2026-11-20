@@ -11,6 +11,7 @@
         imports = with self.lib.withAny class; [
           profile-base
 
+          bootvine
           fonts
           niri
           pipewire

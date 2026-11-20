@@ -56,7 +56,7 @@
     "l_10646.ttf" # Lucida Sans Unicode
     "lucon.ttf" # Lucida Console
     "marlett.ttf" # Marlett
-    "micross.ttf" # Microsoft Sans Serifc
+    "micross.ttf" # Microsoft Sans Serif
     "pala.ttf"
     "palab.ttf"
     "palai.ttf"
@@ -144,6 +144,7 @@
   zh_cn = [
     "simsun.ttc" # NSimSun
     "simsunb.ttf" # SimSun-ExtB
+    "SimsunExtG.ttf" # SimSun-ExtG
     "msyh.ttc"
     "msyhbd.ttc" # Microsoft YaHei
     "msyhl.ttc" # Microsoft YaHei Light
@@ -162,5 +163,6 @@
     "gadugi.ttf"
     "gadugib.ttf" # Gadugi
     "mvboli.ttf" # MV Boli
+    "SansSerifCollection.ttf" # Sans Serif Collection
   ];
 }
