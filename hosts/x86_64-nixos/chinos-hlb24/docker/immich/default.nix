@@ -1,4 +1,9 @@
-{ self, config, ... }:
+{
+  self,
+  lib,
+  config,
+  ...
+}:
 let
   port = 2283;
 in
@@ -16,8 +21,8 @@ in
     wantedBy = [ "tailscaled.service" ];
     serviceConfig = {
       Type = "oneshot";
-      ExecStart = "${config.services.tailscale.package}/bin/tailscale serve --service=svc:immich --http=80 ${builtins.toString port}";
-      ExecStop = "${config.services.tailscale.package}/bin/tailscale serve drain svc:immich";
+      ExecStart = "${lib.getExe config.services.tailscale.package} serve --service=svc:immich --http=80 ${toString port}";
+      ExecStop = "${lib.getExe config.services.tailscale.package} serve drain svc:immich";
       RestartSec = 10;
       Restart = "on-failure";
       RemainAfterExit = true;

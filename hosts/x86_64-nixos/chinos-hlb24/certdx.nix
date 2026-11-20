@@ -52,9 +52,9 @@ in
         fi
         chmod 0640 cache.json
       '';
-      ExecStart = "${pkgs.local.certdx-server}/bin/certdx-server --conf server-config.toml";
+      ExecStart = "${lib.getExe' pkgs.local.certdx-server "certdx-server"} --conf server-config.toml";
       ExecStartPost = pkgs.writeShellScript "certdx-server-post" ''
-        while ! ${pkgs.netcat}/bin/nc -z localhost 17381; do
+        while ! ${lib.getExe pkgs.netcat} -z localhost 17381; do
           sleep 0.1
         done
       '';

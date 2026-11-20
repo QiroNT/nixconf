@@ -1,7 +1,12 @@
 { ... }:
 {
   flake.modules.homeManager.qiront-helix =
-    { inputs', pkgs, ... }:
+    {
+      inputs',
+      lib,
+      pkgs,
+      ...
+    }:
     let
       steel = inputs'.steel.packages.steel;
       helix-chinos = pkgs.local.helix-chinos.override { inherit steel; };
@@ -125,19 +130,19 @@
             {
               gituPath =
                 pkgs.writeShellScript "gitu-popup" ''
-                  ${pkgs.gitu}/bin/gitu > /dev/tty
+                  ${lib.getExe pkgs.gitu} > /dev/tty
                 ''
                 |> tty-popup;
 
               lazygitPath =
                 pkgs.writeShellScript "lazygit-popup" ''
-                  ${pkgs.lazygit}/bin/lazygit > /dev/tty
+                  ${lib.getExe pkgs.lazygit} > /dev/tty
                 ''
                 |> tty-popup;
 
               yaziPath =
                 pkgs.writeShellScript "yazi-chooser" ''
-                  ${pkgs.yazi}/bin/yazi $1 --chooser-file=/dev/stdout
+                  ${lib.getExe pkgs.yazi} $1 --chooser-file=/dev/stdout
                 ''
                 |> tty-popup;
             }

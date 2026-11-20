@@ -1,7 +1,7 @@
 { self, ... }:
 {
   flake.modules = self.lib.mkAnyNixos "sidestore-vpn" (
-    { pkgs, ... }:
+    { lib, pkgs, ... }:
     {
       systemd.services.sidestore-vpn = {
         description = "SideStore VPN";
@@ -11,7 +11,7 @@
           Type = "simple";
           Restart = "always";
           RestartSec = "3";
-          ExecStart = "${pkgs.nur.repos.xddxdd.sidestore-vpn}/bin/sidestore-vpn";
+          ExecStart = "${lib.getExe pkgs.nur.repos.xddxdd.sidestore-vpn}";
 
           AmbientCapabilities = [ "CAP_NET_ADMIN" ];
           CapabilityBoundingSet = [ "CAP_NET_ADMIN" ];

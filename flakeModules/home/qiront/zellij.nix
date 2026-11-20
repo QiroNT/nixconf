@@ -1,7 +1,7 @@
 { ... }:
 {
   flake.modules.homeManager.qiront-zellij =
-    { pkgs, ... }:
+    { lib, pkgs, ... }:
     {
       programs = {
         zellij = {
@@ -70,8 +70,8 @@
         Service = {
           Type = "oneshot";
           RemainAfterExit = true;
-          ExecStart = "${pkgs.coreutils}/bin/true";
-          ExecStop = "${pkgs.zellij}/bin/zellij kill-all-sessions --yes";
+          ExecStart = "${lib.getExe' pkgs.coreutils "true"}";
+          ExecStop = "${lib.getExe pkgs.zellij} kill-all-sessions --yes";
           TimeoutStopSec = 10;
         };
         Install.WantedBy = [ "graphical-session.target" ];

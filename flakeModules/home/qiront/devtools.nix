@@ -59,7 +59,7 @@
               enable = true;
               package = null;
               settings = {
-                build.rustc-wrapper = "${pkgs.sccache}/bin/sccache";
+                build.rustc-wrapper = lib.getExe pkgs.sccache;
               };
             };
           };
