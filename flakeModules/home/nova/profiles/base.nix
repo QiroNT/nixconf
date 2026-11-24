@@ -5,6 +5,7 @@
     {
       imports = with self.lib.prefixWith "nova" config.flake.modules.homeManager; [
         cli
+        devtools
         git
         helix
         nh
