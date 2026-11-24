@@ -4,6 +4,7 @@
     profile-base
 
     users-qiront
+    users-nova
     users-yuri
 
     docker
@@ -52,6 +53,7 @@
     }
   ];
 
+  home-manager.users.nova = import ./homes/nova.nix;
   home-manager.users.qiront = import ./homes/qiront.nix;
   home-manager.users.yuri = import ./homes/yuri.nix;
 
