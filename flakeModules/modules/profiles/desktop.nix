@@ -11,7 +11,6 @@
         imports = with self.lib.withAny class; [
           profile-base
 
-          bootvine
           fonts
           niri
           pipewire
@@ -48,6 +47,9 @@
 
         # mouse config (piper)
         services.ratbagd.enable = true;
+
+        # tui boot log
+        services.bootvine.enable = true;
       };
 
       darwin = {
